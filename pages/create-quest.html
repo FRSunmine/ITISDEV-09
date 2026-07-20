@@ -9,7 +9,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<script src="../assets/js/config/create-quest.tailwind.js"></script>
+<script type="module" src="../assets/js/config/create-quest.tailwind.js"></script>
 
 <link href="../assets/css/base.css" rel="stylesheet">
 <link href="../assets/css/pages/create-quest.css" rel="stylesheet">
@@ -18,7 +18,7 @@
 <!-- TopAppBar (Transactional - Hidden Navigation Shell for Wizard, but keeping minimal header) -->
 <header class="bg-surface docked full-width top-0 z-50 flat no shadows flex justify-between items-center h-16 px-gutter border-b border-outline-variant transition-colors">
 <div class="flex items-center gap-4">
-<a class="font-headline-md text-headline-md font-bold text-primary" href="#">SideQuest</a>
+<a class="font-headline-md text-headline-md font-bold text-primary" href="client-dashboard.html">SideQuest</a>
 <span class="text-on-surface-variant hidden md:inline font-body-sm text-body-sm">|</span>
 <span class="text-on-surface-variant hidden md:inline font-body-sm text-body-sm">Client Quest Scope Wizard</span>
 </div>
@@ -41,7 +41,7 @@
 <div aria-hidden="true" class="absolute inset-0 flex items-center">
 <div class="h-0.5 w-full bg-primary"></div>
 </div>
-<a class="relative flex h-8 w-8 items-center justify-center rounded-full bg-primary hover:bg-primary-container" href="#">
+<a class="relative flex h-8 w-8 items-center justify-center rounded-full bg-primary hover:bg-primary-container" href="create-quest.html">
 <span class="material-symbols-outlined text-on-primary text-sm" data-icon="check" data-weight="fill">check</span>
 </a>
 <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-center font-label-sm text-label-sm text-on-surface whitespace-nowrap">Basics</span>
@@ -50,7 +50,7 @@
 <div aria-hidden="true" class="absolute inset-0 flex items-center">
 <div class="h-0.5 w-full bg-surface-variant"></div>
 </div>
-<a aria-current="step" class="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-primary bg-surface" href="#">
+<a aria-current="step" class="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-primary bg-surface" href="create-quest.html">
 <span class="font-label-sm text-label-sm text-primary">02</span>
 </a>
 <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-center font-label-sm text-label-sm text-primary font-bold whitespace-nowrap">Deliverables</span>
@@ -59,7 +59,7 @@
 <div aria-hidden="true" class="absolute inset-0 flex items-center">
 <div class="h-0.5 w-full bg-surface-variant"></div>
 </div>
-<a class="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-outline-variant bg-surface hover:border-outline" href="#">
+<a class="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-outline-variant bg-surface hover:border-outline" href="create-quest.html">
 <span class="font-label-sm text-label-sm text-outline">03</span>
 </a>
 <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-center font-label-sm text-label-sm text-outline whitespace-nowrap">Requirements</span>
@@ -68,13 +68,13 @@
 <div aria-hidden="true" class="absolute inset-0 flex items-center">
 <div class="h-0.5 w-full bg-surface-variant"></div>
 </div>
-<a class="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-outline-variant bg-surface hover:border-outline" href="#">
+<a class="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-outline-variant bg-surface hover:border-outline" href="create-quest.html">
 <span class="font-label-sm text-label-sm text-outline">04</span>
 </a>
 <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-center font-label-sm text-label-sm text-outline whitespace-nowrap">Budget &amp; Dates</span>
 </li>
 <li class="relative">
-<a class="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-outline-variant bg-surface hover:border-outline" href="#">
+<a class="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-outline-variant bg-surface hover:border-outline" href="create-quest.html">
 <span class="font-label-sm text-label-sm text-outline">05</span>
 </a>
 <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-center font-label-sm text-label-sm text-outline whitespace-nowrap">REVIEW</span>
@@ -258,9 +258,9 @@
 <footer class="bg-surface-container-low dark:bg-surface-container-lowest full-width flat no shadows flex justify-between items-center py-4 px-gutter mt-auto border-t border-outline-variant">
 <p class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-container">© 2026 SideQuest. Payment arrangements are completed externally. SideQuest does not process or hold funds.</p>
 <div class="flex gap-6">
-<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Terms of Service</a>
-<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Privacy Policy</a>
-<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Contact Support</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="create-quest.html">Terms of Service</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="create-quest.html">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="create-quest.html">Contact Support</a>
 </div>
 </footer>
 <script type="module" src="../assets/js/app.js"></script>
