@@ -1,0 +1,267 @@
+<!-- Create Quest Wizard (Final v2) - SideQuest -->
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Client Quest Scope Wizard - SideQuest</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="../assets/js/config/create-quest.tailwind.js"></script>
+
+<link href="../assets/css/base.css" rel="stylesheet">
+<link href="../assets/css/pages/create-quest.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopAppBar (Transactional - Hidden Navigation Shell for Wizard, but keeping minimal header) -->
+<header class="bg-surface docked full-width top-0 z-50 flat no shadows flex justify-between items-center h-16 px-gutter border-b border-outline-variant transition-colors">
+<div class="flex items-center gap-4">
+<a class="font-headline-md text-headline-md font-bold text-primary" href="#">SideQuest</a>
+<span class="text-on-surface-variant hidden md:inline font-body-sm text-body-sm">|</span>
+<span class="text-on-surface-variant hidden md:inline font-body-sm text-body-sm">Client Quest Scope Wizard</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-2 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+</header>
+<main class="flex-grow max-w-max-width mx-auto w-full px-margin-mobile md:px-margin-desktop py-8 md:py-12">
+<!-- Header Section -->
+<div class="mb-12 text-center md:text-left">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">Create New Quest</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Define the scope, deliverables, and requirements for a short-term creative, technical, tutoring, or operational project.</p>
+</div>
+<!-- Stepper Navigation -->
+<nav aria-label="Progress" class="mb-12 border-b border-outline-variant pb-8 hidden md:block">
+<ol class="flex items-center" role="list">
+<li class="relative pr-8 sm:pr-24">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="h-0.5 w-full bg-primary"></div>
+</div>
+<a class="relative flex h-8 w-8 items-center justify-center rounded-full bg-primary hover:bg-primary-container" href="#">
+<span class="material-symbols-outlined text-on-primary text-sm" data-icon="check" data-weight="fill">check</span>
+</a>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-center font-label-sm text-label-sm text-on-surface whitespace-nowrap">Basics</span>
+</li>
+<li class="relative pr-8 sm:pr-24">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="h-0.5 w-full bg-surface-variant"></div>
+</div>
+<a aria-current="step" class="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-primary bg-surface" href="#">
+<span class="font-label-sm text-label-sm text-primary">02</span>
+</a>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-center font-label-sm text-label-sm text-primary font-bold whitespace-nowrap">Deliverables</span>
+</li>
+<li class="relative pr-8 sm:pr-24">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="h-0.5 w-full bg-surface-variant"></div>
+</div>
+<a class="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-outline-variant bg-surface hover:border-outline" href="#">
+<span class="font-label-sm text-label-sm text-outline">03</span>
+</a>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-center font-label-sm text-label-sm text-outline whitespace-nowrap">Requirements</span>
+</li>
+<li class="relative pr-8 sm:pr-24">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="h-0.5 w-full bg-surface-variant"></div>
+</div>
+<a class="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-outline-variant bg-surface hover:border-outline" href="#">
+<span class="font-label-sm text-label-sm text-outline">04</span>
+</a>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-center font-label-sm text-label-sm text-outline whitespace-nowrap">Budget &amp; Dates</span>
+</li>
+<li class="relative">
+<a class="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-outline-variant bg-surface hover:border-outline" href="#">
+<span class="font-label-sm text-label-sm text-outline">05</span>
+</a>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-center font-label-sm text-label-sm text-outline whitespace-nowrap">REVIEW</span>
+</li>
+</ol>
+</nav>
+<!-- Main Content Area: Step 2 (Bento Grid Layout) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Form Details (Takes up 2 cols on lg) -->
+<div class="lg:col-span-2 space-y-8">
+<!-- Scope Definition Card -->
+<section class="bg-surface-container-lowest border border-surface-variant rounded-lg p-6 lg:p-8">
+<h2 class="font-headline-md text-headline-md text-primary mb-6">Scope Definition</h2>
+<div class="space-y-6">
+<div>
+<label class="block font-body-sm text-body-sm text-on-surface-variant mb-2" for="quest_title">Quest Title</label>
+<input class="block w-full rounded border-outline-variant bg-surface-container-low text-on-surface focus:border-primary focus:ring-0 font-body-md text-body-md py-3 px-4" id="quest_title" name="quest_title" placeholder="Enter a descriptive title" type="text" value="Redesign Department Logo &amp; Brand Guidelines">
+</div>
+<div>
+<label class="block font-body-sm text-body-sm text-on-surface-variant mb-2" for="quest_desc">Detailed Description</label>
+<textarea class="block w-full rounded border-outline-variant bg-surface-container-low text-on-surface focus:border-primary focus:ring-0 font-body-md text-body-md py-3 px-4" id="quest_desc" name="quest_desc" placeholder="Provide a comprehensive overview of the quest objectives..." rows="4">We are seeking a graphic designer to update the Visual Arts Department logo and create a brief brand guide for consistent usage across web and print materials.</textarea>
+</div>
+</div>
+</section>
+<!-- Mandatory Deliverables Card -->
+<section class="bg-surface-container-lowest border border-surface-variant rounded-lg p-6 lg:p-8">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-2">Mandatory Deliverables</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Specify the exact items expected upon completion.</p>
+</div>
+<button class="inline-flex items-center gap-2 bg-primary text-on-primary font-button text-button px-4 py-2 rounded hover:bg-primary/90 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                            Add Deliverable
+                        </button>
+</div>
+<!-- Warning Banner -->
+<div class="bg-error-container/30 border border-error-container rounded p-4 mb-6 flex items-start gap-3">
+<span class="material-symbols-outlined text-error mt-0.5" data-icon="warning">warning</span>
+<p class="font-body-sm text-body-sm text-on-surface">
+<strong class="font-semibold text-error">CRITICAL:</strong> Deliverables become locked after a freelancer is selected. Major scope changes require a new agreement.
+                        </p>
+</div>
+<!-- Deliverables Checklist -->
+<div class="space-y-4">
+<!-- Item 1 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-low border border-outline-variant rounded group hover:border-outline transition-colors">
+<div class="flex items-center gap-4 flex-1">
+<div class="h-6 w-6 rounded border-2 border-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="check" data-weight="fill">check</span>
+</div>
+<div class="flex-1">
+<input class="bg-transparent border-none p-0 focus:ring-0 font-body-md text-body-md text-on-surface w-full" type="text" value="3 initial logo concepts">
+<span class="font-label-sm text-label-sm text-outline font-label-sm block mt-1 tracking-widest uppercase">REQ_ID: DEL-001</span>
+</div>
+</div>
+<button class="text-outline hover:text-error transition-colors p-2 opacity-0 group-hover:opacity-100 focus:opacity-100">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-low border border-outline-variant rounded group hover:border-outline transition-colors">
+<div class="flex items-center gap-4 flex-1">
+<div class="h-6 w-6 rounded border-2 border-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="check" data-weight="fill">check</span>
+</div>
+<div class="flex-1">
+<input class="bg-transparent border-none p-0 focus:ring-0 font-body-md text-body-md text-on-surface w-full" type="text" value="1 final logo (iterated from concepts)">
+<span class="font-label-sm text-label-sm text-outline block mt-1 tracking-widest uppercase">REQ_ID: DEL-002</span>
+</div>
+</div>
+<button class="text-outline hover:text-error transition-colors p-2 opacity-0 group-hover:opacity-100 focus:opacity-100">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-low border border-outline-variant rounded group hover:border-outline transition-colors">
+<div class="flex items-center gap-4 flex-1">
+<div class="h-6 w-6 rounded border-2 border-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="check" data-weight="fill">check</span>
+</div>
+<div class="flex-1">
+<input class="bg-transparent border-none p-0 focus:ring-0 font-body-md text-body-md text-on-surface w-full" type="text" value="Exports (PNG, SVG, PDF)">
+<span class="font-label-sm text-label-sm text-outline block mt-1 tracking-widest uppercase">REQ_ID: DEL-003</span>
+</div>
+</div>
+<button class="text-outline hover:text-error transition-colors p-2 opacity-0 group-hover:opacity-100 focus:opacity-100">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+<!-- Item 4 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-low border border-outline-variant rounded group hover:border-outline transition-colors">
+<div class="flex items-center gap-4 flex-1">
+<div class="h-6 w-6 rounded border-2 border-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="check" data-weight="fill">check</span>
+</div>
+<div class="flex-1">
+<input class="bg-transparent border-none p-0 focus:ring-0 font-body-md text-body-md text-on-surface w-full" type="text" value="Brand color &amp; typography guide (1-2 pages)">
+<span class="font-label-sm text-label-sm text-outline block mt-1 tracking-widest uppercase">REQ_ID: DEL-004</span>
+</div>
+</div>
+<button class="text-outline hover:text-error transition-colors p-2 opacity-0 group-hover:opacity-100 focus:opacity-100">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Settings & Metadata (Takes up 1 col on lg) -->
+<div class="space-y-8">
+<!-- Quick Settings Card -->
+<aside class="bg-surface-container-lowest border border-surface-variant rounded-lg p-6">
+<h3 class="font-headline-sm text-headline-sm font-semibold text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                        Quest Parameters
+                    </h3>
+<div class="space-y-6">
+<!-- Budget -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2 uppercase tracking-widest">ESTIMATED BUDGET (PHP)</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 text-on-surface-variant font-body-md text-body-md">₱</span>
+<input class="block w-full rounded border-outline-variant bg-surface-container-low pl-8 text-on-surface focus:border-primary focus:ring-0 font-body-md text-body-md py-2" type="text" value="8,000">
+</div>
+<p class="mt-2 font-label-sm text-label-sm text-outline italic">Payment arrangements are completed externally. SideQuest does not process or hold funds.</p>
+</div>
+<hr class="border-outline-variant">
+<!-- Deadline -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2 uppercase tracking-widest">ESTIMATED BUDGET (PHP)</label>
+<div class="relative">
+<input class="block w-full rounded border-outline-variant bg-surface-container-low text-on-surface focus:border-primary focus:ring-0 font-body-md text-body-md py-2 px-3" type="date" value="2026-10-15">
+</div>
+</div>
+<hr class="border-outline-variant">
+<!-- Skills -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2 uppercase tracking-widest">ESTIMATED BUDGET (PHP)</label>
+<div class="flex flex-wrap gap-2 mb-3">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm border border-secondary-container">
+                                    Graphic Design
+                                    <button class="hover:text-primary"><span class="material-symbols-outlined text-[14px]" data-icon="close">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm border border-secondary-container">
+                                    Branding
+                                    <button class="hover:text-primary"><span class="material-symbols-outlined text-[14px]" data-icon="close">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm border border-secondary-container">
+                                    Adobe Illustrator
+                                    <button class="hover:text-primary"><span class="material-symbols-outlined text-[14px]" data-icon="close">close</span></button>
+</span>
+</div>
+<input class="block w-full rounded border-outline-variant bg-surface-container-low text-on-surface focus:border-primary focus:ring-0 font-body-sm text-body-sm py-2 px-3" placeholder="Add a skill..." type="text">
+</div>
+</div>
+</aside>
+<!-- Actions Card -->
+<aside class="bg-surface-container-low border border-surface-variant rounded-lg p-6">
+<div class="flex flex-col gap-3">
+<button class="w-full bg-primary text-on-primary font-button text-button py-3 px-4 rounded hover:bg-primary/90 transition-colors flex justify-center items-center gap-2">
+                             Continue to Next Step
+                             <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<div class="grid grid-cols-2 gap-3 mt-2">
+<button class="col-span-1 border border-outline-variant text-on-surface font-button text-button py-2 px-4 rounded hover:bg-surface-variant transition-colors">
+                                Save Draft
+                            </button>
+<button class="col-span-1 border border-outline-variant text-on-surface font-button text-button py-2 px-4 rounded hover:bg-surface-variant transition-colors">
+                                Preview
+                            </button>
+</div>
+<button class="w-full border-t border-outline-variant mt-4 pt-4 text-primary font-button text-button py-2 px-4 hover:underline transition-colors text-center">
+                                Publish Immediately
+                        </button>
+</div>
+</aside>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-lowest full-width flat no shadows flex justify-between items-center py-4 px-gutter mt-auto border-t border-outline-variant">
+<p class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-container">© 2026 SideQuest. Payment arrangements are completed externally. SideQuest does not process or hold funds.</p>
+<div class="flex gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Terms of Service</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Contact Support</a>
+</div>
+</footer>
+<script type="module" src="../assets/js/app.js"></script>
+</body></html>

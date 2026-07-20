@@ -1,0 +1,362 @@
+<!-- Client Dashboard (Final) - SideQuest -->
+<!DOCTYPE html><html class="h-full" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Client Dashboard - SideQuest</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="../assets/js/config/client-dashboard.tailwind.js"></script>
+<link href="../assets/css/base.css" rel="stylesheet">
+<link href="../assets/css/pages/client-dashboard.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-background h-full font-body-md overflow-x-hidden">
+<!-- TopNavBar (Hidden on Mobile, Visible on Desktop) -->
+<header class="hidden md:flex fixed top-0 left-0 w-full h-16 z-50 justify-between items-center px-margin-page bg-surface-container-lowest border-b border-border-subtle">
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-display-lg font-bold text-primary">SideQuest</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-primary">
+<span class="material-symbols-outlined cursor-pointer hover:bg-surface-container-low transition-colors rounded-full p-2" data-icon="notifications">notifications</span>
+</div>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full object-cover border border-border-subtle cursor-pointer hover:opacity-80 transition-opacity" data-alt="A professional headshot of a corporate client in a bright, modern office setting, representing the user profile avatar for a SaaS platform. Soft natural lighting, crisp and sharp focus, communicating trust and reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2Tth-tmLbvlrryB5jTbvn6W4y7u1suwxa87W0E2NPXGLCSI7pKT-tDtOW7T-SjQ7iWR84WHiLikaG0hNdAvLUYKxS1pkQrCDfdOeafPQPXF9yFptsDeOkuLmq4QUBld5D72J8S3WZGpoqs7BACTjjVX1v_fA3R8AmnuWIZ5BjBrUGfpigFebWPEQnY7PBHJlO7NnVbOkt-WYC7tp0dzG9Zqqge_KryFTUimWMQeacB1cmQXNXDOGvRhYK7XtBzrJn0rVXX0wvrMA">
+</div>
+</header>
+<div class="flex pt-16 h-full">
+<!-- SideNavBar (Client Portal) -->
+<aside class="hidden md:flex flex-col fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar-width bg-surface border-r border-border-subtle py-stack-lg z-40">
+<div class="px-margin-page mb-6 flex flex-col items-center">
+<img alt="Organization Logo" class="w-16 h-16 rounded-lg object-cover border border-border-subtle mb-3" data-alt="A modern, minimalist corporate logo for 'DLSU Green Media', featuring an abstract geometric leaf or 'G' motif in dark green on a crisp white background. High resolution, flat design, professional identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBui7BDVxlGTa4DZKCroo40X24IkZy3KyzItJEunPVMZGuPyq5vLbGI9exifFa3mW6f9Tv51Ix9vt49BdMsPa3F3noKrD5b24-msGUua1mR0thBv1_GQWSB0kIhEYL1A2BEW9xuXEWTTYUljLPIlQWbgLyszCElepmzN_BkaAQ7nQSmKZIen_TMpRQb5N_TIwQFt3BLRLsLkccIF1rTjxwIe1y62VvgkUKARnp-N3YQ_F3GfZ61PRB8KzG0fvB4pr9S7EkqmjkGWZo">
+<h2 class="font-headline-sm text-headline-sm text-on-surface text-center">Client Portal</h2>
+<p class="font-label-md text-label-md text-on-surface-variant text-center">Manage Quests</p>
+</div>
+<nav class="flex-1 overflow-y-auto px-stack-sm space-y-1">
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 bg-secondary-fixed text-on-secondary-fixed font-semibold rounded-lg" href="#">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">work</span>
+<span class="font-label-md text-label-md">My Quests</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">add_box</span>
+<span class="font-label-md text-label-md">Create Quest</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Applicants</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-md text-label-md">Active Projects</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-label-md text-label-md">Messages</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">business</span>
+<span class="font-label-md text-label-md">Organization Profile</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="p-stack-md mt-auto">
+<button class="w-full bg-primary-container text-on-primary py-2 px-4 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity">Post a New Quest</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-sidebar-width p-margin-page overflow-y-auto w-full max-w-container-max mx-auto">
+<header class="mb-8 flex justify-between items-end">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface">Welcome back, DLSU Green Media.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">Here's what's happening with your projects today.</p>
+</div>
+<div class="hidden lg:flex gap-3">
+<button class="bg-primary-container text-on-primary py-2 px-4 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center gap-2 shadow-sm shadow-black/5">
+<span class="material-symbols-outlined text-[18px]">add</span> Create Quest
+                    </button>
+<button class="border border-primary-container text-primary-container bg-transparent py-2 px-4 rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors shadow-sm shadow-black/5">
+                        Review Applicants
+                    </button>
+</div>
+</header>
+<!-- KPI Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-8">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-border-subtle shadow-sm shadow-black/5 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Open Quests</span>
+<div class="p-2 bg-secondary-fixed rounded-lg text-primary">
+<span class="material-symbols-outlined">assignment_ind</span>
+</div>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface">3</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-border-subtle shadow-sm shadow-black/5 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Applicants</span>
+<div class="p-2 bg-secondary-fixed rounded-lg text-primary">
+<span class="material-symbols-outlined">groups</span>
+</div>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface">24</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-border-subtle shadow-sm shadow-black/5 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Active Projects</span>
+<div class="p-2 bg-secondary-fixed rounded-lg text-primary">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface">2</div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-surface-container-lowest p-stack-md rounded-xl border border-border-subtle shadow-sm shadow-black/5 hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-status-pending"></div>
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Pending Reviews</span>
+<div class="p-2 bg-error-container rounded-lg text-status-pending">
+<span class="material-symbols-outlined">rate_review</span>
+</div>
+</div>
+<div class="font-display-lg text-display-lg text-on-surface">1</div>
+</div>
+</div>
+<!-- Dashboard Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Main Column (Lists) -->
+<div class="lg:col-span-2 space-y-8">
+<!-- My Active Quests Bento Section -->
+<section class="bg-surface-container-lowest rounded-xl border border-border-subtle overflow-hidden shadow-sm shadow-black/5">
+<div class="p-stack-md border-b border-border-subtle flex justify-between items-center bg-surface-bright">
+<h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">work</span>
+                                My Active Quests
+                            </h3>
+<button class="font-label-md text-label-md text-primary hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border-subtle bg-surface-container-lowest">
+<th class="p-stack-md font-label-sm text-label-sm text-on-surface-variant uppercase">Quest Name</th>
+<th class="p-stack-md font-label-sm text-label-sm text-on-surface-variant uppercase">Applicants</th>
+<th class="p-stack-md font-label-sm text-label-sm text-on-surface-variant uppercase">Deadline</th>
+<th class="p-stack-md font-label-sm text-label-sm text-on-surface-variant uppercase">Status</th>
+<th class="p-stack-md font-label-sm text-label-sm text-on-surface-variant uppercase text-right">Action</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface">
+<tr class="border-b border-border-subtle hover:bg-surface-container-low transition-colors group">
+<td class="p-stack-md">
+<div class="font-semibold text-primary">UI/UX Redesign for Portal</div>
+<div class="text-on-surface-variant text-xs mt-1">Design &amp; Creative</div>
+</td>
+<td class="p-stack-md">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">person</span> 12
+                                            </div>
+</td>
+<td class="p-stack-md text-on-surface-variant">Aug 24, 2026</td>
+<td class="p-stack-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-status-info/10 text-status-info">Recruiting</span>
+</td>
+<td class="p-stack-md text-right">
+<button class="font-label-md text-label-md text-primary hover:bg-primary/10 px-3 py-1.5 rounded transition-colors border border-transparent group-hover:border-primary/20">Manage</button>
+</td>
+</tr>
+<tr class="border-b border-border-subtle hover:bg-surface-container-low transition-colors group">
+<td class="p-stack-md">
+<div class="font-semibold text-primary">Backend API Integration</div>
+<div class="text-on-surface-variant text-xs mt-1">Development</div>
+</td>
+<td class="p-stack-md">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">person</span> 8
+                                            </div>
+</td>
+<td class="p-stack-md text-on-surface-variant">Aug 28, 2026</td>
+<td class="p-stack-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-status-info/10 text-status-info">Recruiting</span>
+</td>
+<td class="p-stack-md text-right">
+<button class="font-label-md text-label-md text-primary hover:bg-primary/10 px-3 py-1.5 rounded transition-colors border border-transparent group-hover:border-primary/20">Manage</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-stack-md">
+<div class="font-semibold text-primary">Social Media Content Q4</div>
+<div class="text-on-surface-variant text-xs mt-1">Marketing</div>
+</td>
+<td class="p-stack-md">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">person</span> 4
+                                            </div>
+</td>
+<td class="p-stack-md text-on-surface-variant">Aug 05, 2026</td>
+<td class="p-stack-md">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-status-success/10 text-status-success">In Progress</span>
+</td>
+<td class="p-stack-md text-right">
+<button class="font-label-md text-label-md text-primary hover:bg-primary/10 px-3 py-1.5 rounded transition-colors border border-transparent group-hover:border-primary/20">Manage</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section><div class="mt-4 p-3 bg-surface-container-low rounded-lg border border-dashed border-border-subtle flex items-center gap-2 text-xs text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-status-info">info</span>Payment arrangements are completed externally. SideQuest does not process or hold funds.</div>
+<!-- Applicants Requiring Review -->
+<section class="bg-surface-container-lowest rounded-xl border border-border-subtle overflow-hidden shadow-sm shadow-black/5">
+<div class="p-stack-md border-b border-border-subtle flex justify-between items-center bg-surface-bright">
+<h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-status-pending">person_search</span>
+                                Applicants Requiring Review
+                            </h3>
+<span class="bg-status-pending/10 text-status-pending font-label-sm text-label-sm px-2 py-1 rounded-full">3 New</span>
+</div>
+<div class="p-stack-md space-y-4">
+<!-- Applicant Card -->
+<div class="flex flex-col sm:flex-row gap-4 p-4 rounded-lg border border-border-subtle bg-surface hover:border-primary-fixed-dim transition-colors cursor-pointer">
+<img alt="Student Applicant" class="w-12 h-12 rounded-full object-cover border border-border-subtle shrink-0" data-alt="A professional headshot of a young student freelancer in a casual academic setting, looking confident. Warm lighting, modern campus background slightly out of focus. Crisp resolution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwKzvgIcJu79kgDz4U-R4JWcpbk9AAcjoYgmPDS0vAs8qvwbGDeVwuPCQBgSGvGtwH8vdYPtE14ULhXaFiY4h-2ubRLNi9bkORXOhQEEN772N575SxMJklHyawvu9nMJttghAVLYhAeYFlqOiMAo07J22dcR4jLyFvnOlQdnEXgY0FJOPsjXLwanGHuHrY6P4jSBooGgzsRV-0NyB2JefZ432EdRfe1SAXvVUjU1aU-xb4gOgoFFULUQjNXAkYUhwgv9qUzodPi-8">
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-semibold text-on-surface">Maria Santos</h4>
+<div class="flex items-center text-status-pending gap-1">
+<span class="material-symbols-outlined text-[16px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm font-bold">4.9</span>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant mb-2">Applied for: UI/UX Redesign for Portal</p>
+<div class="flex flex-wrap gap-2 mb-3">
+<span class="px-2 py-0.5 bg-surface-container-high rounded text-[10px] font-label-sm text-on-surface-variant">Figma</span>
+<span class="px-2 py-0.5 bg-surface-container-high rounded text-[10px] font-label-sm text-on-surface-variant">Prototyping</span>
+<span class="px-2 py-0.5 bg-surface-container-high rounded text-[10px] font-label-sm text-on-surface-variant">User Research</span>
+</div>
+<div class="text-sm text-on-surface bg-surface-container-low p-2 rounded border border-border-subtle flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-status-success mt-0.5">verified</span>
+<span class="font-body-sm text-body-sm">95% Criteria Coverage based on requested skills. Previous successful quests in this category.</span>
+</div>
+</div>
+<div class="flex flex-col justify-center shrink-0 border-t sm:border-t-0 sm:border-l border-border-subtle pt-3 sm:pt-0 sm:pl-4 mt-3 sm:mt-0">
+<button class="bg-primary-container text-on-primary py-2 px-4 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity w-full sm:w-auto">Review</button>
+</div>
+</div>
+<!-- Applicant Card -->
+<div class="flex flex-col sm:flex-row gap-4 p-4 rounded-lg border border-border-subtle bg-surface hover:border-primary-fixed-dim transition-colors cursor-pointer">
+<img alt="Student Applicant" class="w-12 h-12 rounded-full object-cover border border-border-subtle shrink-0" data-alt="A bright, clear headshot of a male university student programmer looking directly at the camera, wearing a clean plain t-shirt. Tech lab background, professional academic vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFUQbULHHikhy63swUTbG5reNg3w3EvTJwudRfTDlxH5Tu3x9qCdpjKvzrE1uSQpJdwpV5x4H2zCxrkcO7HihibSrgUn6G9YS1khgzibLqzsMpZ7qcvKuHjsSpDMi7NwHUlD1GNi1RaY3sbGl1M_rblf_FF61_InY5NOx56zN07VelQ_9z26G8o7Smr_WS2--SzxJieA8WT38VdghzfpC0r55Lu9k7vZRZR6i87-kf6batNP-Q2aRo6ZYwvZKVk9O9sMA3MTMNFC0">
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-semibold text-on-surface">Juan Dela Cruz</h4>
+<div class="flex items-center text-status-pending gap-1">
+<span class="material-symbols-outlined text-[16px]" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm font-bold">4.7</span>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant mb-2">Applied for: Backend API Integration</p>
+<div class="flex flex-wrap gap-2 mb-3">
+<span class="px-2 py-0.5 bg-surface-container-high rounded text-[10px] font-label-sm text-on-surface-variant">Node.js</span>
+<span class="px-2 py-0.5 bg-surface-container-high rounded text-[10px] font-label-sm text-on-surface-variant">Express</span>
+<span class="px-2 py-0.5 bg-surface-container-high rounded text-[10px] font-label-sm text-on-surface-variant">MongoDB</span>
+</div>
+<div class="text-sm text-on-surface bg-surface-container-low p-2 rounded border border-border-subtle flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-status-info mt-0.5">info</span>
+<span class="font-body-sm text-body-sm">82% Criteria Coverage. Strong tech stack, currently completing a similar quest.</span>
+</div>
+</div>
+<div class="flex flex-col justify-center shrink-0 border-t sm:border-t-0 sm:border-l border-border-subtle pt-3 sm:pt-0 sm:pl-4 mt-3 sm:mt-0">
+<button class="bg-primary-container text-on-primary py-2 px-4 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity w-full sm:w-auto">Review</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Secondary Column (Action Items) -->
+<div class="space-y-8">
+<!-- Deliverables Awaiting Review -->
+<section class="bg-surface-container-lowest rounded-xl border border-border-subtle overflow-hidden shadow-sm shadow-black/5 relative">
+<div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-status-pending/20 to-transparent pointer-events-none rounded-tr-xl"></div>
+<div class="p-stack-md border-b border-border-subtle bg-surface-bright">
+<h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-status-pending">fact_check</span>
+                                Deliverables to Review
+                            </h3>
+</div>
+<div class="p-stack-md">
+<div class="space-y-4">
+<!-- Deliverable Item -->
+<div class="border border-border-subtle rounded-lg p-4 bg-surface hover:shadow-sm transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-semibold text-on-surface text-sm">Initial Wireframes</h4>
+<span class="text-xs text-on-surface-variant bg-surface-container-high px-2 py-1 rounded">Submitted Today</span>
+</div>
+<p class="text-xs text-on-surface-variant mb-1">Project: Portal Redesign Phase 1</p>
+<p class="text-xs text-on-surface-variant mb-4">Freelancer: Alex Reyes</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-surface-container-high text-on-surface-variant py-1.5 rounded text-xs font-semibold hover:bg-surface-container-highest transition-colors border border-border-subtle flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[14px]">visibility</span> View File
+                                        </button>
+<button class="flex-1 border border-primary-container text-primary-container py-1.5 rounded text-xs font-semibold hover:bg-surface-container-low transition-colors">
+                                            Approve/Reject
+                                        </button>
+</div>
+</div>
+<div class="text-center py-4 text-sm text-on-surface-variant border border-dashed border-border-subtle rounded-lg bg-surface-container-low">
+                                    No other pending deliverables.
+                                </div>
+</div>
+</div>
+</section><div class="mt-4 p-3 bg-surface-container-low rounded-lg border border-dashed border-border-subtle flex items-center gap-2 text-xs text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-status-info">info</span>Payment arrangements are completed externally. SideQuest does not process or hold funds.</div>
+<!-- System Notifications / Analytics Snippet -->
+<section class="bg-surface-container-lowest rounded-xl border border-border-subtle overflow-hidden shadow-sm shadow-black/5">
+<div class="p-stack-md border-b border-border-subtle bg-surface-bright">
+<h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">insights</span>
+                                Quest Insights
+                            </h3>
+</div>
+<div class="p-stack-md">
+<div class="flex flex-col gap-4">
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-on-surface-variant">Applicant Response Rate</span>
+<span class="font-semibold text-primary">85%</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-on-surface-variant">Average Completion Time</span>
+<span class="font-semibold text-primary">14 Days</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2">
+<div class="bg-status-info h-2 rounded-full" style="width: 60%"></div>
+</div>
+</div>
+<div class="mt-4 p-3 bg-surface-container-low rounded-lg border border-border-subtle flex gap-3 items-start">
+<span class="material-symbols-outlined text-status-success">lightbulb</span>
+<p class="text-xs text-on-surface-variant leading-relaxed">Tip: Quests with detailed milestone descriptions receive 40% higher quality applications.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<footer class="mt-12 pt-6 border-t border-border-subtle text-center text-sm text-on-surface-variant">© 2026 SideQuest. All rights reserved.</footer>
+</main>
+</div>
+<script type="module" src="../assets/js/app.js"></script>
+</body></html>

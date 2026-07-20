@@ -1,0 +1,344 @@
+<!-- Student Verification (Refined) -->
+<!DOCTYPE html><html class="h-full bg-background dark:bg-background" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Student Onboarding &amp; Verification | SideQuest</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="../assets/js/config/student-verification.tailwind.js"></script>
+<link href="../assets/css/base.css" rel="stylesheet">
+<link href="../assets/css/pages/student-verification.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-background h-full font-body-md text-body-md overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full h-16 z-50 flex justify-between items-center px-margin-page bg-surface-container-lowest border-b border-border-subtle dark:border-on-surface-variant shadow-sm transition-all duration-200">
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-display-lg font-bold text-primary dark:text-primary-fixed tracking-tight">SideQuest</span>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-6">
+<!-- Linear flow intent: We are in an onboarding/setup flow, but technically accessible via Dashboard nav shell. Given prompt "Dashboard selected", we simulate standard nav context if requested, but semantic rule suggests hiding standard top nav links during intense transactional steps. Keeping right actions minimal. -->
+</nav>
+<div class="flex items-center gap-4 border-l border-border-subtle pl-4">
+<button aria-label="Notifications" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-border-subtle bg-surface-container cursor-pointer hover:ring-2 ring-primary transition-all">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a young student looking confident against a clean, light studio background. Soft, flattering high-key lighting suitable for a modern SaaS platform profile picture. The student is wearing smart casual academic attire." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc_CW1ZxOkJ3UJ6_XGux0-QCDtX33jj-kJLuksirHsGbB7QIQIcLnt9TJ5MSna3XjkfT12oGZWqxCVQ7nSkb7gPyF85AiVC-u7txTF_d_-xu8cTg9dd0-lb0Fa3bkFm4YaQAdMZDWI3nxzHadD23A8IaAltPArvJBQp03mZa47DtlT03JuVB7N_4n8S_nAbuDB5juFMJI711h9V6CyxzTZYgR8MUVqBdIkkeZL2YeASrHMG_uAwnJzZruAhGatrxRTrkEr4Ggfsgk">
+</div>
+</div>
+</div>
+</header>
+<!-- Sidebar & Main Content Layout -->
+<div class="flex h-[calc(100vh-64px)] mt-16 overflow-hidden">
+<!-- Side Navigation (Student Profile) -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar-width bg-surface dark:bg-on-background border-r border-border-subtle dark:border-on-surface-variant flex flex-col py-stack-lg z-40 hidden md:flex transition-transform duration-300 ease-in-out transform translate-x-0 overflow-y-auto">
+<div class="px-stack-lg mb-8">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high border border-border-subtle overflow-hidden flex-shrink-0">
+<img alt="Student Avatar" class="w-full h-full object-cover" data-alt="A minimalist line-art icon representing a student cap or graduation motif, clean and precise, in dark green against a light gray background, fitting a corporate academic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0iG5ktnUfWGDYULlGUfK_MsgjPMQiIzqnQ8Yr1aqzKxQmInOQMtZpeKWhNmgT-rnNaVQTL-zqCKNBo6kJ6h3x3AurcCrea9kwv4ItwsyjaBetZ8TUZng8z4WvbfOxenGU_S2B62tuxWOge2V_f3ivrC-OWDWyioUAoyp9JH5Z8GsWngafSLIIYC-4Nc0wqA60HuyBCND7GmZI_BcurFj8wd2H65DX_oU5jLDIv4ougW5A8NXDM_gGmJQFotlrnW3ZyraVF-THoNo">
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1">Student Freelancer</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Freelance Hub</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1 px-stack-sm">
+<!-- Dashboard - Active -->
+<a aria-current="page" class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 bg-secondary-fixed dark:bg-secondary-container text-on-secondary-fixed dark:text-on-secondary-container font-semibold rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined transition-colors duration-200" data-icon="space_dashboard" data-weight="fill" style="font-variation-settings: 'FILL' 1;">space_dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined transition-colors duration-200" data-icon="search">search</span>
+<span class="font-label-md text-label-md group-hover:text-on-surface transition-colors">Find Quests</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined transition-colors duration-200" data-icon="history_edu">history_edu</span>
+<span class="font-label-md text-label-md group-hover:text-on-surface transition-colors">Applications</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined transition-colors duration-200" data-icon="pending_actions">pending_actions</span>
+<span class="font-label-md text-label-md group-hover:text-on-surface transition-colors">Active Quests</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined transition-colors duration-200" data-icon="account_box">account_box</span>
+<span class="font-label-md text-label-md group-hover:text-on-surface transition-colors">Portfolio</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined transition-colors duration-200" data-icon="forum">forum</span>
+<span class="font-label-md text-label-md group-hover:text-on-surface transition-colors">Messages</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined transition-colors duration-200" data-icon="person">person</span>
+<span class="font-label-md text-label-md group-hover:text-on-surface transition-colors">Profile</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg mt-auto mb-4" href="#">
+<span class="material-symbols-outlined transition-colors duration-200" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md group-hover:text-on-surface transition-colors">Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Workspace -->
+<main class="flex-1 md:ml-sidebar-width w-full bg-background overflow-y-auto overflow-x-hidden relative scroll-smooth focus:outline-none">
+<div class="max-w-[1280px] mx-auto w-full px-margin-page py-10 min-h-full pb-32">
+<!-- Onboarding Header & Breadcrumbs -->
+<div class="mb-10 space-y-4">
+<div class="flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
+<span class="hover:text-primary transition-colors cursor-pointer">Onboarding</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-semibold">Step 2: Verification</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-2">Student Verification</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Confirm your academic status to build trust with clients and unlock high-value quests.</p>
+</div>
+<!-- Progress Bar -->
+<div class="w-full md:w-auto bg-surface-container-lowest border border-border-subtle rounded-lg p-4 shadow-sm flex flex-col gap-2">
+<div class="flex justify-between items-center gap-4">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">92% profile complete — verification blocked by a required portfolio sample.</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full transition-all duration-1000 ease-out" style="width: 92%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Multi-step Process Indicator (Horizontal) -->
+<div class="mb-10 relative">
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-surface-variant -translate-y-1/2 z-0 hidden sm:block"></div>
+<div class="relative z-10 flex justify-between items-center sm:flex-row flex-col gap-4 sm:gap-0">
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-md text-label-md shadow-sm transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Account</span>
+</div>
+<!-- Step 2 (Active) -->
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary ring-4 ring-background flex items-center justify-center font-label-md text-label-md shadow-md transition-transform group-hover:scale-110">
+                                 2
+                             </div>
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Verification</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-2 group cursor-pointer opacity-60">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-border-subtle text-on-surface-variant flex items-center justify-center font-label-md text-label-md transition-colors group-hover:bg-surface-variant">
+                                 3
+                             </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Skills</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center gap-2 group cursor-pointer opacity-60">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-border-subtle text-on-surface-variant flex items-center justify-center font-label-md text-label-md transition-colors group-hover:bg-surface-variant">
+                                 4
+                             </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Portfolio</span>
+</div>
+<!-- Step 5 -->
+<div class="flex flex-col items-center gap-2 group cursor-pointer opacity-60">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-border-subtle text-on-surface-variant flex items-center justify-center font-label-md text-label-md transition-colors group-hover:bg-surface-variant">
+                                 5
+                             </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Review</span>
+</div>
+</div>
+</div>
+<!-- Alerts / Status Panel -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+<!-- Verification Status Cards (Bento-style layout) -->
+<div class="lg:col-span-1 space-y-6">
+<!-- Domain Verified -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-6 shadow-sm flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-status-success/10 text-status-success flex items-center justify-center flex-shrink-0 mt-1">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Email Domain</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">Authenticated via Single Sign-On.</p>
+<div class="inline-flex items-center px-2 py-1 rounded-md bg-status-success/10 text-status-success font-label-sm text-label-sm border border-status-success/20">
+                                    Verified
+                                </div>
+</div>
+</div>
+<!-- Identity Pending -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-6 shadow-sm flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-status-pending/10 text-status-pending flex items-center justify-center flex-shrink-0 mt-1">
+<span class="material-symbols-outlined">pending_actions</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Identity Check</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">Requires manual review of submitted ID.</p>
+<div class="inline-flex items-center px-2 py-1 rounded-md bg-status-pending/10 text-status-pending font-label-sm text-label-sm border border-status-pending/20">
+                                    Pending Review
+                                </div>
+</div>
+</div>
+<!-- Deficiency Alert -->
+<div class="bg-error-container border border-error/20 rounded-xl p-6 shadow-sm flex items-start gap-4 relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-9xl text-error">warning</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-error/10 text-on-error-container flex items-center justify-center flex-shrink-0 mt-1 relative z-10">
+<span class="material-symbols-outlined">error</span>
+</div>
+<div class="relative z-10">
+<h3 class="font-headline-sm text-headline-sm text-on-error-container mb-1">Action Required</h3>
+<p class="font-body-sm text-body-sm text-on-error-container/90 mb-3 leading-relaxed">
+                                    Please upload at least one portfolio sample before verification.
+                                </p>
+<a class="inline-flex items-center gap-1 font-label-sm text-label-sm text-on-error-container hover:underline underline-offset-4 decoration-2" href="#">
+                                    Go to Portfolio Step <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Main Form Area (Glassmorphism inspired clean card) -->
+<div class="lg:col-span-2 bg-surface-container-lowest border border-border-subtle rounded-xl p-8 shadow-sm">
+<form class="space-y-8">
+<!-- Academic Profile Section -->
+<section>
+<div class="mb-6 pb-2 border-b border-border-subtle flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Academic Profile</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Confidential</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Full Name (Pre-filled) -->
+<div class="space-y-2 md:col-span-2">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="full_name">Full Legal Name</label>
+<input class="w-full bg-surface-container-low border border-border-subtle rounded-lg px-4 py-3 text-on-surface font-body-md text-body-md focus:outline-none cursor-not-allowed opacity-70 transition-colors" disabled="" id="full_name" type="text" value="Alex Rivera">
+</div>
+<!-- University Email -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="uni_email">University Email</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-border-subtle rounded-lg pl-10 pr-4 py-3 text-on-surface font-body-md text-body-md focus:outline-none cursor-not-allowed opacity-70" disabled="" id="uni_email" type="email" value="alex_rivera@dlsu.edu.ph">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-status-success text-[18px]">verified</span>
+</div>
+</div>
+<!-- Student ID -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="student_id">Student ID Number</label>
+<input class="w-full bg-surface-container-lowest border border-border-subtle rounded-lg px-4 py-3 text-on-surface font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all placeholder:text-on-surface-variant/50" id="student_id" placeholder="e.g. 120XXXXX" type="text">
+</div>
+<!-- University -->
+<div class="space-y-2 md:col-span-2">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="university">University / Institution</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-lowest border border-border-subtle rounded-lg px-4 py-3 pr-10 text-on-surface font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all" id="university">
+<option disabled="" value="">Select Institution</option>
+<option selected="" value="dlsu">De La Salle University (DLSU)</option>
+<option value="admu">Ateneo de Manila University</option>
+<option value="up">University of the Philippines</option>
+<option value="ust">University of Santo Tomas</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Degree -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="degree">Degree Program</label>
+<input class="w-full bg-surface-container-lowest border border-border-subtle rounded-lg px-4 py-3 text-on-surface font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all placeholder:text-on-surface-variant/50" id="degree" placeholder="e.g. BS Computer Science" type="text">
+</div>
+<!-- Year Level -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="year_level">Current Year Level</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-lowest border border-border-subtle rounded-lg px-4 py-3 pr-10 text-on-surface font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all" id="year_level">
+<option disabled="" selected="" value="">Select Year</option>
+<option value="1">1st Year / Freshman</option>
+<option value="2">2nd Year / Sophomore</option>
+<option value="3">3rd Year / Junior</option>
+<option value="4">4th Year / Senior</option>
+<option value="5">5th Year+</option>
+<option value="grad">Graduate Student</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Professional Profile Section -->
+<section class="mt-10">
+<div class="mb-6 pb-2 border-b border-border-subtle flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Freelance Identity</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Public</span>
+</div>
+<div class="space-y-6">
+<!-- Bio -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="bio">Professional Bio</label>
+<span class="font-label-sm text-label-sm text-on-surface-variant/70">0/300 chars</span>
+</div>
+<textarea class="w-full bg-surface-container-lowest border border-border-subtle rounded-lg px-4 py-3 text-on-surface font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all resize-none placeholder:text-on-surface-variant/50" id="bio" placeholder="Briefly describe your expertise, academic focus, and what you bring to professional projects..." rows="4"></textarea>
+</div>
+<!-- Skill Tags (Simulated Multi-select) -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface-variant">Core Skills &amp; Services</label>
+<div class="p-4 bg-surface-container-low border border-border-subtle rounded-lg min-h-[60px] flex flex-wrap gap-2 items-center cursor-text" data-focus-target="#skill_input">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm border border-primary-container/20">
+                                                UI/UX Design <button class="hover:text-error transition-colors"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm border border-primary-container/20">
+                                                Front-end Dev <button class="hover:text-error transition-colors"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<input class="flex-1 min-w-[150px] bg-transparent border-none focus:ring-0 p-0 text-body-sm font-body-sm placeholder:text-on-surface-variant/50" id="skill_input" placeholder="Type a skill and press enter..." type="text">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Work Arrangement -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="arrangement">Preferred Work Arrangement</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-lowest border border-border-subtle rounded-lg px-4 py-3 pr-10 text-on-surface font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all" id="arrangement">
+<option selected="" value="remote">Fully Remote</option>
+<option value="hybrid">Hybrid (Metro Manila)</option>
+<option value="onsite">On-site Potential</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Availability -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-on-surface-variant" for="availability">Weekly Availability</label>
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-lowest border border-border-subtle rounded-lg px-4 py-3 pr-10 text-on-surface font-body-md text-body-md focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all" id="availability">
+<option value="low">1-10 Hours / wk</option>
+<option selected="" value="med">10-20 Hours / wk</option>
+<option value="high">20+ Hours / wk</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</form>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar (Fixed to workspace bottom) -->
+<div class="fixed bottom-0 right-0 w-full md:w-[calc(100%-260px)] bg-surface/90 backdrop-blur-md border-t border-border-subtle py-4 px-margin-page flex justify-between items-center z-40 transition-all">
+<button class="px-6 py-2.5 rounded-lg text-primary font-label-md text-label-md hover:bg-surface-container-low transition-colors" type="button">
+                Save Draft
+            </button>
+<div class="flex items-center gap-4">
+<button class="hidden sm:block px-6 py-2.5 rounded-lg border border-border-subtle text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" type="button">
+                    Back to Account
+                </button>
+<button class="px-6 py-2.5 rounded-lg bg-surface-variant text-on-surface-variant font-label-md text-label-md shadow-sm transition-all flex items-center gap-2 group opacity-50 cursor-not-allowed pointer-events-none" disabled="" title="Please resolve deficiencies before submitting" type="button">
+<span>Submit for Verification</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<script type="module" src="../assets/js/app.js"></script>
+</body></html>

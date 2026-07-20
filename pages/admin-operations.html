@@ -1,0 +1,280 @@
+<!-- Admin Operations (Final) - SideQuest Admin -->
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SideQuest Admin Operations</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="../assets/js/config/admin-operations.tailwind.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;family=Inter:wght@400&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+
+<link href="../assets/css/base.css" rel="stylesheet">
+<link href="../assets/css/pages/admin-operations.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md h-screen overflow-hidden flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full h-16 z-50 flex justify-between items-center px-margin-page bg-surface-container-lowest border-b border-border-subtle dark:border-on-surface-variant font-body-md text-body-md">
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-display-lg font-bold text-primary dark:text-primary-fixed">SideQuest</span>
+<div class="hidden md:flex items-center bg-surface-container-low rounded-full px-4 py-2 ml-8 w-64 border border-border-subtle focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/10 transition-all">
+<span class="material-symbols-outlined text-secondary mr-2">search</span>
+<input class="bg-transparent border-none focus:outline-none text-body-sm w-full" placeholder="Search..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-primary dark:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-on-surface-variant transition-colors rounded-full cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-border-subtle object-cover" data-alt="A highly detailed close-up portrait of a professional administrator, wearing modern smart-casual attire, in a brightly lit modern office setting. The lighting is soft and flattering, creating a high-end corporate aesthetic. The background is slightly blurred showing modern architectural elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjqHViINmpsPQclHJkLDt9H7DeWTd0HVACP1nVo9yWkbma9lNr6Hg6Wq2K473cqy8NWwN-Q1tqhRarpNtJ9mdWZww3IhKfL5dE8sYNmmbVU5SAZN600vFubfVGO5LcCQWYO89xE0P6K6IBwu79SSlWF1ATnsi2RX9X8FKZSyN2ATvpbm69JiUIV-EPxmhuid4TcOIxPW4yZVvIpquWyXkjxOfO8Kq2gTC_tEZqGPRWHZOt7i_1SFF8dIbRwiaAWvedss5cUjiRYJ0">
+</div>
+</header>
+<div class="flex flex-1 pt-16">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar-width bg-surface dark:bg-on-background border-r border-border-subtle dark:border-on-surface-variant flex flex-col py-stack-lg z-40">
+<div class="px-stack-lg mb-8 flex items-center gap-4">
+<img alt="Admin Seal" class="w-12 h-12 rounded-lg object-cover border border-border-subtle" data-alt="A beautifully crafted, modern minimalist emblem representing an administrative seal. It features clean geometric lines forming a stylized shield or crest, rendered in deep primary greens against a pristine white background. The aesthetic is extremely polished and high-end SaaS corporate." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWxQikaCsSXZLi-x9fWrEcnoOa-3IW_jeu2xtrorMBke8xsSwOHFxuag91dla-6DIn3kYt0MopMd__mHvu8-ltAvA_hs4O6e-dgydV2gJsTd4s_SQ_U9KiLIYaj2CUOn3Q8j5lXnrcBZuZO-KM3SAKiNILkCkKJL-GF_CH7j0DSueoZ4iHeW4SQk4c1V2mb4wmluUQPaO7z-Jtni-T-wedweMr_amIgk0CR80fG_54KkP_wJiaI_pDr5VdzV8yGeWpd-Mr2dQl9gU">
+<div><h2 class="font-headline-sm text-headline-sm text-primary">Administrator</h2><p class="font-label-sm text-label-sm text-secondary">— System Control</p></div>
+</div>
+<nav class="flex-1 overflow-y-auto font-label-md text-label-md">
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 bg-secondary-fixed dark:bg-secondary-container text-on-secondary-fixed dark:text-on-secondary-container font-semibold rounded-lg transition-all cursor-pointer" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">admin_panel_settings</span>
+                    Dashboard
+                </a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+                    Verification Queue
+                </a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+                    Users
+                </a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+                    Quests
+                </a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                    Reports
+                </a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+                    Analytics
+                </a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" href="#">
+<span class="material-symbols-outlined">settings_applications</span>
+                    Platform Settings
+                </a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 ml-sidebar-width overflow-y-auto p-margin-page">
+<div class="max-w-container-max mx-auto space-y-gutter">
+<header class="mb-8">
+<h1 class="font-display-lg text-display-lg text-primary">Operations Overview</h1>
+<p class="font-body-lg text-body-lg text-secondary mt-2">Platform metrics and pending administrative tasks.</p>
+</header>
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-gutter">
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Verified Students</span>
+<span class="material-symbols-outlined text-primary-container">school</span>
+</div>
+<div class="font-display-lg text-display-lg text-primary">486</div>
+<div class="font-body-sm text-body-sm text-status-success mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +12% this month
+                        </div>
+</div>
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Open Quests</span>
+<span class="material-symbols-outlined text-status-info">work_outline</span>
+</div>
+<div class="font-display-lg text-display-lg text-primary">96</div>
+<div class="font-body-sm text-body-sm text-secondary mt-2 flex items-center gap-1">
+                            Active marketplace demand
+                        </div>
+</div>
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Completion Rate</span>
+<span class="material-symbols-outlined text-status-success">done_all</span>
+</div>
+<div class="font-display-lg text-display-lg text-primary">87%</div>
+<div class="font-body-sm text-body-sm text-status-success mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +2.4% vs last quarter
+                        </div>
+</div>
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg shadow-sm hover:shadow-md transition-shadow border-l-4 border-l-status-pending">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Pending Verifications</span>
+<span class="material-symbols-outlined text-status-pending">pending_actions</span>
+</div>
+<div class="font-display-lg text-display-lg text-primary">18</div>
+<div class="font-body-sm text-body-sm text-status-pending mt-2 flex items-center gap-1">
+                            Action required
+                        </div>
+</div>
+</div>
+<!-- Main Grid Layout -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-gutter">
+<!-- Left Column: Tasks -->
+<div class="xl:col-span-2 space-y-gutter">
+<!-- Verification Queue -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden">
+<div class="p-stack-md border-b border-border-subtle flex justify-between items-center bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm text-primary">Verification Queue</h3>
+<button class="font-label-md text-label-md text-primary-container hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border-subtle bg-surface">
+<th class="p-stack-md font-label-sm text-label-sm text-secondary">Student</th>
+<th class="p-stack-md font-label-sm text-label-sm text-secondary">Institution &amp; Program</th>
+<th class="p-stack-md font-label-sm text-label-sm text-secondary">Date</th>
+<th class="p-stack-md font-label-sm text-label-sm text-secondary">Status</th>
+<th class="p-stack-md font-label-sm text-label-sm text-secondary text-right">Action</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm">
+<tr class="border-b border-border-subtle hover:bg-surface transition-colors">
+<td class="p-stack-md font-medium text-primary">Elena Rodriguez</td>
+<td class="p-stack-md text-secondary">UP Diliman - CompSci</td>
+<td class="p-stack-md text-secondary">Jul 24, 2026</td>
+<td class="p-stack-md">
+<span class="inline-flex items-center px-2 py-1 rounded bg-status-pending/10 text-status-pending font-label-sm text-label-sm">Pending ID</span>
+</td>
+<td class="p-stack-md text-right">
+<button class="bg-primary-container text-on-primary px-3 py-1.5 rounded text-sm hover:opacity-90 transition-opacity">Review</button>
+</td>
+</tr>
+<tr class="border-b border-border-subtle hover:bg-surface transition-colors">
+<td class="p-stack-md font-medium text-primary">Mark Santos</td>
+<td class="p-stack-md text-secondary">Ateneo - Design</td>
+<td class="p-stack-md text-secondary">Aug 23, 2026</td>
+<td class="p-stack-md">
+<span class="inline-flex items-center px-2 py-1 rounded bg-status-pending/10 text-status-pending font-label-sm text-label-sm">Awaiting Transcript</span>
+</td>
+<td class="p-stack-md text-right">
+<button class="bg-primary-container text-on-primary px-3 py-1.5 rounded text-sm hover:opacity-90 transition-opacity">Review</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Reported Items -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden">
+<div class="p-stack-md border-b border-border-subtle flex justify-between items-center bg-error-container/20">
+<h3 class="font-headline-sm text-headline-sm text-error">Reported Items (High Priority)</h3>
+<span class="material-symbols-outlined text-error">warning</span>
+</div>
+<div class="p-0">
+<div class="flex items-start gap-4 p-stack-md border-b border-border-subtle hover:bg-surface transition-colors">
+<div class="p-2 bg-error-container rounded-lg text-on-error-container">
+<span class="material-symbols-outlined">flag</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-label-md text-primary mb-1">Inappropriate Quest Content</h4>
+<p class="font-body-sm text-body-sm text-secondary">Quest #8492 reported by 3 users for requesting academic dishonesty.</p>
+</div>
+<button class="border border-outline text-on-surface px-3 py-1.5 rounded text-sm hover:bg-surface-container-low transition-colors">Investigate</button>
+</div>
+</div>
+</div>
+<!-- Top Skills Gap Recommendations -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden">
+<div class="p-stack-md border-b border-border-subtle bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm text-primary">Top Skills Gap Recommendations</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border-subtle bg-surface">
+<th class="p-stack-md font-label-sm text-label-sm text-secondary">Skill</th>
+<th class="p-stack-md font-label-sm text-label-sm text-secondary">Supply (Students)</th>
+<th class="p-stack-md font-label-sm text-label-sm text-secondary">Demand (Quests)</th>
+<th class="p-stack-md font-label-sm text-label-sm text-secondary">Gap</th>
+<th class="p-stack-md font-label-sm text-label-sm text-secondary">Suggested Action</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm">
+<tr class="border-b border-border-subtle hover:bg-surface transition-colors">
+<td class="p-stack-md font-medium text-primary">React.js</td>
+<td class="p-stack-md text-secondary">45</td>
+<td class="p-stack-md text-secondary">Jul 24, 2026</td>
+<td class="p-stack-md text-error font-medium">-75</td>
+<td class="p-stack-md text-secondary">Targeted Campus Outreach</td>
+</tr>
+<tr class="border-b border-border-subtle hover:bg-surface transition-colors">
+<td class="p-stack-md font-medium text-primary">Data Entry</td>
+<td class="p-stack-md text-secondary">300</td>
+<td class="p-stack-md text-secondary">Aug 23, 2026</td>
+<td class="p-stack-md text-status-success font-medium">+250</td>
+<td class="p-stack-md text-secondary">Monitor / Limit Onboarding</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right Column: Analytics Grid -->
+<div class="xl:col-span-1 space-y-gutter">
+<h2 class="font-headline-md text-headline-md text-primary mb-4">Analytics</h2>
+<!-- Bar Chart: User Distribution -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-md shadow-sm">
+<h4 class="font-label-sm text-label-sm text-secondary mb-4 uppercase">User Distribution</h4>
+<div class="chart-container h-48 border-b border-l border-border-subtle px-4 relative flex items-end justify-around pb-2">
+<div class="w-8 bg-primary-container rounded-t h-[80%]" title="Students"></div>
+<div class="w-8 bg-inverse-primary rounded-t h-[30%]" title="Organizations"></div>
+<div class="w-8 bg-secondary-container rounded-t h-[15%]" title="Departments"></div>
+<div class="w-8 bg-outline-variant rounded-t h-[40%]" title="Businesses"></div>
+</div>
+<div class="flex justify-around mt-2 font-label-sm text-label-sm text-secondary">
+<span>Stu</span>
+<span>Org</span>
+<span>Dep</span>
+<span>Bus</span>
+</div>
+</div>
+<!-- Line Chart: Quest Completion Trend -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-md shadow-sm">
+<h4 class="font-label-sm text-label-sm text-secondary mb-4 uppercase">Completion Trend</h4>
+<div class="chart-container h-48 border-b border-l border-border-subtle relative">
+<!-- Abstract representation of a line chart using SVG for simplicity -->
+<svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+<polyline fill="none" points="0,80 20,60 40,70 60,30 80,40 100,20" stroke="#1b4332" stroke-width="2"></polyline>
+</svg>
+</div>
+</div>
+<!-- Funnel Chart: Onboarding Drop-Off -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-md shadow-sm flex flex-col items-center">
+<h4 class="font-label-sm text-label-sm text-secondary mb-4 uppercase w-full text-left">Onboarding Funnel</h4>
+<div class="w-full space-y-2">
+<div class="bg-primary-container text-on-primary text-center py-1 rounded-sm text-xs" style="width: 100%;">Sign Up (100%)</div>
+<div class="bg-primary-container/80 text-on-primary text-center py-1 rounded-sm text-xs mx-auto" style="width: 80%;">Email Verify (80%)</div>
+<div class="bg-primary-container/60 text-on-primary text-center py-1 rounded-sm text-xs mx-auto" style="width: 50%;">ID Upload (50%)</div>
+<div class="bg-primary-container/40 text-on-surface text-center py-1 rounded-sm text-xs mx-auto" style="width: 30%;">Admin Approve (30%)</div>
+</div>
+</div>
+<!-- Forecast Chart -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-md shadow-sm">
+<h4 class="font-label-sm text-label-sm text-secondary mb-4 uppercase">Demand Forecast</h4>
+<div class="chart-container h-48 border-b border-l border-border-subtle relative flex items-end justify-around pb-2">
+<!-- Dashed lines for forecast -->
+<div class="w-4 bg-outline-variant rounded-t h-[40%] opacity-50"></div>
+<div class="w-4 bg-outline-variant rounded-t h-[50%] opacity-50 border-t-2 border-dashed border-primary"></div>
+<div class="w-4 bg-outline-variant rounded-t h-[70%] opacity-50 border-t-2 border-dashed border-primary"></div>
+<div class="w-4 bg-outline-variant rounded-t h-[90%] opacity-50 border-t-2 border-dashed border-primary"></div>
+</div>
+<div class="text-center mt-2 font-label-sm text-label-sm text-secondary">Next 4 Months</div>
+</div>
+</div>
+</div>
+<footer class="mt-gutter pt-stack-lg border-t border-border-subtle text-center text-label-sm text-secondary pb-stack-lg">© 2026 SideQuest. All rights reserved.</footer></div>
+</main>
+</div>
+<script type="module" src="../assets/js/app.js"></script>
+</body></html>

@@ -1,0 +1,317 @@
+<!-- Student Dashboard (Final) - SideQuest -->
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Student Dashboard - SideQuest</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="../assets/js/config/student-dashboard.tailwind.js"></script>
+
+<link href="../assets/css/base.css" rel="stylesheet">
+<link href="../assets/css/pages/student-dashboard.css" rel="stylesheet">
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full h-16 z-50 flex justify-between items-center px-margin-page bg-surface-container-lowest border-b border-border-subtle dark:border-on-surface-variant">
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-display-lg font-bold text-primary dark:text-primary-fixed">SideQuest</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:opacity-80 transition-opacity">notifications</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-border-subtle cursor-pointer">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A small, professional profile headshot of a young male student in a bright, modern setting. He is wearing a clean casual shirt and smiling slightly. The lighting is soft and natural, emphasizing a trustworthy and capable persona. High quality photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_McOzii88g9tPWpZZN0ZxuKKWODbrLcOf0nuuYvyAcBdUN94Y0fDDsRcbFyCxkYYC3sKYWOmtPFAgFBaDGWD89qA3WqFF7iSWJsBmg09j4MRwLJIP8Nm9wMrqJW6c5uc9xXUdX_wdFNlc7X82JMMNxj83jTp9QmNkyQ4F288lwAfmxOlTiFjSH_uoElpwIlw4w8w_Mpg6gLvj83KWrDWU3I8yfbbBjXvgtv9tL92p07jhXLIEkfGA3KYU0yMmRUnEYSCiKdMIvYY">
+</div>
+</div>
+</header>
+<!-- SideNavBar (Student Freelancer) -->
+<nav class="hidden md:flex flex-col py-stack-lg fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar-width border-r border-border-subtle dark:border-on-surface-variant bg-surface dark:bg-on-background z-40 overflow-y-auto">
+<div class="px-stack-lg mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg overflow-hidden border border-border-subtle shrink-0">
+<img alt="Student Avatar" class="w-full h-full object-cover" data-alt="A polished, modern icon representing a student freelancer. The image uses a clean, vector-style aesthetic with muted greens and grays, perhaps showing a stylized graduation cap or a laptop to symbolize academic and professional dual roles. The background is white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxoGjy6Zfw_YwYd8Is0YWjnAJ4QING_vRRu7-ervgz3PftMzuaHDC_KIuFcMZs2ZEawJzJfbi3WcwQTUsOaVtPV1LBKJcr7tAom3OAKX222GzX2Wiw57cEgaqu2J4WfroVVmkFOucGuLc3DQfugkotv7PuUOoLhwBeKqQzCXT3usxEmf4e4YN6I7Nn8Uted3VWMxZTqeJeLyAqdA7llbIAeyB4GtWcbt_9QdrK5hE4_LGuBjLucRxOzxYml81vCPWcDjcEIKiSFyk">
+</div>
+<div class="overflow-hidden">
+<h2 class="font-label-md text-label-md font-semibold text-primary truncate">Student Freelancer</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Freelance Hub</p>
+</div>
+</div>
+<div class="flex-1 px-stack-sm flex flex-col gap-1">
+<!-- Dashboard (Active) -->
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 bg-secondary-fixed dark:bg-secondary-container text-on-secondary-fixed dark:text-on-secondary-container font-semibold rounded-lg font-label-md text-label-md transition-all" href="#">
+<span class="material-symbols-outlined fill">space_dashboard</span>
+                Dashboard
+            </a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg font-label-md text-label-md transition-all" href="#">
+<span class="material-symbols-outlined">search</span>
+                Find Quests
+            </a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg font-label-md text-label-md transition-all" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+                Applications
+            </a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg font-label-md text-label-md transition-all" href="#">
+<span class="material-symbols-outlined">pending_actions</span>
+                Active Quests
+            </a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg font-label-md text-label-md transition-all" href="#">
+<span class="material-symbols-outlined">account_box</span>
+                Portfolio
+            </a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg font-label-md text-label-md transition-all" href="#">
+<span class="material-symbols-outlined">forum</span>
+                Messages
+            </a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg font-label-md text-label-md transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+                Profile
+            </a>
+</div>
+<div class="px-stack-sm mt-auto pt-4">
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg font-label-md text-label-md transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</div>
+</nav>
+<!-- Main Workspace -->
+<main class="md:ml-[260px] pt-16 min-h-screen">
+<div class="max-w-[1280px] mx-auto p-margin-page">
+<!-- Header Section -->
+<div class="mb-12">
+<h1 class="font-headline-md text-headline-md text-primary mb-2">Good morning, Alex.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Here is your SideQuest activity.</p>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- KPI Section (Spans full width top) -->
+<div class="md:col-span-12 grid grid-cols-2 md:grid-cols-5 gap-stack-md mb-8">
+<!-- KPI Card -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-md hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-shadow">
+<div class="font-label-sm text-label-sm text-on-surface-variant mb-2">Active Applications</div>
+<div class="font-headline-md text-headline-md text-primary">4</div>
+</div>
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-md hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-shadow">
+<div class="font-label-sm text-label-sm text-on-surface-variant mb-2">Accepted</div>
+<div class="font-headline-md text-headline-md text-status-info">2</div>
+</div>
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-md hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-shadow">
+<div class="font-label-sm text-label-sm text-on-surface-variant mb-2">Active Quests</div>
+<div class="font-headline-md text-headline-md text-status-pending">1</div>
+</div>
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-md hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-shadow">
+<div class="font-label-sm text-label-sm text-on-surface-variant mb-2">Completed</div>
+<div class="font-headline-md text-headline-md text-status-success">7</div>
+</div>
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-md hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-shadow">
+<div class="font-label-sm text-label-sm text-on-surface-variant mb-2">Rating</div>
+<div class="font-headline-md text-headline-md text-primary flex items-center gap-1">
+                            4.8 <span class="material-symbols-outlined fill text-status-pending text-[18px]">star</span>
+</div>
+</div>
+</div>
+<!-- Main Content Left Column (Bento Style) -->
+<div class="md:col-span-8 flex flex-col gap-gutter">
+<!-- Recommended Quests Container -->
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-sm text-headline-sm text-primary">Recommended Quests</h2>
+<button class="font-label-md text-label-md text-primary hover:underline">View All</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md mb-4">
+<!-- Card 1 -->
+<div class="border border-border-subtle rounded-lg p-stack-md flex flex-col hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-all group">
+<div class="flex justify-between items-start mb-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container py-1 px-2 rounded">Marketing</span>
+<span class="font-label-md text-label-md font-semibold text-primary">₱5,000</span>
+</div>
+<h3 class="font-headline-sm text-[16px] leading-[22px] font-semibold text-primary mb-1">Social Media Content Calendar</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Startup Manila</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="font-label-sm text-label-sm px-2 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant">Canva</span>
+<span class="font-label-sm text-label-sm px-2 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant">Copywriting</span>
+</div>
+<div class="mt-auto pt-4 border-t border-border-subtle flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 3 Days left
+                                    </span>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="border border-border-subtle rounded-lg p-stack-md flex flex-col hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-all group">
+<div class="flex justify-between items-start mb-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container py-1 px-2 rounded">Design</span>
+<span class="font-label-md text-label-md font-semibold text-primary">₱8,500</span>
+</div>
+<h3 class="font-headline-sm text-[16px] leading-[22px] font-semibold text-primary mb-1">Brand Identity Refresh</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">TechSolutions Inc.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="font-label-sm text-label-sm px-2 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant">Figma</span>
+<span class="font-label-sm text-label-sm px-2 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant">Illustrator</span>
+</div>
+<div class="mt-auto pt-4 border-t border-border-subtle flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 1 Week
+                                    </span>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="border border-border-subtle rounded-lg p-stack-md flex flex-col hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-all group">
+<div class="flex justify-between items-start mb-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container py-1 px-2 rounded">Development</span>
+<span class="font-label-md text-label-md font-semibold text-primary">₱12,000</span>
+</div>
+<h3 class="font-headline-sm text-[16px] leading-[22px] font-semibold text-primary mb-1">Landing Page Update</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">EduTech Start</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="font-label-sm text-label-sm px-2 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant">HTML/CSS</span>
+<span class="font-label-sm text-label-sm px-2 py-1 bg-surface-container-low border border-border-subtle rounded text-on-surface-variant">React</span>
+</div>
+<div class="mt-auto pt-4 border-t border-border-subtle flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-status-error flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">priority_high</span> Urgent
+                                    </span>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="font-label-sm text-[11px] text-on-surface-variant">* Payment arrangements are completed externally. SideQuest does not process or hold funds.</div>
+</section>
+<!-- Application Status Table -->
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden">
+<div class="p-stack-lg border-b border-border-subtle flex justify-between items-center bg-surface-bright">
+<h2 class="font-headline-sm text-headline-sm text-primary">Recent Applications</h2>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border-subtle bg-surface-container-low/50">
+<th class="p-stack-md font-label-sm text-label-sm text-on-surface-variant">QUEST</th>
+<th class="p-stack-md font-label-sm text-label-sm text-on-surface-variant">CLIENT</th>
+<th class="p-stack-md font-label-sm text-label-sm text-on-surface-variant">DATE</th>
+<th class="p-stack-md font-label-sm text-label-sm text-on-surface-variant text-right">STATUS</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm">
+<tr class="border-b border-border-subtle hover:bg-surface-bright transition-colors cursor-pointer group">
+<td class="p-stack-md font-medium text-primary">SEO Audit Report</td>
+<td class="p-stack-md text-on-surface-variant">Local Bakery Hub</td>
+<td class="p-stack-md text-on-surface-variant">Jul 24, 2026</td>
+<td class="p-stack-md text-right">
+<span class="inline-block px-2 py-1 rounded bg-status-info/10 text-status-info font-label-sm text-label-sm">Shortlisted</span>
+</td>
+</tr>
+<tr class="border-b border-border-subtle hover:bg-surface-bright transition-colors cursor-pointer group">
+<td class="p-stack-md font-medium text-primary">Product Photography</td>
+<td class="p-stack-md text-on-surface-variant">Artisan Crafters</td>
+<td class="p-stack-md text-on-surface-variant">Jul 22, 2026</td>
+<td class="p-stack-md text-right">
+<span class="inline-block px-2 py-1 rounded bg-status-success/10 text-status-success font-label-sm text-label-sm">Accepted</span>
+</td>
+</tr>
+<tr class="border-b border-border-subtle hover:bg-surface-bright transition-colors cursor-pointer group">
+<td class="p-stack-md font-medium text-primary">Data Entry Task</td>
+<td class="p-stack-md text-on-surface-variant">Research Inst.</td>
+<td class="p-stack-md text-on-surface-variant">Jul 20, 2026</td>
+<td class="p-stack-md text-right">
+<span class="inline-block px-2 py-1 rounded bg-status-pending/10 text-status-pending font-label-sm text-label-sm">Pending</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Right Column (Sidebar/Widgets) -->
+<div class="md:col-span-4 flex flex-col gap-gutter">
+<!-- Quick Actions -->
+<section class="bg-primary-container text-on-primary rounded-xl p-stack-lg relative overflow-hidden">
+<!-- Decorative Shader Placeholder -->
+<div class="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay">
+<div class="w-full h-full bg-cover bg-center" data-alt="A subtle, abstract geometric pattern using intersecting lines and soft gradients in varying shades of dark green and deep teal. It serves as a sophisticated, modern corporate background texture without distracting from foreground elements." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD2Y4vVcnqqCqS9xC83eR_DWBXL-NgC9UWCRg7u0lIykEycJBufUZH9iPiKY1riHkl8aEH6f2a6rDIxwTfnUafk2RYTgRE_esNABi-ONA64Dt0Lr4qr-_LHN8UjVLxGMnUhaYSfYTRY2Pbcn51uV3Zk4SlnfLwz7KcvcMzF8mr3i8W-lGslPzcCfxFCWktbTimhe412XL0vewDBC4kh46KYkrq-zyH9CgpxXRuT724krp9J60jjME5_PCj_c3FqcV75ULXY7dh6oXE')"></div>
+</div>
+<div class="relative z-10">
+<h2 class="font-headline-sm text-headline-sm mb-4">Quick Actions</h2>
+<div class="flex flex-col gap-3">
+<button class="flex items-center justify-between w-full p-3 bg-on-primary/10 hover:bg-on-primary/20 rounded-lg backdrop-blur-sm transition-colors border border-on-primary/10">
+<span class="font-label-md text-label-md">Find New Quests</span>
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="flex items-center justify-between w-full p-3 bg-on-primary/10 hover:bg-on-primary/20 rounded-lg backdrop-blur-sm transition-colors border border-on-primary/10">
+<span class="font-label-md text-label-md">Update Portfolio</span>
+<span class="material-symbols-outlined">edit_document</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Upcoming Deadlines -->
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">event</span>
+<h2 class="font-headline-sm text-headline-sm text-primary">Upcoming Deadlines</h2>
+</div>
+<div class="flex flex-col gap-4 relative before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-border-subtle">
+<!-- Timeline Item -->
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-surface-container-lowest border-2 border-status-pending flex items-center justify-center z-10">
+<div class="w-2 h-2 rounded-full bg-status-pending"></div>
+</div>
+<h4 class="font-label-md text-label-md font-semibold text-primary">App Redesign Wireframes</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Fintech Startup X</p>
+<div class="mt-2 inline-block px-2 py-1 rounded bg-surface-container-low border border-border-subtle font-label-sm text-label-sm text-status-pending">Due Tomorrow</div>
+</div>
+<!-- Timeline Item -->
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-surface-container-lowest border-2 border-border-subtle flex items-center justify-center z-10">
+</div>
+<h4 class="font-label-md text-label-md font-semibold text-primary">Initial Draft Review</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Copywriting Project</p>
+<div class="mt-2 font-label-sm text-label-sm text-on-surface-variant">Due Aug 30, 2026</div>
+</div>
+</div>
+</section>
+<!-- Professional Profile Insight -->
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-6">Professional Profile Insight</h2>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-label-sm font-label-sm mb-1">
+<span class="text-on-surface-variant">Verified Projects</span>
+<span class="text-primary font-bold">12 / 15</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 80%"></div>
+</div>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-low border border-border-subtle flex flex-col gap-3">
+<div>
+<h4 class="font-label-md text-label-md text-primary mb-2">Strongest Skills</h4>
+<div class="flex gap-2">
+<span class="font-label-sm text-label-sm px-2 py-1 bg-surface-container border border-border-subtle rounded text-on-surface-variant">UI/UX</span>
+<span class="font-label-sm text-label-sm px-2 py-1 bg-surface-container border border-border-subtle rounded text-on-surface-variant">React</span>
+</div>
+</div>
+<div class="border-t border-border-subtle pt-3">
+<h4 class="font-label-md text-label-md text-primary mb-1">Recent Feedback</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">"Excellent technical delivery"</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+<script type="module" src="../assets/js/app.js"></script>
+</body></html>

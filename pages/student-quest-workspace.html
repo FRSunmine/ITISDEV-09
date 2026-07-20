@@ -1,0 +1,279 @@
+<!-- Active Quest Workspace (Student - In Progress) - SideQuest -->
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Active Quest Workspace - SideQuest</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="../assets/js/config/student-quest-workspace.tailwind.js"></script>
+
+<link href="../assets/css/base.css" rel="stylesheet">
+<link href="../assets/css/pages/student-quest-workspace.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-background font-body-md font-body-md antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full h-16 z-50 flex justify-between items-center px-margin-page bg-surface-container-lowest border-b border-border-subtle dark:border-on-surface-variant hidden md:flex">
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-display-lg font-bold text-primary dark:text-primary-fixed">SideQuest</span>
+</div>
+<div class="flex flex-1 justify-center max-w-md mx-4">
+<!-- search bar left placeholder -->
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-low dark:hover:bg-on-surface-variant transition-colors rounded-full cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full object-cover border border-border-subtle" data-alt="A small, circular avatar portrait of a university student with short dark hair, wearing a casual grey hoodie, smiling subtly against a neutral light grey background. Soft studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY7hJzJBKqX2XfuTAWmGaXAJXzo4x9QdKjwLx0VE-sFdlkLXd03wFJavn-yMEZAvv3QFmtw60bWFiP6G8vKiSz_xK1LIYwX6nWMl3JA-yB19x6IzwxI0VINNrkQCxFxyvJPkh3HlznyMQTKFK1wHvojCHm--coKCTXJH9xKJQpGkY-3WhXKIkmKa9O1p4-WBHU-gbEJnNzKKIhZR8Uh0HHUjEdCn7mWMlYBEMDFnYE6HI1J1ql2oWA97RG7ztoL_RkPCWF0lsA5ds">
+</div>
+</header>
+<div class="flex pt-16 h-screen">
+<!-- SideNavBar - Student -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar-width bg-surface dark:bg-on-background border-r border-border-subtle dark:border-on-surface-variant hidden md:flex flex-col py-stack-lg overflow-y-auto">
+<div class="px-stack-lg mb-stack-lg flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center overflow-hidden shrink-0">
+<img alt="Student Avatar" class="w-full h-full object-cover" data-alt="A minimalist logo for a student freelancer, featuring abstract geometric shapes resembling a digital pen or stylus in shades of professional deep green and muted grey on a white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTlnfes4Z8tS767OaZmHWtxqQ2CYofZ-xwLAWd4sUKdgHuwMNNvahRqYlAxX7WMAWWzYVCiYC1WHMuuNaUYHekB1RBfMHCvhNbXliq50Twz8UOw11MPpwDwHajZcL5FMb4-RLPz8gFrbyb_MJYrrAZ-c8n-GJCYm_NR7cBtOWUnYyAZtQT-O__1m-esOYqXlK9tEUHIP7fadxkxQm8c89Bz5jNsIewCc45awLmN679mwxOzfbZhyOl9bSaBcOvcWVDg8ZD5Y0wBm0">
+</div>
+<div class="overflow-hidden">
+<h2 class="font-headline-sm text-headline-sm text-primary truncate">Student Freelancer</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Freelance Hub</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col px-stack-sm gap-1">
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="space_dashboard">space_dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="search">search</span>
+<span class="font-label-md text-label-md">Find Quests</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="history_edu">history_edu</span>
+<span class="font-label-md text-label-md">Applications</span>
+</a>
+<!-- ACTIVE NAV -->
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 bg-secondary-fixed dark:bg-secondary-container text-on-secondary-fixed dark:text-on-secondary-container font-semibold rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="pending_actions" data-weight="fill" style="font-variation-settings: 'FILL' 1;">pending_actions</span>
+<span class="font-label-md text-label-md">Active Quests</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="account_box">account_box</span>
+<span class="font-label-md text-label-md">Portfolio</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="forum">forum</span>
+<span class="font-label-md text-label-md">Messages</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined shrink-0" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-sidebar-width overflow-y-auto">
+<!-- Page Header Container -->
+<div class="bg-surface-container-lowest border-b border-border-subtle pt-margin-page px-margin-page pb-0 sticky top-0 z-40">
+<div class="max-w-container-max mx-auto">
+<!-- Header Top Row: Title & Metadata -->
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="bg-primary-container text-on-primary-fixed bg-opacity-10 px-2 py-1 rounded font-label-sm text-label-sm border border-primary-container border-opacity-20 flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-status-info"></span>
+                                    In Progress
+                                </span>
+<span class="text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="event">event</span>Due: Oct 24, 2026</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm flex items-center gap-1 ml-2"><span class="material-symbols-outlined text-[16px]">lock</span>Scope Locked</span><span class="bg-surface-container-high text-on-surface px-2 py-1 rounded font-label-sm text-label-sm ml-2">1/3 Completed</span></div>
+<h1 class="font-display-lg text-display-lg text-on-background mb-1">Green Week Campaign Branding</h1>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="business">business</span>
+                                DLSU Environmental Organization
+                            </p>
+</div>
+<!-- Primary Actions -->
+<div class="flex items-center gap-3">
+<button class="font-label-md text-label-md px-4 py-2 rounded bg-primary-container text-white hover:bg-opacity-90 transition-colors shadow-sm">
+                                Submit Deliverables
+                            </button>
+</div>
+</div>
+<!-- Tabs -->
+<div class="flex gap-8 border-b border-border-subtle mt-8">
+<button class="pb-3 border-b-2 border-transparent font-label-md text-label-md text-on-surface-variant hover:text-on-background transition-colors">Overview</button>
+<button class="pb-3 border-b-2 border-primary text-primary font-label-md text-label-md font-bold transition-colors">Deliverables</button>
+<button class="pb-3 border-b-2 border-transparent font-label-md text-label-md text-on-surface-variant hover:text-on-background transition-colors flex items-center gap-1">Files <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5 rounded-full text-[10px]">3</span></button>
+<button class="pb-3 border-b-2 border-transparent font-label-md text-label-md text-on-surface-variant hover:text-on-background transition-colors flex items-center gap-1">Messages <span class="bg-primary-container text-white px-1.5 py-0.5 rounded-full text-[10px]">1</span></button>
+<button class="pb-3 border-b-2 border-transparent font-label-md text-label-md text-on-surface-variant hover:text-on-background transition-colors">Activity Log</button>
+</div>
+</div>
+</div>
+<!-- Workspace Canvas -->
+<div class="p-margin-page max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Deliverables Checklist (Bento style) -->
+<div class="lg:col-span-8 flex flex-col gap-gutter">
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg shadow-[0_2px_4px_rgba(0,0,0,0.02)] transition-shadow hover:shadow-[0_4px_12px_rgba(0,0,0,0.05)]">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-sm text-headline-sm text-on-background">Deliverables Checklist</h3>
+<div class="w-32 bg-surface-container-high rounded-full h-2 overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 33%;"></div>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Checked Item -->
+<div class="group flex items-start gap-4 p-4 rounded-lg border border-border-subtle bg-surface hover:bg-surface-container-lowest transition-colors relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-status-success"></div>
+<div class="pt-0.5">
+<input checked="" class="quest-checkbox w-5 h-5 rounded border-outline text-primary-container focus:ring-primary-container bg-surface-container-lowest cursor-pointer" id="del-1" type="checkbox">
+<label class="sr-only" for="del-1">Logo concept</label>
+</div>
+<div class="flex-1">
+<label class="font-headline-sm text-[16px] text-on-surface-variant mb-1 block cursor-pointer transition-colors" for="del-1">Logo concept</label>
+<div class="flex items-center gap-3 font-body-sm text-body-sm text-on-tertiary-container mt-1">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span> Approved Oct 12</span>
+</div>
+</div>
+<div class="flex items-center gap-2 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-container-high rounded" title="View Attachment">
+<span class="material-symbols-outlined text-[20px]" data-icon="attachment">attachment</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:bg-surface-container-high rounded" title="Comments">
+<span class="material-symbols-outlined text-[20px]" data-icon="chat_bubble">chat_bubble</span>
+</button>
+</div>
+</div>
+<!-- Pending Item -->
+<div class="group flex items-start gap-4 p-4 rounded-lg border border-border-subtle bg-surface-container-lowest hover:border-outline-variant transition-colors relative">
+<div class="pt-0.5">
+<input class="quest-checkbox w-5 h-5 rounded border-outline text-primary-container focus:ring-primary-container bg-surface-container-lowest cursor-pointer" id="del-2" type="checkbox">
+</div>
+<div class="flex-1">
+<label class="font-headline-sm text-[16px] text-on-background mb-1 block cursor-pointer" for="del-2">Final logo package</label>
+<div class="flex items-center gap-3 font-body-sm text-body-sm text-on-surface-variant mt-1">
+<span class="flex items-center gap-1 text-status-pending"><span class="material-symbols-outlined text-[14px]" data-icon="schedule">schedule</span> Due Oct 20, 2026</span>
+<span class="text-on-tertiary-container">•</span>
+<span>AI, EPS, PNG, SVG</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1 px-3 py-1.5 border border-border-subtle rounded text-on-surface-variant font-label-sm hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="upload_file">upload_file</span>
+                                        Attach
+                                    </button>
+</div>
+</div>
+<!-- Pending Item -->
+<div class="group flex items-start gap-4 p-4 rounded-lg border border-border-subtle bg-surface-container-lowest hover:border-outline-variant transition-colors relative">
+<div class="pt-0.5">
+<input class="quest-checkbox w-5 h-5 rounded border-outline text-primary-container focus:ring-primary-container bg-surface-container-lowest cursor-pointer" id="del-3" type="checkbox">
+</div>
+<div class="flex-1">
+<label class="font-headline-sm text-[16px] text-on-background mb-1 block cursor-pointer" for="del-3">Brand color guide</label>
+<div class="flex items-center gap-3 font-body-sm text-body-sm text-on-surface-variant mt-1">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="schedule">schedule</span> Due Oct 24</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1 px-3 py-1.5 border border-border-subtle rounded text-on-surface-variant font-label-sm hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="upload_file">upload_file</span>
+                                        Attach
+                                    </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Files Section Mini -->
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg shadow-[0_2px_4px_rgba(0,0,0,0.02)]">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-sm text-headline-sm text-on-background">Recent Files</h3>
+<button class="text-primary-container font-label-sm hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border-subtle">
+<th class="py-2 font-label-sm text-label-sm text-on-surface-variant font-normal">Name</th>
+<th class="py-2 font-label-sm text-label-sm text-on-surface-variant font-normal">Version</th>
+<th class="py-2 font-label-sm text-label-sm text-on-surface-variant font-normal">Submitted by</th>
+<th class="py-2 font-label-sm text-label-sm text-on-surface-variant font-normal text-right">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-border-subtle hover:bg-surface-bright transition-colors group">
+<td class="py-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-status-info text-[20px]" data-icon="image">image</span>
+<span class="font-body-sm text-body-sm text-on-background">logo_concept_v1.png</span>
+</td>
+<td class="py-3 font-body-sm text-body-sm text-on-surface-variant">v1.0</td>
+<td class="py-3 font-body-sm text-body-sm text-on-surface-variant">Alex (Student)</td>
+<td class="py-3 text-right">
+<button class="p-1 text-on-surface-variant hover:text-primary-container transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[18px]" data-icon="download">download</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Right Column: Messages Panel -->
+<div class="lg:col-span-4 h-[600px]">
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl shadow-[0_2px_4px_rgba(0,0,0,0.02)] h-full flex flex-col">
+<div class="p-4 border-b border-border-subtle flex justify-between items-center bg-surface-bright rounded-t-xl">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="forum">forum</span>
+<h3 class="font-headline-sm text-[16px] text-on-background">Client Chat</h3>
+</div>
+<span class="w-2 h-2 rounded-full bg-status-success" title="Online"></span>
+</div>
+<div class="flex-1 overflow-y-auto p-4 flex flex-col gap-4 bg-surface">
+<!-- Client Message -->
+<div class="flex gap-2 max-w-[85%]">
+<img alt="Client Logo" class="w-8 h-8 rounded object-cover border border-border-subtle mt-1" data-alt="A small square logo of an environmental organization featuring a stylized green leaf inside a circle on a white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7iPtLnK4S6HYXnU3bGRN-0dsSVW8DUTQNqW8M6ZKweR8ieHIKpL0vBlMMiz-4sHfzqpLYMoWJEyM5bK-xkXMJzShLKbHVQl-5w_hRNgCOMOOJcC_tC-2QcMmVTTdbPeR6i7vD2plNk-2WIb7pA-jtJ9YIw8XOCmEMTM0dImf2Dj0VlM3uzX9SyDEg3KR9ZNFGUZq-XLPqI6msjHs-wMsndYojMJfrTjhK-eUbMpp336Vs-jdMkL3N1cE6j4RAfGwn4UgnO7n7rBg">
+<div>
+<div class="flex items-baseline gap-2 mb-1">
+<span class="font-label-sm text-label-sm text-on-background">DLSU Env Org</span>
+<span class="font-label-sm text-[9px] text-on-tertiary-container">10:42 AM</span>
+</div>
+<div class="bg-surface-container-highest p-3 rounded-tr-lg rounded-br-lg rounded-bl-lg font-body-sm text-body-sm text-on-background">
+                                        Hi Alex, the logo concept looks great! Can we see a version with a slightly darker shade of green?
+                                    </div>
+</div>
+</div>
+<!-- Student Message (Me) -->
+<div class="flex gap-2 max-w-[85%] self-end flex-row-reverse">
+<img alt="My Avatar" class="w-8 h-8 rounded-full object-cover border border-border-subtle mt-1" data-alt="A small, circular avatar portrait of a university student with short dark hair, wearing a casual grey hoodie, smiling subtly against a neutral light grey background. Soft studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMxXDRPWpRvZ5ys4Ljlid2fHswWdtL9xHLm5NjBHZdaWhGnE1X_wdcPgjHF8CKM7Wu_ymr_fZCtDLgHjFSssNBLoyICQfG0c8MC8x_wXGLTHRDMiEqQ7eem9NGr7-s4CkMevdudEj9DqTfVkRzzi0PQ6Ysle4EMOTggA6zIFGh_Ib4_FtQxYApIM7evtW_27ZZCdhVs1W3_mx3xJgRPX91X3SpRJcr7RpBwOMgxqHtRG7h_3BgWiDILJkfw8hSgZY6dTXr0R-wKTM">
+<div>
+<div class="flex items-baseline gap-2 justify-end mb-1">
+<span class="font-label-sm text-[9px] text-on-tertiary-container">11:05 AM</span>
+<span class="font-label-sm text-label-sm text-on-background">You</span>
+</div>
+<div class="bg-primary-container text-white p-3 rounded-tl-lg rounded-br-lg rounded-bl-lg font-body-sm text-body-sm">
+                                        Sure thing! I'll update the colors and upload v2 this afternoon.
+                                    </div>
+</div>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-3 border-t border-border-subtle bg-surface-container-lowest rounded-b-xl">
+<div class="relative">
+<input class="w-full bg-surface-bright border border-border-subtle rounded-lg pl-3 pr-10 py-2.5 font-body-sm text-body-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" placeholder="Type a message..." type="text">
+<button class="absolute right-2 top-1/2 -translate-y-1/2 text-primary-container hover:text-primary transition-colors p-1">
+<span class="material-symbols-outlined text-[20px]" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</div>
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl p-4 mt-gutter shadow-sm"><h3 class="font-headline-sm text-[16px] text-on-background mb-3">Revision History</h3><div class="flex flex-col gap-2"><div class="text-body-sm text-on-surface-variant pb-2 border-b border-border-subtle flex justify-between"><span>v1.0 Logo Concept</span><span class="text-status-success">Approved</span></div><div class="text-body-sm text-on-surface-variant pt-1">No active revisions</div></div></section><div class="mt-4 p-4 bg-surface-container-low rounded-lg border border-border-subtle"><p class="text-label-sm text-on-surface-variant leading-relaxed"><span class="material-symbols-outlined text-[16px] align-middle mr-1">info</span> Payment arrangements are completed externally. SideQuest does not process or hold funds.</p></div></div>
+</div>
+</main>
+</div>
+<script type="module" src="../assets/js/app.js"></script>
+</body></html>

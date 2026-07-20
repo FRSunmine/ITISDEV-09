@@ -1,0 +1,25 @@
+.material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8f9fa; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d9dadb; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c1c8c2; 
+        }
+
+        /* Checkbox styling */
+        .quest-checkbox:checked + label {
+            text-decoration: line-through;
+            color: #a0a7aa; /* text-on-tertiary-container */
+        }

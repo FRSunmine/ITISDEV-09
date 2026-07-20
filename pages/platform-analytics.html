@@ -1,0 +1,277 @@
+<!-- Platform Analytics (Final v2) - SideQuest Admin -->
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Platform Analytics - SideQuest Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="../assets/js/config/platform-analytics.tailwind.js"></script>
+
+<link href="../assets/css/base.css" rel="stylesheet">
+<link href="../assets/css/pages/platform-analytics.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col md:flex-row">
+<!-- Side Navigation -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface dark:bg-surface-container-lowest border-r border-outline-variant flex flex-col z-20 hidden md:flex shadow-sm">
+<div class="p-6">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">SideQuest</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase mt-1 tracking-widest">Administrator — System Control</p>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4 overflow-y-auto"><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-tertiary-container hover:text-primary hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors duration-200 transition-transform active:scale-90" href="#"><span class="material-symbols-outlined">dashboard</span><span>Dashboard</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-tertiary-container hover:text-primary hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors duration-200 transition-transform active:scale-90" href="#"><span class="material-symbols-outlined">verified_user</span><span>Verification Queue</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-tertiary-container hover:text-primary hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors duration-200 transition-transform active:scale-90" href="#"><span class="material-symbols-outlined">group</span><span>Users</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-tertiary-container hover:text-primary hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors duration-200 transition-transform active:scale-90" href="#"><span class="material-symbols-outlined">assignment</span><span>Quests</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-tertiary-container hover:text-primary hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors duration-200 transition-transform active:scale-90" href="#"><span class="material-symbols-outlined">assessment</span><span>Reports</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary dark:text-primary-fixed font-bold border-r-4 border-primary dark:border-primary-fixed bg-secondary-container/30 transition-transform scale-95 active:scale-90" href="#"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span><span>Analytics</span></a><a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-tertiary-container hover:text-primary hover:bg-surface-variant dark:hover:bg-surface-container-high transition-colors duration-200 transition-transform active:scale-90" href="#"><span class="material-symbols-outlined">admin_panel_settings</span><span>Platform Settings</span></a></nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-h-screen md:ml-64 bg-background">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center h-16 px-gutter border-b border-outline-variant bg-surface dark:bg-surface-container-lowest sticky top-0 z-10 w-full">
+<div class="flex items-center gap-6">
+<!-- Mobile Menu Button -->
+<button class="md:hidden text-on-surface-variant p-2 -ml-2 hover:bg-surface-variant rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="hidden md:flex gap-6"><a class="text-primary dark:text-primary-fixed border-b-2 border-primary font-bold pb-1 font-body-sm text-body-sm transition-colors opacity-80 hover:opacity-100" href="#">Analytics</a><a class="text-on-surface-variant dark:text-on-tertiary-container font-body-sm text-body-sm hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 pb-1" href="#">System Logs</a><a class="text-on-surface-variant dark:text-on-tertiary-container font-body-sm text-body-sm hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-80 hover:opacity-100 pb-1" href="#">Audit Trail</a></div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">history_edu</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-tertiary-fixed-dim overflow-hidden border border-outline-variant/30 flex items-center justify-center">
+<img alt="Administrator profile avatar" class="w-full h-full object-cover" data-alt="A highly detailed portrait photograph of an administrator avatar, neutral background, professional attire, soft lighting, 50-100 words." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgqYnsA_d6yeHo3Wqrq1NLblx6xOjBvkpjBXxLx0ccrCSCXISInbdpw9zAHzGLnKUhkVwGk5WP6GJ96Nfe0QZMPOcxJhCFE3CVv1NDLXKzMfAbGxCAbUaAC-R0q2Fpd7Vdv7PSXZybgOgvQQRLHus9e4s-DCiWSYR0QpHixSWIX0_VtTDH33vDL5NymiMhsBBNwDleku1f57farcA4Sq4bIfNptI75rSisXSMbL-AD-OlTkwkov2ruZAsbJbZZwWvC4tHxHWXSgXM">
+</div>
+</div>
+</header>
+<!-- Canvas Content -->
+<div class="flex-1 p-gutter max-w-max-width mx-auto w-full">
+<div class="mb-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Platform Analytics</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">Overview of ecosystem engagement and supply/demand metrics.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- 1. Bar Chart: Active User Distribution -->
+<div class="tonal-card rounded-xl p-6 lg:col-span-8 flex flex-col">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg">Active User Distribution</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase mt-1 tracking-wider">BY ENTITY TYPE</p>
+</div>
+</div>
+<div class="flex-1 relative min-h-[240px] flex items-end gap-4 mt-4">
+<!-- Simulated Bar Chart -->
+<div class="w-1/4 h-full flex flex-col justify-end group">
+<div class="w-full bg-primary/20 hover:bg-primary/30 rounded-t-sm h-[85%] transition-colors relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm opacity-0 group-hover:opacity-100 transition-opacity">8,420</div>
+</div>
+<div class="mt-2 text-center font-label-md text-label-md text-on-surface-variant truncate">Students</div>
+</div>
+<div class="w-1/4 h-full flex flex-col justify-end group">
+<div class="w-full bg-secondary/40 hover:bg-secondary/50 rounded-t-sm h-[45%] transition-colors relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm opacity-0 group-hover:opacity-100 transition-opacity">1,150</div>
+</div>
+<div class="mt-2 text-center font-label-md text-label-md text-on-surface-variant truncate">Orgs</div>
+</div>
+<div class="w-1/4 h-full flex flex-col justify-end group">
+<div class="w-full bg-tertiary-fixed-dim hover:bg-outline-variant rounded-t-sm h-[20%] transition-colors relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm opacity-0 group-hover:opacity-100 transition-opacity">340</div>
+</div>
+<div class="mt-2 text-center font-label-md text-label-md text-on-surface-variant truncate">Depts</div>
+</div>
+<div class="w-1/4 h-full flex flex-col justify-end group">
+<div class="w-full bg-primary-fixed hover:bg-primary-fixed-dim rounded-t-sm h-[60%] transition-colors relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm opacity-0 group-hover:opacity-100 transition-opacity">2,100</div>
+</div>
+<div class="mt-2 text-center font-label-md text-label-md text-on-surface-variant truncate">Startups</div>
+</div>
+</div>
+</div>
+<!-- 3. Funnel: Onboarding Drop-Off -->
+<div class="tonal-card rounded-xl p-6 lg:col-span-4 flex flex-col">
+<div class="mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg">Onboarding Drop-Off</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase mt-1 tracking-wider">CONVERSION FUNNEL</p>
+</div>
+<div class="flex-1 flex flex-col justify-center space-y-3">
+<div class="w-full">
+<div class="flex justify-between font-label-sm text-label-sm mb-1">
+<span>Reg</span>
+<span>100%</span>
+</div>
+<div class="w-full h-8 bg-surface-variant rounded-sm overflow-hidden">
+<div class="h-full bg-primary" style="width: 100%"></div>
+</div>
+</div>
+<div class="w-full flex justify-end">
+<div class="w-[85%]">
+<div class="flex justify-between font-label-sm text-label-sm mb-1 text-on-surface-variant">
+<span>Email</span>
+<span>85%</span>
+</div>
+<div class="w-full h-8 bg-surface-variant rounded-sm overflow-hidden">
+<div class="h-full bg-secondary/80" style="width: 100%"></div>
+</div>
+</div>
+</div>
+<div class="w-full flex justify-end">
+<div class="w-[62%]">
+<div class="flex justify-between font-label-sm text-label-sm mb-1 text-on-surface-variant">
+<span>Profile</span>
+<span>62%</span>
+</div>
+<div class="w-full h-8 bg-surface-variant rounded-sm overflow-hidden">
+<div class="h-full bg-secondary/60" style="width: 100%"></div>
+</div>
+</div>
+</div>
+<div class="w-full flex justify-end">
+<div class="w-[48%]">
+<div class="flex justify-between font-label-sm text-label-sm mb-1 text-on-surface-variant">
+<span>Portfolio</span>
+<span>48%</span>
+</div>
+<div class="w-full h-8 bg-surface-variant rounded-sm overflow-hidden">
+<div class="h-full bg-secondary/40" style="width: 100%"></div>
+</div>
+</div>
+</div>
+<div class="w-full flex justify-end">
+<div class="w-[31%]">
+<div class="flex justify-between font-label-sm text-label-sm mb-1 text-primary font-bold">
+<span>Verified</span>
+<span>31%</span>
+</div>
+<div class="w-full h-8 bg-surface-variant rounded-sm overflow-hidden">
+<div class="h-full bg-primary-container" style="width: 100%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. Line Chart: Quest Completion Trend & 4. Area Chart: Quest Demand Forecast -->
+<div class="tonal-card rounded-xl p-6 lg:col-span-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Line Chart -->
+<div>
+<div class="mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg">Quest Completion Trend</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase mt-1 tracking-wider">MONTHLY VOLUME</p>
+</div>
+<div class="relative h-[200px] w-full border-b border-l border-outline-variant/30 flex items-end">
+<!-- Abstract Line Representation (SVG path simulation) -->
+<svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100">
+<path d="M0,80 L20,60 L40,65 L60,30 L80,45 L100,10" fill="none" stroke="theme('colors.primary')" stroke-linejoin="round" stroke-width="2"></path>
+<!-- Points -->
+<circle cx="0" cy="80" fill="theme('colors.primary')" r="2"></circle>
+<circle cx="20" cy="60" fill="theme('colors.primary')" r="2"></circle>
+<circle cx="40" cy="65" fill="theme('colors.primary')" r="2"></circle>
+<circle cx="60" cy="30" fill="theme('colors.primary')" r="2"></circle>
+<circle cx="80" cy="45" fill="theme('colors.primary')" r="2"></circle>
+<circle cx="100" cy="10" fill="theme('colors.primary')" r="2"></circle>
+</svg>
+<!-- X Axis Labels -->
+<div class="absolute -bottom-6 w-full flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Jan</span>
+<span>Mar</span>
+<span>May</span>
+<span>Jul</span>
+<span>Sep</span>
+<span>Nov</span>
+</div>
+</div>
+</div>
+<!-- Area Chart -->
+<div>
+<div class="mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg">Quest Demand Forecast</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase mt-1 tracking-wider">Forecast based on simulated historical MVP data</p>
+</div>
+<div class="relative h-[200px] w-full border-b border-outline-variant/30 flex items-end">
+<svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100">
+<!-- Area Fill -->
+<path d="M0,70 L25,50 L50,40 L75,15 L100,20 L100,100 L0,100 Z" fill="theme('colors.secondary-container')" opacity="0.5"></path>
+<!-- Line -->
+<path d="M0,70 L25,50 L50,40 L75,15 L100,20" fill="none" stroke="theme('colors.secondary')" stroke-dasharray="4 2" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<div class="absolute -bottom-6 w-full flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Q1</span>
+<span>Q2</span>
+<span>Q3</span>
+<span>Q4</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. Table: Top Skills Gap Recommendations -->
+<div class="tonal-card rounded-xl lg:col-span-12 overflow-hidden">
+<div class="p-6 border-b border-outline-variant/30">
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg">Top Skills Gap Recommendations</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase mt-1 tracking-wider">SUPPLY VS DEMAND ANALYSIS</p>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-surface-container-low font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+<tr>
+<th class="py-3 px-6 font-medium">Skill</th>
+<th class="py-3 px-6 font-medium text-right">Student Supply</th>
+<th class="py-3 px-6 font-medium text-right">Quest Demand</th>
+<th class="py-3 px-6 font-medium text-right">Gap</th>
+<th class="py-3 px-6 font-medium">Recommended Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20 text-on-surface">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-4 px-6 font-medium">Video Editing</td>
+<td class="py-4 px-6 text-right font-label-md">145</td>
+<td class="py-4 px-6 text-right font-label-md">312</td>
+<td class="py-4 px-6 text-right text-error font-medium">-167</td>
+<td class="py-4 px-6"><span class="inline-block px-2 py-1 bg-surface-variant rounded text-xs">Run specialized campaign</span></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-4 px-6 font-medium">UI/UX</td>
+<td class="py-4 px-6 text-right font-label-md">280</td>
+<td class="py-4 px-6 text-right font-label-md">450</td>
+<td class="py-4 px-6 text-right text-error font-medium">-170</td>
+<td class="py-4 px-6"><span class="inline-block px-2 py-1 bg-surface-variant rounded text-xs">Partner with Design Dept</span></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-4 px-6 font-medium">Web Dev</td>
+<td class="py-4 px-6 text-right font-label-md">510</td>
+<td class="py-4 px-6 text-right font-label-md">490</td>
+<td class="py-4 px-6 text-right text-primary font-medium">+20</td>
+<td class="py-4 px-6"><span class="inline-block px-2 py-1 bg-surface-variant rounded text-xs">Maintain current outreach</span></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-4 px-6 font-medium">Data Analytics</td>
+<td class="py-4 px-6 text-right font-label-md">195</td>
+<td class="py-4 px-6 text-right font-label-md">380</td>
+<td class="py-4 px-6 text-right text-error font-medium">-185</td>
+<td class="py-4 px-6"><span class="inline-block px-2 py-1 bg-surface-variant rounded text-xs">Incentivize submissions</span></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-4 px-6 font-medium">Social Media</td>
+<td class="py-4 px-6 text-right font-label-md">850</td>
+<td class="py-4 px-6 text-right font-label-md">410</td>
+<td class="py-4 px-6 text-right text-primary font-medium">+440</td>
+<td class="py-4 px-6"><span class="inline-block px-2 py-1 bg-surface-variant rounded text-xs">Decrease promotional spend</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-auto flex justify-between items-center py-4 px-gutter bg-surface-container-low dark:bg-surface-container-lowest border-t border-outline-variant/30">
+<div class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant dark:text-on-tertiary-container">© 2026 SideQuest. Payment arrangements are completed externally. SideQuest does not process or hold funds.</div>
+<div class="flex gap-4 font-label-md text-label-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Contact Support</a>
+</div>
+</footer>
+</main>
+<script type="module" src="../assets/js/app.js"></script>
+</body></html>

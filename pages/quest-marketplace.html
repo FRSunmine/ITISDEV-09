@@ -1,0 +1,535 @@
+<!-- Quest Marketplace (Final) - SideQuest -->
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SideQuest - Find Quests</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="../assets/js/config/quest-marketplace.tailwind.js"></script>
+
+<link href="../assets/css/base.css" rel="stylesheet">
+<link href="../assets/css/pages/quest-marketplace.css" rel="stylesheet">
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md h-screen overflow-hidden flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full h-16 z-50 flex justify-between items-center px-margin-page bg-surface-container-lowest border-b border-border-subtle dark:border-on-surface-variant">
+<div class="flex items-center gap-stack-lg">
+<span class="font-display-lg text-display-lg font-bold text-primary dark:text-primary-fixed">SideQuest</span>
+</div>
+<!-- Global Search (Center aligned) -->
+<div class="hidden md:flex flex-1 max-w-xl mx-gutter relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-variation-settings: 'FILL' 0;">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface rounded-md border border-border-subtle text-body-sm font-body-sm placeholder:text-on-surface-variant/60 focus:border-primary-container focus:ring-2 focus:ring-primary-container/10 transition-shadow" placeholder="Search quests, skills, or clients..." type="text">
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors text-primary relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-status-error rounded-full"></span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-border-subtle">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A highly detailed close-up portrait of a young professional student freelancer, styled with a modern, corporate aesthetic. The subject is wearing smart-casual attire against a pristine white studio background with soft, diffused high-key lighting. The overall mood is confident and approachable, reflecting trust and academic professionalism. 8k resolution, photorealistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOBLx9OsWEBcFKYJjEn5VsUwcsYtAAER7wOuT0PJ1vBI_TGpVR36NwYtqp6rtWCbtdM0IYMz_8OCmMleMH4jq_V58goxCKnn-DZwwoQy-J6Q7lrvc-Vs460F1ibk3f1iKxtVgLSRl30Q3BZcRi8XUmwvpxmNuiLOQ53qWHoOaiQ2Ul2RnVrVFzWYrczdCs8ll6n1i1JfUATHE_ZoHu2i0uJgGz8YHz8SoEEPz8DtV5nX2_vGbpFjIDKw6FG_-Qb_Hzs62ty_aGMRI">
+</div>
+</div>
+</nav>
+<div class="flex flex-1 pt-16 h-full overflow-hidden">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar-width bg-surface dark:bg-on-background border-r border-border-subtle dark:border-on-surface-variant py-stack-lg z-40">
+<div class="px-margin-page mb-stack-lg">
+<div class="flex items-center gap-stack-sm mb-1">
+<span class="font-headline-sm text-headline-sm text-on-surface">Student Freelancer</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Freelance Hub</span>
+</div>
+<nav class="flex flex-col gap-1 px-stack-sm flex-1 overflow-y-auto custom-scrollbar">
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">space_dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 rounded-lg bg-secondary-fixed text-on-secondary-fixed font-semibold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="font-label-md text-label-md">Find Quests</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="font-label-md text-label-md">Applications</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">pending_actions</span>
+<span class="font-label-md text-label-md">Active Quests</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">account_box</span>
+<span class="font-label-md text-label-md">Portfolio</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">forum</span>
+<span class="font-label-md text-label-md flex-1">Messages</span>
+<span class="bg-status-error text-white font-label-sm text-[10px] px-1.5 py-0.5 rounded-full">3</span>
+</a>
+</nav>
+<div class="mt-auto px-stack-sm border-t border-border-subtle pt-stack-sm">
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="flex-1 md:ml-sidebar-width h-full bg-background flex flex-col relative">
+<!-- Context Header & Filters -->
+<div class="bg-surface-container-lowest border-b border-border-subtle px-margin-page py-stack-md shrink-0 z-10 relative shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)]">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-stack-md mb-stack-md">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface">Explore Quests</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Discover opportunities tailored to your skill set.</p>
+</div>
+<div class="flex items-center gap-stack-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Sort By</span>
+<select class="bg-surface border border-border-subtle rounded text-body-sm font-body-sm py-1.5 pl-3 pr-8 focus:border-primary-container">
+<option>Newest First</option>
+<option>Highest Budget</option>
+<option>Closest Deadline</option>
+</select>
+</div>
+</div>
+<!-- Quick Filters -->
+<div class="flex flex-wrap items-center gap-stack-sm pb-1">
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container border border-border-subtle rounded-full cursor-pointer hover:bg-surface-container-high transition-colors">
+<span class="font-label-md text-label-md text-on-surface">Category</span>
+<span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-primary-container text-white border border-primary-container rounded-full cursor-pointer">
+<span class="font-label-md text-label-md">Skill: Web Dev</span>
+<span class="material-symbols-outlined text-[16px]">close</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container border border-border-subtle rounded-full cursor-pointer hover:bg-surface-container-high transition-colors">
+<span class="font-label-md text-label-md text-on-surface">Budget: ₱1k-₱5k</span>
+<span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container border border-border-subtle rounded-full cursor-pointer hover:bg-surface-container-high transition-colors">
+<span class="font-label-md text-label-md text-on-surface">Arrangement</span>
+<span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>
+</div>
+<button class="ml-auto flex items-center gap-2 px-3 py-1.5 text-primary-container hover:bg-surface-container-low rounded transition-colors">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span class="font-label-md text-label-md">All Filters</span>
+</button>
+</div>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-margin-page">
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-gutter max-w-container-max mx-auto">
+<!-- Quest Card 1 -->
+<article class="quest-card bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg flex flex-col h-full cursor-pointer" data-ui-show="#quest-drawer,#drawer-panel">
+<div class="flex justify-between items-start mb-stack-md">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider bg-primary-fixed/30 px-2 py-0.5 rounded">Development</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">₱8,500</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-2 line-clamp-2">Event Registration Website</h2>
+<div class="flex items-center gap-2 mb-stack-md">
+<div class="w-6 h-6 rounded bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">school</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">DLSU Student Council</span>
+<span class="material-symbols-outlined text-[14px] text-status-info" title="Verified Client">verified</span>
+</div>
+<div class="flex items-center gap-2 mb-2 tooltip">
+<div class="h-1.5 w-24 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-status-success" style="width: 85%"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">85% <span class="border-b border-dashed border-on-surface-variant cursor-help">Criteria Coverage</span></span>
+<span class="tooltiptext">Coverage is calculated based on skill tags, portfolio relevance, availability, completed quests, and rating.</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-stack-lg flex-1 mt-2">
+                            We need a robust, mobile-responsive registration portal for our upcoming university week. Must handle concurrent users and integrate with our existing G-Suite setup for data collection.
+                        </p>
+<div class="space-y-stack-sm mb-stack-lg mt-auto">
+<div class="flex flex-wrap gap-2">
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface">React</span>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface">Node.js</span>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface">Firebase</span>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-border-subtle pt-stack-md">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-label-sm text-label-sm">Due Aug 15, 2026</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">public</span>
+<span class="font-label-sm text-label-sm">Remote</span>
+</div>
+</div>
+</article>
+<!-- Quest Card 2 -->
+<article class="quest-card bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg flex flex-col h-full cursor-pointer">
+<div class="flex justify-between items-start mb-stack-md">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider bg-primary-fixed/30 px-2 py-0.5 rounded">Design</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">₱4,000</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-2 line-clamp-2">Brand Identity for Startup Pitch</h2>
+<div class="flex items-center gap-2 mb-stack-md">
+<div class="w-6 h-6 rounded bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">business_center</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">TechVentures Hub</span>
+</div>
+<div class="flex items-center gap-2 mb-2 tooltip">
+<div class="h-1.5 w-24 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-status-pending" style="width: 40%"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">40% <span class="border-b border-dashed border-on-surface-variant cursor-help">Criteria Coverage</span></span>
+<span class="tooltiptext">Coverage is calculated based on skill tags, portfolio relevance, availability, completed quests, and rating.</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-stack-lg flex-1 mt-2">
+                            Looking for a creative student to design a logo, color palette, and a 10-slide pitch deck template for an AI-driven edtech startup. Need a modern, trustworthy aesthetic.
+                        </p>
+<div class="space-y-stack-sm mb-stack-lg mt-auto">
+<div class="flex flex-wrap gap-2">
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface">Figma</span>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface">Illustrator</span>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface">Branding</span>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-border-subtle pt-stack-md">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-label-sm text-label-sm">Due Aug 08, 2026</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">apartment</span>
+<span class="font-label-sm text-label-sm">Hybrid</span>
+</div>
+</div>
+</article>
+<!-- Quest Card 3 -->
+<article class="quest-card bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg flex flex-col h-full cursor-pointer">
+<div class="flex justify-between items-start mb-stack-md">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider bg-primary-fixed/30 px-2 py-0.5 rounded">Writing</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">₱2,500</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-2 line-clamp-2">Technical Documentation Cleanup</h2>
+<div class="flex items-center gap-2 mb-stack-md">
+<div class="w-6 h-6 rounded bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">terminal</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">OpenSource Labs</span>
+</div>
+<div class="flex items-center gap-2 mb-2 tooltip">
+<div class="h-1.5 w-24 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-status-info" style="width: 65%"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">65% <span class="border-b border-dashed border-on-surface-variant cursor-help">Criteria Coverage</span></span>
+<span class="tooltiptext">Coverage is calculated based on skill tags, portfolio relevance, availability, completed quests, and rating.</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-stack-lg flex-1 mt-2">
+                            Review and format our API documentation. The content is mostly there, but it needs standardization, grammar checking, and better formatting for readability.
+                        </p>
+<div class="space-y-stack-sm mb-stack-lg mt-auto">
+<div class="flex flex-wrap gap-2">
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface">Markdown</span>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface">Tech Writing</span>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-border-subtle pt-stack-md">
+<div class="flex items-center gap-1.5 text-status-pending">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-label-sm text-label-sm">Due Aug 04, 2026</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">public</span>
+<span class="font-label-sm text-label-sm">Remote</span>
+</div>
+</div>
+</article>
+<!-- Quest Card 4 -->
+<article class="quest-card bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg flex flex-col h-full cursor-pointer">
+<div class="flex justify-between items-start mb-stack-md">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider bg-primary-fixed/30 px-2 py-0.5 rounded">Tutoring</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">₱3,600 fixed</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-2 line-clamp-2">College Calculus II Tutorial</h2>
+<div class="flex items-center gap-2 mb-stack-md">
+<div class="w-6 h-6 rounded bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">calculate</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Private Individual</span>
+<span class="material-symbols-outlined text-[14px] text-status-info" title="Verified Client">verified</span>
+</div>
+<div class="flex items-center gap-2 mb-2 tooltip">
+<div class="h-1.5 w-24 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-status-success" style="width: 90%"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">90% <span class="border-b border-dashed border-on-surface-variant cursor-help">Criteria Coverage</span></span>
+<span class="tooltiptext">Coverage is calculated based on skill tags, portfolio relevance, availability, completed quests, and rating.</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-stack-lg flex-1 mt-2">
+                            Need a tutor for Calculus II (Integration techniques, sequences, series). 3 sessions a week before upcoming midterms. Must be good at explaining concepts clearly.
+                        </p>
+<div class="space-y-stack-sm mb-stack-lg mt-auto">
+<div class="flex flex-wrap gap-2">
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface">Math</span>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface">Calculus</span>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface">Teaching</span>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-border-subtle pt-stack-md">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-label-sm text-label-sm">Ongoing</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">videocam</span>
+<span class="font-label-sm text-label-sm">Online</span>
+</div>
+</div>
+</article>
+<!-- Quest Card 5 -->
+<article class="quest-card bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg flex flex-col h-full cursor-pointer">
+<div class="flex justify-between items-start mb-stack-md">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider bg-primary-fixed/30 px-2 py-0.5 rounded">Video</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">₱5,000</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-2 line-clamp-2">Short-form Promo Edits</h2>
+<div class="flex items-center gap-2 mb-stack-md">
+<div class="w-6 h-6 rounded bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">movie</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Local Cafe Co.</span>
+</div>
+<div class="flex items-center gap-2 mb-2 tooltip">
+<div class="h-1.5 w-24 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-status-pending" style="width: 25%"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">25% <span class="border-b border-dashed border-on-surface-variant cursor-help">Criteria Coverage</span></span>
+<span class="tooltiptext">Coverage is calculated based on skill tags, portfolio relevance, availability, completed quests, and rating.</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-stack-lg flex-1 mt-2">
+                            Looking for a video editor to cut 5 short-form videos (TikTok/Reels format) from an hour of raw footage. Needs dynamic captions, trending audio, and fast-paced cuts.
+                        </p>
+<div class="space-y-stack-sm mb-stack-lg mt-auto">
+<div class="flex flex-wrap gap-2">
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface">Premiere Pro</span>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface">TikTok</span>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface">CapCut</span>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-border-subtle pt-stack-md">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-label-sm text-label-sm">Due Aug 06, 2026</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">public</span>
+<span class="font-label-sm text-label-sm">Remote</span>
+</div>
+</div>
+</article>
+<!-- Quest Card 6 -->
+<article class="quest-card bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg flex flex-col h-full cursor-pointer">
+<div class="flex justify-between items-start mb-stack-md">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider bg-primary-fixed/30 px-2 py-0.5 rounded">Data</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">₱3,500</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-2 line-clamp-2">Survey Data Cleaning &amp; Analysis</h2>
+<div class="flex items-center gap-2 mb-stack-md">
+<div class="w-6 h-6 rounded bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">bar_chart</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Academic Researcher</span>
+<span class="material-symbols-outlined text-[14px] text-status-info" title="Verified Client">verified</span>
+</div>
+<div class="flex items-center gap-2 mb-2 tooltip">
+<div class="h-1.5 w-24 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-status-info" style="width: 70%"></div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">70% <span class="border-b border-dashed border-on-surface-variant cursor-help">Criteria Coverage</span></span>
+<span class="tooltiptext">Coverage is calculated based on skill tags, portfolio relevance, availability, completed quests, and rating.</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3 mb-stack-lg flex-1 mt-2">
+                            Need help cleaning a dataset of 1,000+ survey responses and generating basic descriptive statistics and visualizations. Proficiency in Excel or Python/Pandas required.
+                        </p>
+<div class="space-y-stack-sm mb-stack-lg mt-auto">
+<div class="flex flex-wrap gap-2">
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface">Excel</span>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface">Python</span>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded text-on-surface">Data Analysis</span>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-border-subtle pt-stack-md">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-label-sm text-label-sm">Due Aug 11, 2026</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">public</span>
+<span class="font-label-sm text-label-sm">Remote</span>
+</div>
+</div>
+</article>
+</div>
+</div>
+</main>
+</div>
+<!-- Right Drawer: Quest Details -->
+<div class="drawer-overlay fixed inset-0 z-[60] flex justify-end bg-on-surface/40 backdrop-blur-sm" id="quest-drawer">
+<div class="drawer-panel w-full max-w-2xl bg-surface-container-lowest h-full shadow-[-8px_0_24px_rgba(0,0,0,0.1)] flex flex-col border-l border-border-subtle" id="drawer-panel">
+<!-- Drawer Header -->
+<header class="px-margin-page py-stack-md border-b border-border-subtle flex items-center justify-between bg-surface/50 backdrop-blur shrink-0">
+<div class="flex items-center gap-stack-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">work</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Quest Details</span>
+</div>
+<button class="p-2 rounded hover:bg-surface-container-high transition-colors text-on-surface-variant" data-ui-hide="#quest-drawer,#drawer-panel">
+<span class="material-symbols-outlined">close</span>
+</button>
+</header>
+<!-- Drawer Scrollable Content -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-margin-page">
+<div class="mb-stack-lg">
+<div class="flex justify-between items-start mb-2">
+<h2 class="font-display-lg text-display-lg text-on-surface">Event Registration Website</h2>
+<div class="text-right shrink-0 ml-4">
+<span class="block font-headline-md text-headline-md text-primary-container">₱8,500</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Fixed Price</span>
+</div>
+</div>
+<div class="text-right text-label-sm font-label-sm text-on-surface-variant mb-4">Payment arrangements are completed externally. SideQuest does not process or hold funds.</div>
+<div class="flex items-center gap-4 border border-border-subtle rounded-lg p-stack-sm mt-stack-md bg-surface">
+<div class="w-12 h-12 rounded bg-surface-container-highest flex items-center justify-center border border-border-subtle">
+<span class="material-symbols-outlined text-[24px] text-on-surface-variant">school</span>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-headline-sm text-headline-sm text-on-surface">DLSU Student Council</span>
+<span class="material-symbols-outlined text-[16px] text-status-info">verified</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Institutional Client • 12 Quests Completed</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-stack-lg bg-surface p-stack-md rounded-lg border border-border-subtle">
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant mb-1">Deadline</span>
+<span class="font-label-md text-label-md text-on-surface">Oct 24, 2026</span>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant mb-1">Arrangement</span>
+<span class="font-label-md text-label-md text-on-surface">Remote</span>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant mb-1">Category</span>
+<span class="font-label-md text-label-md text-on-surface">Development</span>
+</div>
+<div>
+<span class="block font-label-sm text-label-sm text-on-surface-variant mb-1">Applicants</span>
+<span class="font-label-md text-label-md text-on-surface">4 pending</span>
+</div>
+</div>
+<div class="mb-stack-lg">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-stack-sm">Project Overview</h3>
+<p class="font-body-md text-body-md text-on-surface-variant whitespace-pre-line leading-relaxed">
+                        We are looking for a reliable student developer to build a robust, mobile-responsive registration portal for our upcoming University Week. The current process is manual and prone to errors.
+                        
+                        The system must handle concurrent users (expecting spikes of 500+ users during registration opening) and integrate seamlessly with our existing G-Suite setup for data collection and email confirmations. 
+                        
+                        Design assets (logos, colors) will be provided, but you will be responsible for implementing a clean, user-friendly interface.
+                    </p>
+</div>
+<div class="mb-stack-lg">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-stack-sm">Deliverables Checklist</h3>
+<div class="border border-border-subtle rounded-lg bg-surface divide-y divide-border-subtle">
+<div class="p-stack-sm flex items-start gap-3">
+<span class="material-symbols-outlined text-on-surface-variant mt-0.5">radio_button_unchecked</span>
+<div>
+<span class="block font-label-md text-label-md text-on-surface">Functional Registration Form</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Fields for Name, ID, Course, and multiple event selections.</span>
+</div>
+</div>
+<div class="p-stack-sm flex items-start gap-3">
+<span class="material-symbols-outlined text-on-surface-variant mt-0.5">radio_button_unchecked</span>
+<div>
+<span class="block font-label-md text-label-md text-on-surface">Database Integration</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Store entries securely (Firebase or similar preferred).</span>
+</div>
+</div>
+<div class="p-stack-sm flex items-start gap-3">
+<span class="material-symbols-outlined text-on-surface-variant mt-0.5">radio_button_unchecked</span>
+<div>
+<span class="block font-label-md text-label-md text-on-surface">Admin Dashboard</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Simple view to export registrants to CSV.</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-stack-lg">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-stack-sm">Required Skills</h3>
+<div class="flex flex-wrap gap-2">
+<span class="font-label-md text-label-md border border-border-subtle px-3 py-1.5 rounded-full text-on-surface">React</span>
+<span class="font-label-md text-label-md border border-border-subtle px-3 py-1.5 rounded-full text-on-surface">Node.js</span>
+<span class="font-label-md text-label-md border border-border-subtle px-3 py-1.5 rounded-full text-on-surface">Firebase</span>
+<span class="font-label-md text-label-md border border-border-subtle px-3 py-1.5 rounded-full text-on-surface">Tailwind CSS</span>
+</div>
+</div>
+</div>
+<!-- Drawer Footer (Sticky Actions) -->
+<div class="p-margin-page border-t border-border-subtle bg-surface-container-lowest shrink-0 flex justify-end gap-stack-md">
+<button class="px-6 py-2.5 rounded font-label-md text-label-md text-primary-container border border-primary-container hover:bg-surface-container-low transition-colors" data-ui-hide="#quest-drawer,#drawer-panel">
+                    Cancel
+                </button>
+<button class="px-6 py-2.5 rounded font-label-md text-label-md text-white bg-primary-container hover:bg-primary transition-colors flex items-center gap-2" data-ui-show="#application-modal,#modal-panel">
+<span class="material-symbols-outlined text-[18px]">send</span>
+                    Apply Now
+                </button>
+</div>
+</div>
+</div>
+<!-- Modal: Application Form -->
+<div class="modal-overlay fixed inset-0 z-[70] flex items-center justify-center bg-on-surface/60 backdrop-blur-sm p-4" id="application-modal">
+<div class="modal-panel w-full max-w-lg bg-surface-container-lowest rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-full" id="modal-panel">
+<header class="px-stack-lg py-stack-md border-b border-border-subtle flex items-center justify-between bg-surface">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Submit Application</h3>
+<button class="p-1 rounded hover:bg-surface-container-high transition-colors text-on-surface-variant" data-ui-hide="#application-modal,#modal-panel">
+<span class="material-symbols-outlined">close</span>
+</button>
+</header>
+<div class="p-stack-lg overflow-y-auto flex-1">
+<div class="mb-stack-md bg-surface-container-low p-stack-sm rounded border border-border-subtle">
+<span class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Applying for:</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Event Registration Website</span>
+</div>
+<div class="space-y-stack-lg">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Proposal / Cover Letter</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">Briefly explain why you're a good fit and how you plan to approach this quest.</p>
+<textarea class="w-full p-3 bg-surface border border-border-subtle rounded text-body-md font-body-md text-on-surface resize-none transition-colors" placeholder="Hi DLSU Student Council, I have built similar registration systems using React and Firebase..." rows="5"></textarea>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2">Portfolio Link (Optional)</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">link</span>
+<input class="w-full pl-10 pr-3 py-2.5 bg-surface border border-border-subtle rounded text-body-md font-body-md text-on-surface transition-colors" placeholder="https://github.com/yourusername or personal site" type="url">
+</div>
+</div>
+</div>
+</div>
+<footer class="p-stack-lg border-t border-border-subtle bg-surface shrink-0 flex justify-end gap-stack-md">
+<button class="px-5 py-2 rounded font-label-md text-label-md text-tertiary hover:bg-surface-container-high transition-colors" data-ui-hide="#application-modal,#modal-panel">
+                    Cancel
+                </button>
+<button class="px-5 py-2 rounded font-label-md text-label-md text-white bg-primary-container hover:bg-primary transition-colors flex items-center gap-2">
+                    Submit Application
+                </button>
+</footer>
+</div>
+</div>
+<script type="module" src="../assets/js/app.js"></script>
+</body></html>

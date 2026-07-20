@@ -1,0 +1,452 @@
+<!-- Applicant Selection (Final) - SideQuest -->
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Applicant Selection Matrix - SideQuest</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Hanken Grotesk, JetBrains Mono, Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration -->
+<script src="../assets/js/config/applicant-selection.tailwind.js"></script>
+
+<link href="../assets/css/base.css" rel="stylesheet">
+<link href="../assets/css/pages/applicant-selection.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md min-h-screen overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full h-16 z-50 flex justify-between items-center px-margin-page bg-surface-container-lowest border-b border-border-subtle">
+<div class="flex items-center gap-stack-md">
+<span class="font-display-lg text-display-lg font-bold text-primary">SideQuest</span>
+</div>
+<div class="flex items-center gap-stack-lg">
+<button class="text-secondary hover:bg-surface-container-low p-2 rounded-full transition-colors cursor-pointer active:opacity-80 flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-border-subtle">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A professional headshot of an academic administrator in a well-lit modern office setting. Crisp focus, neutral background, soft natural lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNfUU8BBkHrRZQJUjHgmNFT_w8X1Op90OojKyJK4XOqifv9zTRlpPqycQbXxZO4zIFJQh2PftnUUWSKdB3XKS1jtpUUHVdzBsWIqjacOu770mbT18K1EgiQAIlTuSKD5d7ZVi6EGTt88QQ2A890LVRdiVxlPC0JLS0NKFgxRfBJ1nhc0ShipAPPhyA4-KYENeR_E3gDbJWtSpVjCLJgLqEGOErn9puhPbLwuStAfaaF_ZNlshd6dkN5jmbbC2YjknrczIMRT0pIcg">
+</div>
+</div>
+</header>
+<!-- SideNavBar (Client Portal - Applicants Active) -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar-width bg-surface border-r border-border-subtle flex flex-col py-stack-lg z-40 overflow-y-auto custom-scrollbar">
+<!-- Header -->
+<div class="px-stack-lg mb-stack-lg flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center border border-border-subtle overflow-hidden">
+<img alt="Organization Logo" class="w-full h-full object-cover" data-alt="A minimalist, geometric logo design for a university research department. High-contrast monochrome with a single subtle accent color. Flat vector style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY50L9WM_3FbkADwxySYllgk21PORfyQy5VYvJ9JB0RxuAScU57k_Pp9biS7Cvmxl7_t9xsh5QfcD9_AmWPpud7n1nyWFk0D7uyWULlD9qzOaDNRIdPmgRuRNWHNxKC7MOK2q8f1lATKP-M8zbFGni-s0sBjTFyIKtYi8JB5gmz8CX-4uEjrzhzjD-DcVad4PQc0SMXoU8UYN2ZO_WW_k9H_njou3_Sg3-A13zZyrUBD5QrJuQ573KwKXzX4m7pEYjAdIAxgbWsQ8">
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Client Portal</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage Quests</p>
+</div>
+</div>
+<nav class="flex-1 px-stack-sm flex flex-col gap-1">
+<!-- Inactive -->
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                Dashboard
+            </a>
+<!-- Inactive -->
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">work</span>
+                My Quests
+            </a>
+<!-- Inactive -->
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">add_box</span>
+                Create Quest
+            </a>
+<!-- ACTIVE TAB -->
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 bg-secondary-fixed text-on-secondary-fixed font-semibold rounded-lg font-label-md text-label-md transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">group</span>
+                Applicants
+            </a>
+<!-- Inactive -->
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">assignment</span>
+                Active Projects
+            </a>
+<!-- Inactive -->
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+                Messages
+            </a>
+<!-- Inactive -->
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">assessment</span>
+                Reports
+            </a>
+<!-- Inactive -->
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined text-[20px]">business</span>
+                Organization Profile
+            </a>
+<!-- Inactive -->
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg font-label-md text-label-md mt-auto" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="px-stack-lg mt-stack-md">
+<button class="w-full bg-primary-container text-on-primary py-2 rounded font-label-md text-label-md hover:opacity-90 transition-opacity">
+                Post a New Quest
+             </button>
+</div>
+</aside>
+<!-- Main Content Workspace -->
+<main class="ml-sidebar-width pt-16 min-h-screen flex relative">
+<!-- Matrix Canvas -->
+<div class="flex-1 p-margin-page overflow-x-auto">
+<!-- Page Header -->
+<div class="mb-stack-lg flex justify-between items-end">
+<div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm mb-2 uppercase tracking-widest">
+<span>My Quests</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Q-1042</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-background">Applicant Selection Matrix</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Review and select a student freelancer for "Data Visualization Dashboard Build".</p>
+</div>
+<div class="flex gap-stack-md">
+<button class="px-4 py-2 border border-border-subtle rounded text-primary font-label-md text-label-md hover:bg-surface-container-lowest transition-colors flex items-center gap-2 bg-surface">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                        Filter
+                    </button>
+<button class="px-4 py-2 border border-border-subtle rounded text-primary font-label-md text-label-md hover:bg-surface-container-lowest transition-colors flex items-center gap-2 bg-surface">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export Matrix
+                    </button>
+</div>
+</div>
+<!-- Table Container (Surface Level 1) -->
+<div class="bg-surface-container-lowest border border-border-subtle rounded-lg shadow-sm overflow-hidden w-full max-w-full">
+<div class="overflow-x-auto custom-scrollbar pb-2">
+<table class="w-full min-w-[1000px] text-left border-collapse">
+<thead>
+<tr class="border-b border-border-subtle bg-surface-container-low font-label-sm text-label-sm text-on-surface-variant uppercase">
+<th class="p-stack-md font-medium w-1/4">Applicant</th>
+<th class="p-stack-md font-medium">Verification</th>
+<th class="p-stack-md font-medium">Criteria Coverage</th>
+<th class="p-stack-md font-medium">Rating</th>
+<th class="p-stack-md font-medium">Quests Completed</th>
+<th class="p-stack-md font-medium">Portfolio</th>
+<th class="p-stack-md font-medium text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm">
+<!-- Applicant 1 (Selected/Active State Representation) -->
+<tr class="border-b border-border-subtle hover:bg-surface transition-colors cursor-pointer bg-secondary-fixed/30" data-applicant-action="open-drawer">
+<td class="p-stack-md">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high shrink-0">
+<img alt="Applicant 1" class="w-full h-full object-cover" data-alt="A confident university student in a casual but neat tech-startup style outfit, smiling at the camera. Clean, bright studio lighting, neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn7J9dZYF3nLSEq5FXNeiGpyLpCTgOr49ce84X9yrboeK-aL57QWYg4bws2AxuiR8kJyYozuHnhGgHTXL0CRnvOTMuCe5RfFFJDadjOmH91iYb0lk96Uobm2k5Nso7Sq4fIcwLxFGZW2Xs9dSvTMsJvnkZRQF-fj5_xSx2KMl1-bZ33EKEVBvVQxBNEdwJLExsmdtMNTUP73lDkrKbAh0tjIM7dNbgSMEd6fvaTrI0YJzNuNZTdBKx06JXixYZExjO-UTCgng2DsA">
+</div>
+<div>
+<div class="font-medium text-on-background">Elena Rostova</div>
+<div class="text-on-surface-variant text-[12px]">MS Computer Science</div>
+</div>
+</div>
+</td>
+<td class="p-stack-md">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-status-success/10 text-status-success font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                                        ID Verified
+                                    </span>
+</td>
+<td class="p-stack-md">
+<div class="flex items-center gap-2">
+<span class="font-semibold text-primary">94%</span>
+<div class="w-16 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 94%;"></div>
+</div>
+</div>
+</td>
+<td class="p-stack-md">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-status-pending text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-medium text-on-background">4.9</span>
+</div>
+</td>
+<td class="p-stack-md text-on-surface-variant">12 Quests</td>
+<td class="p-stack-md">
+<div class="flex gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px] hover:text-primary-container cursor-pointer">link</span>
+<span class="material-symbols-outlined text-[18px] hover:text-primary-container cursor-pointer">description</span>
+</div>
+</td>
+<td class="p-stack-md text-right">
+<button class="px-3 py-1.5 border border-primary text-primary rounded font-label-sm text-label-sm hover:bg-surface-container-low transition-colors">
+                                        Review
+                                    </button>
+</td>
+</tr>
+<!-- Applicant 2 -->
+<tr class="border-b border-border-subtle hover:bg-surface transition-colors cursor-pointer">
+<td class="p-stack-md">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high shrink-0">
+<img alt="Applicant 2" class="w-full h-full object-cover" data-alt="A focused young male student looking at a laptop off-camera. He wears glasses and a clean grey sweater. Modern library setting with soft bokeh background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx3zXQXMeHjptSSZ0yAVf0AdLU6ydPbv15qs4gk-t2zPBjQp34gBSieABKvDRVgmIkFkXWdYMKv7dh9RdULCGfMxVB91vJi5-7IWLL-Ava14jlh3QfdOhEPwtEY72qfrmTd5UvrjXWdQ_AbKMFt2-jwmx9vfIr8f_trLMWBDiZa7n6Owg9KIX0f4c0UI-Iw5iRlaa0-97kBXpMa2t-bMhN7R9NBIVeFT8HxRtSwm_bIASthHWmJ3UyC6YVHTjuVYxenMJIUzK24OI">
+</div>
+<div>
+<div class="font-medium text-on-background">Julian Vance</div>
+<div class="text-on-surface-variant text-[12px]">BS Data Science</div>
+</div>
+</div>
+</td>
+<td class="p-stack-md">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-status-success/10 text-status-success font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                                        ID Verified
+                                    </span>
+</td>
+<td class="p-stack-md">
+<div class="flex items-center gap-2">
+<span class="font-semibold text-primary">88%</span>
+<div class="w-16 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 88%;"></div>
+</div>
+</div>
+</td>
+<td class="p-stack-md">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-status-pending text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-medium text-on-background">4.7</span>
+</div>
+</td>
+<td class="p-stack-md text-on-surface-variant">8 Quests</td>
+<td class="p-stack-md">
+<div class="flex gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px] hover:text-primary-container cursor-pointer">link</span>
+</div>
+</td>
+<td class="p-stack-md text-right">
+<button class="px-3 py-1.5 border border-border-subtle text-on-surface-variant rounded font-label-sm text-label-sm hover:bg-surface-container-low transition-colors">
+                                        Review
+                                    </button>
+</td>
+</tr>
+<!-- Applicant 3 -->
+<tr class="border-b border-border-subtle hover:bg-surface transition-colors cursor-pointer">
+<td class="p-stack-md">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high shrink-0 flex items-center justify-center font-bold text-on-surface-variant">
+                                            MK
+                                        </div>
+<div>
+<div class="font-medium text-on-background">Maya Kapoor</div>
+<div class="text-on-surface-variant text-[12px]">BS Informatics</div>
+</div>
+</div>
+</td>
+<td class="p-stack-md">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-status-pending/10 text-status-pending font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">pending</span>
+                                        Pending
+                                    </span>
+</td>
+<td class="p-stack-md">
+<div class="flex items-center gap-2">
+<span class="font-semibold text-primary">82%</span>
+<div class="w-16 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 82%;"></div>
+</div>
+</div>
+</td>
+<td class="p-stack-md">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-status-pending text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-medium text-on-background">5.0</span>
+</div>
+</td>
+<td class="p-stack-md text-on-surface-variant">2 Quests</td>
+<td class="p-stack-md">
+<div class="flex gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px] hover:text-primary-container cursor-pointer">description</span>
+</div>
+</td>
+<td class="p-stack-md text-right">
+<button class="px-3 py-1.5 border border-border-subtle text-on-surface-variant rounded font-label-sm text-label-sm hover:bg-surface-container-low transition-colors">
+                                        Review
+                                    </button>
+</td>
+</tr>
+<!-- Applicant 4 -->
+<tr class="hover:bg-surface transition-colors cursor-pointer">
+<td class="p-stack-md">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high shrink-0">
+<img alt="Applicant 4" class="w-full h-full object-cover" data-alt="A portrait of a male graduate student in a well-lit cafe, casually dressed, looking engaged. Natural lighting, shallow depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5wPSeCGfEoPDTQxETh8R_k8c7956nUF6gArFKKTnkDLo9VE5JGXvKnFIxslwOUPQX0SQTrG93THD8suvd4vZzF0UFarRGbotxR181rFppDJkwLRNvOf5FDl0iyFl5QrtdDAoF6b5XXrqQITGWaiRE9pi-x72cyvYLvt5pOBbB7nRSTqXk8KImcV9S57HY12ziT2M5HFapD8USNZyBG4GnoIpzzdepMkMaIHzuCsnfIGmq3cqcNpzYhxwHXgBCXTwHaGF1yUccJfU">
+</div>
+<div>
+<div class="font-medium text-on-background">David Chen</div>
+<div class="text-on-surface-variant text-[12px]">PhD Statistics</div>
+</div>
+</div>
+</td>
+<td class="p-stack-md">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-status-success/10 text-status-success font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                                        ID Verified
+                                    </span>
+</td>
+<td class="p-stack-md">
+<div class="flex items-center gap-2">
+<span class="font-semibold text-primary">76%</span>
+<div class="w-16 h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 76%;"></div>
+</div>
+</div>
+</td>
+<td class="p-stack-md">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-status-pending text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-medium text-on-background">4.5</span>
+</div>
+</td>
+<td class="p-stack-md text-on-surface-variant">15 Quests</td>
+<td class="p-stack-md">
+<div class="flex gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px] hover:text-primary-container cursor-pointer">link</span>
+<span class="material-symbols-outlined text-[18px] hover:text-primary-container cursor-pointer">description</span>
+</div>
+</td>
+<td class="p-stack-md text-right">
+<button class="px-3 py-1.5 border border-border-subtle text-on-surface-variant rounded font-label-sm text-label-sm hover:bg-surface-container-low transition-colors">
+                                        Review
+                                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Detail Drawer (Slide in from right) -->
+<aside class="w-[420px] shrink-0 border-l border-border-subtle bg-surface-container-lowest h-[calc(100vh-64px)] overflow-y-auto custom-scrollbar sticky top-16 shadow-[-4px_0_15px_rgba(0,0,0,0.03)] transform translate-x-0 transition-transform duration-300 z-10 flex flex-col" id="detailDrawer">
+<!-- Drawer Header -->
+<div class="p-stack-lg border-b border-border-subtle flex justify-between items-start bg-surface-bright sticky top-0 z-10">
+<div class="flex items-center gap-stack-md">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-surface-container-high border border-border-subtle">
+<img alt="Elena Rostova" class="w-full h-full object-cover" data-alt="A confident university student in a casual but neat tech-startup style outfit, smiling at the camera. Clean, bright studio lighting, neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCUbWAXYHJx-tv7z41sHLOLgAvHSgDnZzN5bgZuemEPIhZ2fyl4Bq0-ergemIyxG-ZTT0fDQo2xiU0kiy3ufAr3JC7xU5ECnQg0hYMwtd1-m6JIIhF77eANQnlG7WECYvg-7AvxLyKqtfqZnY4qnPMPyeSP7HsEiG7QsRnEgE9_n4gB9CnERFoYXONLnuLsw3RPTMS0KD39kXQkbqk1vZ5ivpaBN5MUyqsaxwdZ6rk5IE7voPeSUY2j-w0D7Sos2EEhQ9_JQpOLh4">
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-background">Elena Rostova</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">MS Computer Science, Year 2</p>
+</div>
+</div>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-1 rounded transition-colors" data-applicant-action="close-drawer">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Drawer Content -->
+<div class="p-stack-lg flex-1 flex flex-col gap-stack-lg font-body-sm text-body-sm"><div class="bg-surface-container-low p-3 rounded-lg border border-border-subtle text-on-surface-variant italic mb-2">Criteria coverage is calculated using required skill tags, verified portfolio relevance, availability, completed quests, and minimum rating criteria.</div>
+<!-- Match Metrics -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface p-4 rounded border border-border-subtle text-center">
+<div class="font-headline-md text-headline-md text-primary">94%</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase mt-1">Criteria Coverage</div>
+</div>
+<div class="bg-surface p-4 rounded border border-border-subtle text-center">
+<div class="font-headline-md text-headline-md text-primary flex items-center justify-center gap-1">
+                            4.9 <span class="material-symbols-outlined text-status-pending text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase mt-1">Client Rating</div>
+</div>
+</div>
+<!-- Proposal -->
+<section>
+<h4 class="font-label-md text-label-md text-on-background mb-2">Applicant Proposal</h4>
+<div class="bg-surface p-4 rounded border border-border-subtle text-on-surface-variant leading-relaxed">
+                        "Hello! I am highly interested in the Data Visualization Dashboard Build. Over the past year, I have built three similar dashboards using React and D3.js for the University Logistics department. I understand the importance of clean code and rigorous data handling. I'm available to start immediately and can commit 15 hours a week to ensure timely delivery."
+                    </div>
+</section>
+<!-- Skills -->
+<section>
+<h4 class="font-label-md text-label-md text-on-background mb-2">Verified Skills</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-surface-container border border-border-subtle rounded font-label-sm text-label-sm text-on-background">React.js</span>
+<span class="px-2 py-1 bg-surface-container border border-border-subtle rounded font-label-sm text-label-sm text-on-background">D3.js</span>
+<span class="px-2 py-1 bg-surface-container border border-border-subtle rounded font-label-sm text-label-sm text-on-background">Python</span>
+<span class="px-2 py-1 bg-surface-container border border-border-subtle rounded font-label-sm text-label-sm text-on-background">SQL</span>
+<span class="px-2 py-1 bg-surface-container border border-border-subtle rounded font-label-sm text-label-sm text-on-background">Data Analysis</span>
+</div>
+</section>
+<!-- Portfolio Links -->
+<section>
+<h4 class="font-label-md text-label-md text-on-background mb-2">Relevant Portfolio</h4>
+<div class="flex flex-col gap-2">
+<a class="flex items-center justify-between p-3 border border-border-subtle rounded hover:bg-surface transition-colors group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary">language</span>
+<span class="text-on-background group-hover:text-primary transition-colors">Logistics Dashboard V2</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">open_in_new</span>
+</a>
+<a class="flex items-center justify-between p-3 border border-border-subtle rounded hover:bg-surface transition-colors group" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary group-hover:text-primary">description</span>
+<span class="text-on-background group-hover:text-primary transition-colors">Case Study: D3 Optimization.pdf</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">download</span>
+</a>
+</div>
+</section>
+</div>
+<!-- Drawer Footer Actions -->
+<div class="p-stack-lg border-t border-border-subtle bg-surface-bright sticky bottom-0 flex gap-3">
+<button class="flex-1 py-2 border border-border-subtle rounded font-label-md text-label-md text-on-surface-variant hover:bg-surface transition-colors">
+                    Message
+                </button>
+<button class="flex-1 py-2 bg-primary-container text-white rounded font-label-md text-label-md hover:opacity-90 transition-opacity" data-applicant-action="open-modal">
+                    Select Freelancer
+                </button>
+</div>
+</aside>
+</main>
+<!-- Selection Confirmation Modal (Hidden by default) -->
+<div class="fixed inset-0 z-[100] hidden items-center justify-center" id="selectionModal">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-on-background/40 backdrop-blur-sm" data-applicant-action="close-modal"></div>
+<!-- Modal Content -->
+<div class="relative w-full max-w-[600px] bg-surface-container-lowest rounded-xl shadow-2xl flex flex-col m-4 border border-border-subtle overflow-hidden">
+<div class="p-stack-lg border-b border-border-subtle flex justify-between items-center bg-surface-bright">
+<h2 class="font-headline-sm text-headline-sm text-on-background">Confirm Assignment</h2>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-1 rounded transition-colors" data-applicant-action="close-modal">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-stack-lg flex-1 overflow-y-auto font-body-md text-body-md text-on-surface-variant">
+<p class="mb-4">You are about to assign <strong class="text-on-background">Elena Rostova</strong> to the quest <strong class="text-on-background">Data Visualization Dashboard Build</strong>.</p>
+<div class="bg-surface border border-border-subtle rounded-lg p-stack-md mb-6">
+<h3 class="font-label-md text-label-md text-on-background mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+                        Locked Deliverables
+                    </h3>
+<ul class="space-y-3 font-body-sm text-body-sm"><li class="flex gap-3"><span class="material-symbols-outlined text-primary text-[20px]">check_circle</span><div><span class="font-medium text-on-background block">Milestone 1: Wireframes &amp; Architecture</span>Due July 15, 2026 • ₱12,500.00 (25%)</div></li><li class="flex gap-3"><span class="material-symbols-outlined text-primary text-[20px]">check_circle</span><div><span class="font-medium text-on-background block">Milestone 2: Functional Prototype</span>Due August 05, 2026 • ₱25,000.00 (50%)</div></li><li class="flex gap-3"><span class="material-symbols-outlined text-primary text-[20px]">check_circle</span><div><span class="font-medium text-on-background block">Milestone 3: Final Delivery &amp; Documentation</span>Due August 25, 2026 • ₱12,500.00 (25%)</div></li></ul>
+</div>
+<div class="bg-status-info/10 border border-status-info/20 rounded p-4 flex gap-3 text-status-info font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[20px] shrink-0">info</span>
+<div><strong class="block mb-1">External Payment Notice</strong>Payment arrangements are completed externally. SideQuest does not process or hold funds. The student will be notified immediately upon your confirmation.</div>
+</div>
+</div>
+<div class="p-stack-lg border-t border-border-subtle bg-surface-bright flex justify-end gap-3">
+<button class="px-6 py-2 border border-border-subtle rounded font-label-md text-label-md text-on-surface-variant hover:bg-surface transition-colors" data-applicant-action="close-modal">
+                    Cancel
+                </button>
+<button class="px-6 py-2 bg-primary-container text-white rounded font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center gap-2" data-applicant-action="confirm-assignment">
+                    Confirm &amp; Assign
+                    <span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Simple JS for interactions -->
+<script type="module" src="../assets/js/pages/applicant-selection.js"></script>
+<script type="module" src="../assets/js/app.js"></script>
+</body></html>

@@ -1,0 +1,149 @@
+<!-- SideQuest - Login (Refined) -->
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SideQuest - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet">
+<script src="../assets/js/config/login.tailwind.js"></script>
+
+<link href="../assets/css/base.css" rel="stylesheet">
+<link href="../assets/css/pages/login.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- Split Layout Container -->
+<main class="w-full h-screen flex flex-col md:flex-row">
+<!-- Left Side: Authentication Form (Workspace) -->
+<section class="w-full md:w-[45%] lg:w-[40%] xl:w-[35%] bg-surface-container-lowest flex flex-col justify-center px-8 sm:px-12 lg:px-16 xl:px-24 overflow-y-auto custom-scrollbar relative z-10 shadow-lg">
+<div class="w-full max-w-md mx-auto py-12">
+<!-- Brand Header -->
+<header class="mb-12">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary">SideQuest</h1>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Build experience. Find talent. Complete quests.</p>
+</header>
+<!-- Role Selector -->
+<div class="mb-8">
+<h2 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-3">Select your role</h2>
+<div class="grid grid-cols-3 gap-2 p-1 bg-surface-container-low rounded-lg border border-outline-variant">
+<button class="flex flex-col items-center justify-center py-2 px-1 rounded bg-surface-container-lowest shadow-sm border border-outline-variant transition-all cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-1 text-sm" style="font-variation-settings: 'FILL' 1;">school</span>
+<span class="font-label-sm text-label-sm text-primary text-center leading-tight">Student<br>Freelancer</span>
+</button>
+<button class="flex flex-col items-center justify-center py-2 px-1 rounded text-on-surface-variant hover:bg-surface-container transition-all cursor-pointer">
+<span class="material-symbols-outlined mb-1 text-sm">business</span>
+<span class="font-label-sm text-label-sm text-center leading-tight">Client</span>
+</button>
+<button class="flex flex-col items-center justify-center py-2 px-1 rounded text-on-surface-variant hover:bg-surface-container transition-all cursor-pointer">
+<span class="material-symbols-outlined mb-1 text-sm">admin_panel_settings</span>
+<span class="font-label-sm text-label-sm text-center leading-tight">Administrator</span>
+</button>
+</div>
+</div>
+<!-- Login Form -->
+<form class="space-y-6" data-demo-form="login">
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface flex items-center gap-2" for="email">
+                            Email Address
+                            <span class="text-error">*</span>
+</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-sm">mail</span>
+</div>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent transition-all" id="email" name="email" placeholder="name@university.edu" required="" type="email">
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">info</span>
+                            Please use your university email.
+                        </p>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface flex items-center gap-2" for="password">
+                                Password
+                                <span class="text-error">*</span>
+</label>
+<a class="font-label-md text-label-md text-primary hover:underline underline-offset-4 decoration-primary-container/30 transition-all" href="#">Forgot password?</a>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-sm">lock</span>
+</div>
+<input class="w-full pl-10 pr-10 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent transition-all" id="password" name="password" placeholder="••••••••" required="" type="password">
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-outline hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-sm">visibility_off</span>
+</button>
+</div>
+</div>
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-outline-variant text-primary-container focus:ring-primary-container bg-surface-container-lowest cursor-pointer" id="remember" name="remember" type="checkbox">
+<label class="ml-2 block font-body-sm text-body-sm text-on-surface cursor-pointer" for="remember">
+                            Remember me on this device
+                        </label>
+</div>
+<button class="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-lg text-on-primary bg-primary-container hover:bg-primary transition-colors font-button text-button cursor-pointer shadow-sm" type="submit">
+                        Sign In
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</form>
+<!-- Footer Actions -->
+<div class="mt-8 pt-6 border-t border-outline-variant text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        Don't have an account? 
+                        <a class="font-label-md text-label-md text-primary hover:underline underline-offset-4 decoration-primary-container/30 transition-all ml-1" href="#">Create account</a>
+</p>
+</div>
+<footer class="mt-12 text-center">
+<p class="font-label-sm text-label-sm text-outline">
+                        © 2026 SideQuest.
+                    </p>
+</footer>
+</div>
+</section>
+<!-- Right Side: Visual Presentation -->
+<section class="hidden md:flex w-full md:w-[55%] lg:w-[60%] xl:w-[65%] bg-surface-container relative items-center justify-center overflow-hidden">
+<!-- Decorative Background Elements (Corporate SaaS aesthetic) -->
+<div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(#1b4332 1px, transparent 1px); background-size: 32px 32px;"></div>
+<div class="absolute inset-0 bg-gradient-to-br from-surface-container/80 via-transparent to-primary-container/5"></div>
+<!-- Abstract Modern Campus/Professional Visual -->
+<div class="relative w-full max-w-2xl px-12 z-10 flex flex-col items-center">
+<!-- Main Image Container -->
+<div class="w-full aspect-[4/3] rounded-xl overflow-hidden shadow-xl border border-outline-variant bg-surface-container-lowest relative">
+<!-- Image Placeholder -->
+<img class="w-full h-full object-cover" data-alt="A clean, campus-professional illustration for a SaaS login screen. Show stylized student profiles, project collaboration icons, portfolio folders, and structured workflow diagrams (checklists, timelines). Use the brand colors: deep academic green, soft gray, and white. Minimalist, professional style. No text, no login forms inside the illustration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9yeDEnhZAmS1h-O8vtC55adklSH6UdMj9Hg9zldYrQ33EFZsZqE6dUQgxOgTSxA4PVu3luGYhjAQO_g9X69AsWkjmmb4WfKjv3I4vgiyEfT2_XdQuSyRcMkJsBAiCtPyNj6qE1Jfvg4PbfW3ctodTyYRo0jcFLBM4Qa2ijaiEYeb77BjfKjJQdL4GaxY1bU0G_W99xpK2ab9bSrugw2jLylpwlAfcu3sstDDukU-K9qO95ianFTzMb446pwHsC0gkW9TGOWtLEVw">
+<!-- Overlay Elements for Depth -->
+<div class="absolute bottom-6 left-6 right-6 flex gap-4">
+<!-- Glassmorphic Info Card 1 -->
+<div class="bg-surface-container-lowest/90 backdrop-blur-md border border-white/20 p-4 rounded-lg shadow-sm flex-1">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-sm text-label-sm text-on-surface">Verified Talent</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Connecting top-tier student freelancers with institutional projects.</p>
+</div>
+<!-- Glassmorphic Info Card 2 -->
+<div class="bg-surface-container-lowest/90 backdrop-blur-md border border-white/20 p-4 rounded-lg shadow-sm flex-1 hidden lg:block">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">architecture</span>
+<span class="font-label-sm text-label-sm text-on-surface">Structured Workflows</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">SaaS-inspired tools for managing complex deliverables.</p>
+</div>
+</div>
+</div>
+<!-- Supporting abstract graphics -->
+<div class="absolute -top-12 -right-12 w-48 h-48 bg-primary-fixed/30 rounded-full blur-3xl -z-10"></div>
+<div class="absolute -bottom-24 -left-12 w-64 h-64 bg-secondary-fixed/30 rounded-full blur-3xl -z-10"></div>
+</div>
+</section>
+</main>
+<script type="module" src="../assets/js/app.js"></script>
+</body></html>

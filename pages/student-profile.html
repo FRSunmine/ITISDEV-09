@@ -1,0 +1,236 @@
+<!-- Student Profile (Final v2) - SideQuest -->
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SideQuest - Student Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="../assets/js/config/student-profile.tailwind.js"></script>
+
+<link href="../assets/css/base.css" rel="stylesheet">
+<link href="../assets/css/pages/student-profile.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md text-body-md antialiased overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
+<header class="fixed top-0 left-0 w-full h-16 z-50 flex justify-between items-center px-margin-page bg-surface-container-lowest border-b border-border-subtle">
+<div class="flex items-center gap-stack-md">
+<span class="font-display-lg text-display-lg font-bold text-primary">SideQuest</span>
+</div>
+<div class="flex items-center gap-stack-lg">
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors cursor-pointer active:opacity-80 flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-border-subtle cursor-pointer active:opacity-80">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A small circular avatar of a professional computer science student. Minimalist lighting, corporate SaaS vibe. Clean white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJdzmSnokhDuZEPVT54o8J8b_2zTXffPNltDggqy2G8nkAo0S4pOhhze356w6YET51sDCx4-gusOF3kXxagljQLhjPx5KrwDJ3AWhEjmk1lqG7jbQbCdm1K2CiDoiOPwpLgGlY1bZ90mL1EHqYm1e60jVrkQNTzZfxed8_1PYMLRMvphROyZTlhtPkjMpvhtaLHfD2qzY7LE59ZKZoF4XrTiur3jPpMPPEVVPfBXsUxVeu_Y_1zSVkSE3mqjYyrAumuMcoj342da0">
+</div>
+</div>
+</header>
+<div class="flex mt-16 h-[calc(100vh-64px)] w-full">
+<nav class="hidden md:flex fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar-width bg-surface border-r border-border-subtle flex-col py-stack-lg z-40 overflow-y-auto">
+<div class="px-margin-page mb-stack-lg">
+<div class="flex items-center gap-stack-sm mb-1">
+<div class="w-10 h-10 rounded bg-surface-container-highest flex items-center justify-center overflow-hidden border border-border-subtle">
+<img alt="Student Avatar" class="w-full h-full object-cover" data-alt="A generic placeholder icon for a student avatar, rendered in a flat, modern vector style fitting a professional dashboard. Neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSYmJhYQW8ZKuEM0Ox_w0GIsSFG6Tu14JDqB_lGTHV0S-TN4r_zivelas3JNvJSWFqGAOuO2p5t8xy397q4nrMb1PGKWBQQGMPEpiNMcQ1ccz1-l565Aaotn6qZfekdb4UVazLwh6dKOk6ekB6g1a9ME1nvbcK-FelOkvzKC_2e5FOo0gAhxLPWrvsrTso4dSs6YJq-szHIL3q-icyjZIbQ3YghWnJSs3Uev3MPXz2M7Lx4NuLaELR9TIjyIgcZ7V00mrDteatB5o">
+</div>
+<div>
+<h2 class="font-label-md text-label-md text-on-surface font-bold">Student Freelancer</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Freelance Hub</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1 px-stack-sm">
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">space_dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">search</span>
+<span class="font-label-md text-label-md">Find Quests</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">history_edu</span>
+<span class="font-label-md text-label-md">Applications</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">pending_actions</span>
+<span class="font-label-md text-label-md">Active Quests</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">account_box</span>
+<span class="font-label-md text-label-md">Portfolio</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">forum</span>
+<span class="font-label-md text-label-md">Messages</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 bg-secondary-fixed text-on-secondary-fixed font-semibold rounded-lg hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+</nav>
+<main class="flex-1 md:ml-[260px] w-full max-w-container-max mx-auto p-margin-page overflow-y-auto">
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg mb-gutter flex flex-col md:flex-row items-start md:items-center gap-stack-lg shadow-sm hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-shadow">
+<div class="w-32 h-32 rounded-full overflow-hidden border-4 border-surface-container shrink-0">
+<img alt="Alex Rivera Profile Picture" class="w-full h-full object-cover" data-alt="A high-quality, professional headshot of a young male computer science student named Alex Rivera. He is smiling slightly, wearing a neat button-down shirt. The background is a blurred university library setting with natural lighting. The overall mood is approachable yet academic, fitting a clean, corporate SaaS platform design aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1_yDpvgMYJYer7rTM5MAmM-eKWZJwpqMJ5cwRURAJx-t58q387wjvzn1wajQREdNrKPTF-gGF-GQcGG7fQIAMpvN86piLjgLyDxETYKRj2MJfEUA_E-oGz61Xyj7qBtXgP1FZ3eE7k_1zA-tuo_rEwsb2J7sglTVW63p3hWzAIKXCvwJZBDv8Bxp_NLhBYFHmbvdPwIbFoEGZcdzph_DS6DHa6yW3PPHc4XF6Ab-bSMco1-GFTLH1mkix9WPPDTGi-QKD7196WqQ">
+</div>
+<div class="flex-1 flex flex-col gap-stack-sm">
+<div class="flex items-center gap-stack-sm flex-wrap">
+<h1 class="font-headline-md text-headline-md text-primary m-0">Alex Rivera</h1>
+<span class="flex items-center gap-1 bg-status-success/10 text-status-success px-2 py-1 rounded font-label-sm text-label-sm uppercase tracking-wider border border-status-success/20">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                            Verified Student
+                        </span>
+</div>
+<p class="font-body-md text-body-md text-secondary">BS Computer Science @ De La Salle University</p>
+<div class="flex items-center gap-stack-lg mt-stack-sm pt-stack-sm border-t border-border-subtle">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Completed Quests</span>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">7</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-stack-sm shrink-0 w-full md:w-auto mt-stack-md md:mt-0">
+<button class="bg-primary-container text-on-secondary px-stack-lg py-2 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity w-full">Message Alex</button>
+<button class="border border-primary-container text-primary-container bg-transparent px-stack-lg py-2 rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors w-full">Download Resume</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg shadow-sm hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-shadow">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined">info</span> About
+                        </h2>
+<p class="font-body-sm text-body-sm text-secondary leading-relaxed">
+                            Passionate 3rd-year CS student specializing in front-end development and UI/UX design. Strong track record of delivering clean, functional interfaces for academic organizations and local SMEs. Meticulous with deadlines and clear communication.
+                        </p>
+</section>
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg shadow-sm hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-shadow">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined">psychology</span> Skills
+                        </h2>
+<div class="flex flex-wrap gap-2">
+<span class="border border-border-subtle bg-surface px-3 py-1.5 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:border-primary transition-colors cursor-default">React</span>
+<span class="border border-border-subtle bg-surface px-3 py-1.5 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:border-primary transition-colors cursor-default">UI/UX</span>
+<span class="border border-border-subtle bg-surface px-3 py-1.5 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:border-primary transition-colors cursor-default">Graphic Design</span>
+<span class="border border-border-subtle bg-surface px-3 py-1.5 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:border-primary transition-colors cursor-default">Figma</span>
+<span class="border border-border-subtle bg-surface px-3 py-1.5 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:border-primary transition-colors cursor-default">Tailwind CSS</span>
+</div>
+</section>
+</div>
+<div class="lg:col-span-8 flex flex-col gap-gutter">
+<section>
+<div class="flex items-center justify-between mb-stack-md">
+<h2 class="font-headline-sm text-headline-sm text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">library_books</span> Verified Portfolio
+                            </h2>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="#">View All</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden shadow-sm hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-shadow group flex flex-col">
+<div class="h-40 bg-surface-container-highest relative border-b border-border-subtle overflow-hidden">
+<div class="bg-cover bg-center w-full h-full group-hover:scale-105 transition-transform duration-300" data-alt="A sleek, modern presentation slide thumbnail for a 'Green Week Campaign Branding' project. The design features crisp typography, minimalist leaf motifs in shades of deep green and muted teal, on a pristine white background. The visual style is highly professional and corporate, matching an academic high-end project management tool interface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBXIX2WEVSHKt_rT8sxtcDbpKgkIT_ih7P0Ay_OiI1ffFFfEa-mfU9wns2g9vc5rLd5GNNvZefr-9aXADRhCqoISL-Q9z0J5xfJH7yJ1vE8YpbJaA4jKaqsUvcKVgZeYRawCPF0iOHEX69wB5vbETTNaLDjPesWW2GVa6TnqoVWClBcOahmpFGXP4Le7wtxt4FimKpB9wpohhoa-EoZGialHKxyKhe7CbC190G-QDPwgwIQCETQAeZaC5kjUVyHpoX0RZaItV8oxDk')"></div>
+<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm border border-border-subtle rounded px-2 py-1 flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[12px] text-status-success">verified</span>
+<span class="font-label-sm text-label-sm text-primary font-bold text-[9px]">Verified by SideQuest</span>
+</div>
+</div>
+<div class="p-stack-md flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-label-md text-label-md text-on-surface font-semibold line-clamp-1">Green Week Campaign Branding</h3>
+</div>
+<div class="mt-auto pt-stack-sm flex items-center justify-between border-t border-border-subtle">
+<span class="font-label-sm text-label-sm text-secondary">Client: Univ. Student Council</span>
+<span class="font-label-sm text-label-sm text-tertiary-container">Oct 2026</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden shadow-sm hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-shadow group flex flex-col">
+<div class="h-40 bg-surface-container-highest relative border-b border-border-subtle overflow-hidden">
+<div class="bg-cover bg-center w-full h-full group-hover:scale-105 transition-transform duration-300" data-alt="A clean, high-fidelity UI mockup thumbnail for a department event registration portal. The screen shows a functional, data-dense interface using a restrained color palette of deep greens and grays on a light background. The overall aesthetic is aligned with a sophisticated, modern SaaS platform, emphasizing information density and clarity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAAeEf45nTOi8K9ep1DVo14COmVUYxM0jBSSDlfJaR-Q9TJArqYG_mDyh6GZ33TicwV95uxnExZyPiUte1_sasW3TBJRyyebmhZezNIGDFzClvi9Yfe9bgCYkU7FJcK7bDxe2qQgYHY2k8FmDE3kTYa4qL51gd9Ewz4M9n-WxuU6EAJqLPev_Y1F3vFxGWxggrhXdGwC7WwD5PI75foRthUa3WoCc0eFZXK5tgAk5gklRmclJB1cmjm4zQd0HBVVQBu_E6NDMcs74A')"></div>
+<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm border border-border-subtle rounded px-2 py-1 flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[12px] text-status-success">verified</span>
+<span class="font-label-sm text-label-sm text-primary font-bold text-[9px]">Verified by SideQuest</span>
+</div>
+</div>
+<div class="p-stack-md flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-label-md text-label-md text-on-surface font-semibold line-clamp-1">CS Dept Event Registration UI</h3>
+</div>
+<div class="mt-auto pt-stack-sm flex items-center justify-between border-t border-border-subtle">
+<span class="font-label-sm text-label-sm text-secondary">Client: Dept. of Comp. Sci.</span>
+<span class="font-label-sm text-label-sm text-tertiary-container">Aug 2026</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section>
+<h2 class="font-headline-sm text-headline-sm text-primary mb-stack-md mt-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined">forum</span> Ratings &amp; Reviews
+                        </h2>
+<div class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden shadow-sm">
+<div class="flex flex-col">
+<div class="p-stack-md border-b border-border-subtle last:border-0 hover:bg-surface-bright transition-colors">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest">
+<img alt="Reviewer Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of an administrative staff member in a university office setting. Neutral expression, corporate attire." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9QdttYhWRyVnMimnR2yVczDHwOexgEfBp3-IuDaBn0Q0rLjNfvAX9-GK_JcLrJfg6PX-_djWex0iSuOvL7AFAQxINCOooIKgWz3b8P8CnPQvzfUzHpRmiu-eDXnt_ar9by6Te9srfysOyTFK3fPW69yDdD27EKduEBzZvvyXPnZ2K7z6AizNjVdUFMGs_QaHmaerUN_9l_Mn4msrN2SCyTcUFfzYMSgqqDsqpizOlGVOIdFWwlUVyGZI-BuURuCC10VpD4owGNVU">
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-semibold">Sarah Jenkins</h4>
+<span class="font-label-sm text-label-sm text-secondary">University Student Council</span>
+</div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 ml-11">
+                                        "Alex delivered exceptional work on our branding campaign. The designs were clean, professional, and delivered exactly on time. Highly recommend for any UI/UX or graphic design needs."
+                                    </p>
+<div class="ml-11 mt-2 flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-tertiary-container bg-surface-container px-2 py-0.5 rounded">Project: Green Week Campaign Branding</span>
+<span class="font-label-sm text-label-sm text-outline">Oct 15, 2026</span>
+</div>
+</div>
+<div class="p-stack-md border-b border-border-subtle last:border-0 hover:bg-surface-bright transition-colors">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest">
+<img alt="Reviewer Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a computer science professor in an office setting. Formal academic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuU9rD21KhuxNbVAQHIiJyjMDZGMu1W6FGq67yINNM_k04M93KWM2zC5JHJiCVwND3PPFykpvACAtCZRPJve5m0R2_Sn_Z_K_IFt7jxkLCWR93eahZG6IFSsGaRyX_pQ2sTyJVS4pWz0FsRI6X64SL8l7xvIcs3lWMIAT4hZ_mlbhvRSA41BSCFr47OrzcO9tfhFFwjyuPAnw0OgMt_j8cUMTvVkAiqCkArEDDW750NknLOMFAOKTT9lfJaRBCsN9jpKi5z5DPLK0">
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface font-semibold">Dr. Alan Turing</h4>
+<span class="font-label-sm text-label-sm text-secondary">Dept. of Computer Science</span>
+</div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2 ml-11">
+                                        "Solid execution on the registration portal UI. Alex understood the complex data requirements and translated them into a clean interface. Minor communication delays early on, but the final product was excellent."
+                                    </p>
+<div class="ml-11 mt-2 flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-tertiary-container bg-surface-container px-2 py-0.5 rounded">Project: CS Dept Event Registration UI</span>
+<span class="font-label-sm text-label-sm text-outline">Aug 28, 2026</span>
+</div>
+</div>
+</div>
+<div class="p-stack-sm bg-surface-container-lowest text-center border-t border-border-subtle">
+<button class="font-label-md text-label-md text-primary hover:text-primary-container py-2 w-full transition-colors">Load More Reviews</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+<footer class="py-stack-lg border-t border-border-subtle text-center"><p class="font-label-sm text-label-sm text-on-surface-variant">© 2026 SideQuest. All rights reserved.</p></footer>
+</main>
+</div>
+<script type="module" src="../assets/js/app.js"></script>
+</body></html>

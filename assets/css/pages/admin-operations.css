@@ -1,0 +1,4 @@
+body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; color: #191c1d; }
+        .chart-container { height: 250px; position: relative; }
+        .chart-bar { background-color: #1b4332; position: absolute; bottom: 0; width: 40px; border-radius: 4px 4px 0 0; }
+        .chart-line { position: absolute; bottom: 50%; left: 0; right: 0; height: 2px; background-color: #1b4332; }
