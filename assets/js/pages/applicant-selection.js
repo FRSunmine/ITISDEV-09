@@ -37,6 +37,7 @@ document.addEventListener("click", (event) => {
         "confirm-assignment": () => {
             globalThis.alert("Assignment confirmed (simulated). API integration pending.");
             closeModal();
+            window.location.href = "/pages/client-quest-workspace.html";
         },
     };
 
