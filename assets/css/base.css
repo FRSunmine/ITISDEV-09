@@ -282,6 +282,10 @@ html.dark .border-outline-variant {
     border-color: #39463e !important;
 }
 
+html.dark .divide-border-subtle > :not([hidden]) ~ :not([hidden]) {
+    border-color: #39463e !important;
+}
+
 html.dark input,
 html.dark select,
 html.dark textarea {
