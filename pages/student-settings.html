@@ -1,0 +1,185 @@
+<!-- Student Settings - SideQuest -->
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SideQuest - Settings</title>
+<script>
+document.documentElement.classList.add("is-loading");
+try {
+    const isDark = window.localStorage.getItem("sidequest-theme") === "dark";
+    document.documentElement.classList.toggle("dark", isDark);
+    document.documentElement.classList.toggle("light", !isDark);
+} catch {
+    document.documentElement.classList.add("light");
+}
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script type="module" src="../assets/js/config/student-profile.tailwind.js"></script>
+<link href="../assets/css/base.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md text-body-md antialiased overflow-x-hidden">
+<header class="student-shell-topbar fixed top-0 left-0 w-full z-50 flex justify-between items-center bg-surface-container-lowest border-b border-border-subtle">
+<div class="student-shell-brand-wrap">
+<span aria-hidden="true" class="student-shell-brand-mark"></span>
+<span class="student-shell-brand text-primary">SideQuest</span>
+</div>
+<div class="student-shell-actions">
+<button aria-label="Notifications" class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="student-shell-avatar overflow-hidden border border-border-subtle">
+<img alt="User profile avatar" class="student-shell-avatar">
+</div>
+</div>
+</header>
+<div class="flex mt-16 min-h-[calc(100vh-64px)] w-full">
+<nav class="student-shell-sidebar hidden md:flex fixed left-0 bg-surface border-r border-border-subtle flex-col z-40 overflow-y-auto">
+<div class="student-shell-identity">
+<div class="overflow-hidden">
+<h2 class="student-shell-heading text-primary truncate">Student Freelancer</h2>
+<p class="student-shell-subheading text-on-surface-variant truncate">Freelance Hub</p>
+</div>
+</div>
+<div class="flex-1 px-stack-sm flex flex-col gap-1">
+<a class="student-shell-nav-link text-on-surface-variant hover:bg-surface-container-high transition-colors" href="student-dashboard.html">
+<span class="student-shell-nav-icon material-symbols-outlined">space_dashboard</span>
+<span class="student-shell-nav-label">Dashboard</span>
+</a>
+<a class="student-shell-nav-link text-on-surface-variant hover:bg-surface-container-high transition-colors" href="quest-marketplace.html">
+<span class="student-shell-nav-icon material-symbols-outlined">search</span>
+<span class="student-shell-nav-label">Find Quests</span>
+</a>
+<a class="student-shell-nav-link text-on-surface-variant hover:bg-surface-container-high transition-colors" href="student-dashboard.html#applications">
+<span class="student-shell-nav-icon material-symbols-outlined">history_edu</span>
+<span class="student-shell-nav-label">Applications</span>
+</a>
+<a class="student-shell-nav-link text-on-surface-variant hover:bg-surface-container-high transition-colors" href="student-quest-workspace.html">
+<span class="student-shell-nav-icon material-symbols-outlined">pending_actions</span>
+<span class="student-shell-nav-label">Active Quests</span>
+</a>
+<a class="student-shell-nav-link text-on-surface-variant hover:bg-surface-container-high transition-colors" href="student-profile.html">
+<span class="student-shell-nav-icon material-symbols-outlined">account_box</span>
+<span class="student-shell-nav-label">Portfolio</span>
+</a>
+<a class="student-shell-nav-link text-on-surface-variant hover:bg-surface-container-high transition-colors" href="student-dashboard.html">
+<span class="student-shell-nav-icon material-symbols-outlined">forum</span>
+<span class="student-shell-nav-label">Messages</span>
+</a>
+</div>
+<div class="px-stack-sm mt-auto pt-4">
+<a aria-current="page" class="student-shell-nav-link bg-secondary-fixed text-on-secondary-fixed" href="student-settings.html">
+<span class="student-shell-nav-icon material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="student-shell-nav-label">Settings</span>
+</a>
+</div>
+</nav>
+<main class="student-shell-main flex-1 w-full">
+<div class="max-w-[1040px] mx-auto px-6 py-10 md:px-10">
+<div class="mb-8">
+<p class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mb-2">Account preferences</p>
+<h1 class="font-headline-md text-headline-md text-primary">Settings</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Control how SideQuest looks and how you receive updates.</p>
+</div>
+
+<div class="grid gap-6">
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden shadow-sm">
+<div class="p-6 border-b border-border-subtle flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">palette</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Appearance</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Display and motion preferences apply across SideQuest.</p>
+</div>
+</div>
+<div class="divide-y divide-border-subtle">
+<div class="flex items-center justify-between gap-6 p-6">
+<div>
+<h3 class="font-label-md text-label-md font-semibold text-on-surface">Dark mode</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Use a darker palette that is easier on the eyes in low light.</p>
+<p class="font-label-sm text-label-sm text-primary mt-2" data-theme-label>Dark mode is off</p>
+</div>
+<label class="inline-flex items-center cursor-pointer shrink-0">
+<input aria-label="Toggle dark mode" class="sr-only peer" data-theme-toggle type="checkbox">
+<span class="relative w-14 h-8 rounded-full bg-surface-container-high peer-checked:bg-primary transition-colors after:content-[''] after:absolute after:top-1 after:left-1 after:w-6 after:h-6 after:rounded-full after:bg-white after:transition-transform peer-checked:after:translate-x-6"></span>
+</label>
+</div>
+<div class="flex items-center justify-between gap-6 p-6">
+<div>
+<h3 class="font-label-md text-label-md font-semibold text-on-surface">Reduce motion</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Minimize interface animations and animated scrolling.</p>
+</div>
+<label class="inline-flex items-center cursor-pointer shrink-0">
+<input aria-label="Reduce interface motion" class="sr-only peer" data-preference="reduceMotion" type="checkbox">
+<span class="relative w-14 h-8 rounded-full bg-surface-container-high peer-checked:bg-primary transition-colors after:content-[''] after:absolute after:top-1 after:left-1 after:w-6 after:h-6 after:rounded-full after:bg-white after:transition-transform peer-checked:after:translate-x-6"></span>
+</label>
+</div>
+</div>
+</section>
+
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden shadow-sm">
+<div class="p-6 border-b border-border-subtle flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">notifications_active</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Notifications</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Choose which in-app updates you want to receive.</p>
+</div>
+</div>
+<div class="divide-y divide-border-subtle">
+<label class="flex items-center justify-between gap-6 p-6 cursor-pointer">
+<span>
+<span class="block font-label-md text-label-md font-semibold text-on-surface">Application updates</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant mt-1">Status changes, interview requests, and acceptance notices.</span>
+</span>
+<input class="w-5 h-5 rounded border-border-subtle text-primary focus:ring-primary" data-preference="applicationUpdates" type="checkbox">
+</label>
+<label class="flex items-center justify-between gap-6 p-6 cursor-pointer">
+<span>
+<span class="block font-label-md text-label-md font-semibold text-on-surface">Messages</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant mt-1">New messages from clients and quest collaborators.</span>
+</span>
+<input class="w-5 h-5 rounded border-border-subtle text-primary focus:ring-primary" data-preference="messageNotifications" type="checkbox">
+</label>
+<label class="flex items-center justify-between gap-6 p-6 cursor-pointer">
+<span>
+<span class="block font-label-md text-label-md font-semibold text-on-surface">Quest recommendations</span>
+<span class="block font-body-sm text-body-sm text-on-surface-variant mt-1">New campus quests matching your listed skills.</span>
+</span>
+<input class="w-5 h-5 rounded border-border-subtle text-primary focus:ring-primary" data-preference="questRecommendations" type="checkbox">
+</label>
+</div>
+</section>
+
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden shadow-sm">
+<div class="p-6 border-b border-border-subtle flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">shield_person</span>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Privacy</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Control who can discover your freelancer profile.</p>
+</div>
+</div>
+<div class="p-6">
+<label class="block max-w-md">
+<span class="block font-label-md text-label-md font-semibold text-on-surface mb-2">Profile visibility</span>
+<select class="w-full rounded-lg border border-border-subtle bg-surface px-4 py-3 font-body-sm text-body-sm text-on-surface focus:border-primary focus:ring-primary" data-preference="profileVisibility">
+<option value="campus">Verified campus members</option>
+<option value="clients">Clients only</option>
+<option value="private">Private</option>
+</select>
+</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-3">This is stored as an MVP preference. Server-side profile access rules will be added with account management.</p>
+</div>
+</section>
+
+<div class="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-4">
+<p aria-live="polite" class="font-label-sm text-label-sm text-status-success" data-settings-status>Preferences are saved automatically.</p>
+<button class="border border-border-subtle bg-surface-container-lowest text-on-surface px-4 py-2.5 rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-colors" data-reset-preferences type="button">Restore defaults</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script type="module" src="../assets/js/app.js"></script>
+</body></html>

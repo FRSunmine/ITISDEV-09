@@ -8,6 +8,7 @@ const pages = [
   "quest-marketplace",
   "student-quest-workspace",
   "student-profile",
+  "student-settings",
   "client-dashboard",
   "create-quest",
   "applicant-selection",

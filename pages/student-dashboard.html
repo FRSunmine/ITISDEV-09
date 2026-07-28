@@ -3,7 +3,16 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Student Dashboard - SideQuest</title>
-<script>document.documentElement.classList.add('is-loading');</script>
+<script>
+document.documentElement.classList.add("is-loading");
+try {
+    const isDark = window.localStorage.getItem("sidequest-theme") === "dark";
+    document.documentElement.classList.toggle("dark", isDark);
+    document.documentElement.classList.toggle("light", !isDark);
+} catch {
+    document.documentElement.classList.add("light");
+}
+</script>
 <!-- Material Symbols -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <!-- Google Fonts -->
@@ -18,68 +27,62 @@
 </head>
 <body class="bg-surface font-body-md text-on-surface antialiased min-h-screen">
 <!-- TopNavBar -->
-<header class="fixed top-0 left-0 w-full h-16 z-50 flex justify-between items-center px-margin-page bg-surface-container-lowest border-b border-border-subtle dark:border-on-surface-variant">
-<div class="flex items-center gap-4">
-<span class="font-display-lg text-display-lg font-bold text-primary dark:text-primary-fixed">SideQuest</span>
+<header class="student-shell-topbar fixed top-0 left-0 w-full z-50 flex justify-between items-center bg-surface-container-lowest border-b border-border-subtle dark:border-on-surface-variant">
+<div class="student-shell-brand-wrap">
+<span aria-hidden="true" class="student-shell-brand-mark"></span>
+<span class="student-shell-brand text-primary dark:text-primary-fixed">SideQuest</span>
 </div>
-<div class="flex items-center gap-4">
+<div class="student-shell-actions">
 <span class="material-symbols-outlined cursor-pointer hover:opacity-80 transition-opacity">notifications</span>
-<div class="w-8 h-8 rounded-full overflow-hidden border border-border-subtle cursor-pointer">
-<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A small, professional profile headshot of a young male student in a bright, modern setting. He is wearing a clean casual shirt and smiling slightly. The lighting is soft and natural, emphasizing a trustworthy and capable persona. High quality photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_McOzii88g9tPWpZZN0ZxuKKWODbrLcOf0nuuYvyAcBdUN94Y0fDDsRcbFyCxkYYC3sKYWOmtPFAgFBaDGWD89qA3WqFF7iSWJsBmg09j4MRwLJIP8Nm9wMrqJW6c5uc9xXUdX_wdFNlc7X82JMMNxj83jTp9QmNkyQ4F288lwAfmxOlTiFjSH_uoElpwIlw4w8w_Mpg6gLvj83KWrDWU3I8yfbbBjXvgtv9tL92p07jhXLIEkfGA3KYU0yMmRUnEYSCiKdMIvYY">
+<div class="student-shell-avatar overflow-hidden border border-border-subtle cursor-pointer">
+<img alt="User profile avatar" class="student-shell-avatar" data-alt="A small, professional profile headshot of a young male student in a bright, modern setting. He is wearing a clean casual shirt and smiling slightly. The lighting is soft and natural, emphasizing a trustworthy and capable persona. High quality photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_McOzii88g9tPWpZZN0ZxuKKWODbrLcOf0nuuYvyAcBdUN94Y0fDDsRcbFyCxkYYC3sKYWOmtPFAgFBaDGWD89qA3WqFF7iSWJsBmg09j4MRwLJIP8Nm9wMrqJW6c5uc9xXUdX_wdFNlc7X82JMMNxj83jTp9QmNkyQ4F288lwAfmxOlTiFjSH_uoElpwIlw4w8w_Mpg6gLvj83KWrDWU3I8yfbbBjXvgtv9tL92p07jhXLIEkfGA3KYU0yMmRUnEYSCiKdMIvYY">
 </div>
 </div>
 </header>
 <!-- SideNavBar (Student Freelancer) -->
-<nav class="hidden md:flex flex-col py-stack-lg fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar-width border-r border-border-subtle dark:border-on-surface-variant bg-surface dark:bg-on-background z-40 overflow-y-auto">
-<div class="px-stack-lg mb-8 flex items-center gap-3">
-<div class="w-10 h-10 rounded-lg overflow-hidden border border-border-subtle shrink-0">
-<img alt="Student Avatar" class="w-full h-full object-cover" data-alt="A polished, modern icon representing a student freelancer. The image uses a clean, vector-style aesthetic with muted greens and grays, perhaps showing a stylized graduation cap or a laptop to symbolize academic and professional dual roles. The background is white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxoGjy6Zfw_YwYd8Is0YWjnAJ4QING_vRRu7-ervgz3PftMzuaHDC_KIuFcMZs2ZEawJzJfbi3WcwQTUsOaVtPV1LBKJcr7tAom3OAKX222GzX2Wiw57cEgaqu2J4WfroVVmkFOucGuLc3DQfugkotv7PuUOoLhwBeKqQzCXT3usxEmf4e4YN6I7Nn8Uted3VWMxZTqeJeLyAqdA7llbIAeyB4GtWcbt_9QdrK5hE4_LGuBjLucRxOzxYml81vCPWcDjcEIKiSFyk">
-</div>
+<nav class="student-shell-sidebar hidden md:flex flex-col fixed left-0 border-r border-border-subtle dark:border-on-surface-variant bg-surface dark:bg-on-background z-40 overflow-y-auto">
+<div class="student-shell-identity">
 <div class="overflow-hidden">
-<h2 class="font-label-md text-label-md font-semibold text-primary truncate">Student Freelancer</h2>
-<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Freelance Hub</p>
+<h2 class="student-shell-heading font-headline-sm text-headline-sm text-primary truncate">Student Freelancer</h2>
+<p class="student-shell-subheading text-on-surface-variant truncate">Freelance Hub</p>
 </div>
 </div>
 <div class="flex-1 px-stack-sm flex flex-col gap-1">
 <!-- Dashboard (Active) -->
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 bg-secondary-fixed dark:bg-secondary-container text-on-secondary-fixed dark:text-on-secondary-container font-semibold rounded-lg font-label-md text-label-md transition-all" href="student-dashboard.html">
-<span class="material-symbols-outlined fill">space_dashboard</span>
-                Dashboard
-            </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg font-label-md text-label-md transition-all" href="quest-marketplace.html">
-<span class="material-symbols-outlined">search</span>
-                Find Quests
-            </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg font-label-md text-label-md transition-all" href="student-dashboard.html">
-<span class="material-symbols-outlined">history_edu</span>
-                Applications
-            </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg font-label-md text-label-md transition-all" href="student-quest-workspace.html">
-<span class="material-symbols-outlined">pending_actions</span>
-                Active Quests
-            </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg font-label-md text-label-md transition-all" href="student-profile.html">
-<span class="material-symbols-outlined">account_box</span>
-                Portfolio
-            </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg font-label-md text-label-md transition-all" href="student-dashboard.html">
-<span class="material-symbols-outlined">forum</span>
-                Messages
-            </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg font-label-md text-label-md transition-all" href="student-profile.html">
-<span class="material-symbols-outlined">person</span>
-                Profile
-            </a>
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 bg-secondary-fixed dark:bg-secondary-container text-on-secondary-fixed dark:text-on-secondary-container rounded-lg transition-all" href="student-dashboard.html">
+<span class="student-shell-nav-icon material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">space_dashboard</span>
+<span class="student-shell-nav-label font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="quest-marketplace.html">
+<span class="student-shell-nav-icon material-symbols-outlined">search</span>
+<span class="student-shell-nav-label font-label-md text-label-md">Find Quests</span>
+</a>
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="student-dashboard.html#applications">
+<span class="student-shell-nav-icon material-symbols-outlined">history_edu</span>
+<span class="student-shell-nav-label font-label-md text-label-md">Applications</span>
+</a>
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="student-quest-workspace.html">
+<span class="student-shell-nav-icon material-symbols-outlined">pending_actions</span>
+<span class="student-shell-nav-label font-label-md text-label-md">Active Quests</span>
+</a>
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="student-profile.html">
+<span class="student-shell-nav-icon material-symbols-outlined">account_box</span>
+<span class="student-shell-nav-label font-label-md text-label-md">Portfolio</span>
+</a>
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="student-dashboard.html">
+<span class="student-shell-nav-icon material-symbols-outlined">forum</span>
+<span class="student-shell-nav-label font-label-md text-label-md">Messages</span>
+</a>
 </div>
 <div class="px-stack-sm mt-auto pt-4">
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg font-label-md text-label-md transition-all" href="student-profile.html">
-<span class="material-symbols-outlined">settings</span>
-                Settings
-            </a>
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="student-settings.html">
+<span class="student-shell-nav-icon material-symbols-outlined">settings</span>
+<span class="student-shell-nav-label font-label-md text-label-md">Settings</span>
+</a>
 </div>
 </nav>
 <!-- Main Workspace -->
-<main class="md:ml-[260px] pt-16 min-h-screen">
+<main class="student-shell-main md:ml-[260px] pt-16 min-h-screen">
 <div class="max-w-[1280px] mx-auto p-margin-page">
 <!-- Header Section -->
 <div class="mb-12">
@@ -190,7 +193,7 @@
 <div class="font-label-sm text-[11px] text-on-surface-variant">* Payment arrangements are completed externally. SideQuest does not process or hold funds.</div>
 </section>
 <!-- Application Status Table -->
-<section class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden">
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden" id="applications">
 <div class="p-stack-lg border-b border-border-subtle flex justify-between items-center bg-surface-bright">
 <h2 class="font-headline-sm text-headline-sm text-primary">Recent Applications</h2>
 </div>

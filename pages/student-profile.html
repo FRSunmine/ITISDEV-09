@@ -3,7 +3,16 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>SideQuest - Student Profile</title>
-<script>document.documentElement.classList.add('is-loading');</script>
+<script>
+document.documentElement.classList.add("is-loading");
+try {
+    const isDark = window.localStorage.getItem("sidequest-theme") === "dark";
+    document.documentElement.classList.toggle("dark", isDark);
+    document.documentElement.classList.toggle("light", !isDark);
+} catch {
+    document.documentElement.classList.add("light");
+}
+</script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -16,68 +25,62 @@
 <link href="../assets/css/pages/student-profile.css" rel="stylesheet">
 </head>
 <body class="bg-background text-on-background min-h-screen font-body-md text-body-md antialiased overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
-<header class="fixed top-0 left-0 w-full h-16 z-50 flex justify-between items-center px-margin-page bg-surface-container-lowest border-b border-border-subtle">
-<div class="flex items-center gap-stack-md">
-<span class="font-display-lg text-display-lg font-bold text-primary">SideQuest</span>
+<header class="student-shell-topbar fixed top-0 left-0 w-full z-50 flex justify-between items-center bg-surface-container-lowest border-b border-border-subtle">
+<div class="student-shell-brand-wrap">
+<span aria-hidden="true" class="student-shell-brand-mark"></span>
+<span class="student-shell-brand text-primary">SideQuest</span>
 </div>
-<div class="flex items-center gap-stack-lg">
+<div class="student-shell-actions">
 <button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors cursor-pointer active:opacity-80 flex items-center justify-center">
 <span class="material-symbols-outlined">notifications</span>
 </button>
-<div class="w-8 h-8 rounded-full overflow-hidden border border-border-subtle cursor-pointer active:opacity-80">
-<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A small circular avatar of a professional computer science student. Minimalist lighting, corporate SaaS vibe. Clean white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJdzmSnokhDuZEPVT54o8J8b_2zTXffPNltDggqy2G8nkAo0S4pOhhze356w6YET51sDCx4-gusOF3kXxagljQLhjPx5KrwDJ3AWhEjmk1lqG7jbQbCdm1K2CiDoiOPwpLgGlY1bZ90mL1EHqYm1e60jVrkQNTzZfxed8_1PYMLRMvphROyZTlhtPkjMpvhtaLHfD2qzY7LE59ZKZoF4XrTiur3jPpMPPEVVPfBXsUxVeu_Y_1zSVkSE3mqjYyrAumuMcoj342da0">
+<div class="student-shell-avatar overflow-hidden border border-border-subtle cursor-pointer active:opacity-80">
+<img alt="User profile avatar" class="student-shell-avatar" data-alt="A small circular avatar of a professional computer science student. Minimalist lighting, corporate SaaS vibe. Clean white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJdzmSnokhDuZEPVT54o8J8b_2zTXffPNltDggqy2G8nkAo0S4pOhhze356w6YET51sDCx4-gusOF3kXxagljQLhjPx5KrwDJ3AWhEjmk1lqG7jbQbCdm1K2CiDoiOPwpLgGlY1bZ90mL1EHqYm1e60jVrkQNTzZfxed8_1PYMLRMvphROyZTlhtPkjMpvhtaLHfD2qzY7LE59ZKZoF4XrTiur3jPpMPPEVVPfBXsUxVeu_Y_1zSVkSE3mqjYyrAumuMcoj342da0">
 </div>
 </div>
 </header>
 <div class="flex mt-16 h-[calc(100vh-64px)] w-full">
-<nav class="hidden md:flex fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar-width bg-surface border-r border-border-subtle flex-col py-stack-lg z-40 overflow-y-auto">
-<div class="px-margin-page mb-stack-lg">
-<div class="flex items-center gap-stack-sm mb-1">
-<div class="w-10 h-10 rounded bg-surface-container-highest flex items-center justify-center overflow-hidden border border-border-subtle">
-<img alt="Student Avatar" class="w-full h-full object-cover" data-alt="A generic placeholder icon for a student avatar, rendered in a flat, modern vector style fitting a professional dashboard. Neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSYmJhYQW8ZKuEM0Ox_w0GIsSFG6Tu14JDqB_lGTHV0S-TN4r_zivelas3JNvJSWFqGAOuO2p5t8xy397q4nrMb1PGKWBQQGMPEpiNMcQ1ccz1-l565Aaotn6qZfekdb4UVazLwh6dKOk6ekB6g1a9ME1nvbcK-FelOkvzKC_2e5FOo0gAhxLPWrvsrTso4dSs6YJq-szHIL3q-icyjZIbQ3YghWnJSs3Uev3MPXz2M7Lx4NuLaELR9TIjyIgcZ7V00mrDteatB5o">
-</div>
-<div>
-<h2 class="font-label-md text-label-md text-on-surface font-bold">Student Freelancer</h2>
-<p class="font-label-sm text-label-sm text-on-surface-variant">Freelance Hub</p>
+<nav class="student-shell-sidebar hidden md:flex fixed left-0 bg-surface border-r border-border-subtle flex-col z-40 overflow-y-auto">
+<div class="student-shell-identity">
+<div class="overflow-hidden">
+<h2 class="student-shell-heading font-headline-sm text-headline-sm text-primary truncate">Student Freelancer</h2>
+<p class="student-shell-subheading text-on-surface-variant truncate">Freelance Hub</p>
 </div>
 </div>
+<div class="flex-1 px-stack-sm flex flex-col gap-1">
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="student-dashboard.html#applications">
+<span class="student-shell-nav-icon material-symbols-outlined">space_dashboard</span>
+<span class="student-shell-nav-label font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="quest-marketplace.html">
+<span class="student-shell-nav-icon material-symbols-outlined">search</span>
+<span class="student-shell-nav-label font-label-md text-label-md">Find Quests</span>
+</a>
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="student-dashboard.html#applications">
+<span class="student-shell-nav-icon material-symbols-outlined">history_edu</span>
+<span class="student-shell-nav-label font-label-md text-label-md">Applications</span>
+</a>
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="student-quest-workspace.html">
+<span class="student-shell-nav-icon material-symbols-outlined">pending_actions</span>
+<span class="student-shell-nav-label font-label-md text-label-md">Active Quests</span>
+</a>
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 bg-secondary-fixed text-on-secondary-fixed rounded-lg hover:bg-surface-container-high transition-all" href="student-profile.html">
+<span class="student-shell-nav-icon material-symbols-outlined">account_box</span>
+<span class="student-shell-nav-label font-label-md text-label-md">Portfolio</span>
+</a>
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="student-dashboard.html">
+<span class="student-shell-nav-icon material-symbols-outlined">forum</span>
+<span class="student-shell-nav-label font-label-md text-label-md">Messages</span>
+</a>
 </div>
-<div class="flex flex-col gap-1 px-stack-sm">
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="student-dashboard.html">
-<span class="material-symbols-outlined">space_dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
-</a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="quest-marketplace.html">
-<span class="material-symbols-outlined text-[20px]">search</span>
-<span class="font-label-md text-label-md">Find Quests</span>
-</a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="student-dashboard.html">
-<span class="material-symbols-outlined text-[20px]">history_edu</span>
-<span class="font-label-md text-label-md">Applications</span>
-</a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="student-quest-workspace.html">
-<span class="material-symbols-outlined text-[20px]">pending_actions</span>
-<span class="font-label-md text-label-md">Active Quests</span>
-</a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="student-profile.html">
-<span class="material-symbols-outlined text-[20px]">account_box</span>
-<span class="font-label-md text-label-md">Portfolio</span>
-</a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="student-dashboard.html">
-<span class="material-symbols-outlined text-[20px]">forum</span>
-<span class="font-label-md text-label-md">Messages</span>
-</a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 bg-secondary-fixed text-on-secondary-fixed font-semibold rounded-lg hover:bg-surface-container-high transition-all" href="student-profile.html">
-<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">person</span>
-<span class="font-label-md text-label-md">Profile</span>
-</a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="student-profile.html">
-<span class="material-symbols-outlined text-[20px]">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
+<div class="px-stack-sm mt-auto pt-4">
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="student-settings.html">
+<span class="student-shell-nav-icon material-symbols-outlined">settings</span>
+<span class="student-shell-nav-label font-label-md text-label-md">Settings</span>
 </a>
 </div>
 </nav>
-<main class="flex-1 md:ml-[260px] w-full max-w-container-max mx-auto p-margin-page overflow-y-auto">
+<main class="student-shell-main flex-1 md:ml-[260px] w-full max-w-container-max mx-auto p-margin-page overflow-y-auto">
 <div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg mb-gutter flex flex-col md:flex-row items-start md:items-center gap-stack-lg shadow-sm hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-shadow">
 <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-surface-container shrink-0">
 <img alt="Alex Rivera Profile Picture" class="w-full h-full object-cover" data-alt="A high-quality, professional headshot of a young male computer science student named Alex Rivera. He is smiling slightly, wearing a neat button-down shirt. The background is a blurred university library setting with natural lighting. The overall mood is approachable yet academic, fitting a clean, corporate SaaS platform design aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1_yDpvgMYJYer7rTM5MAmM-eKWZJwpqMJ5cwRURAJx-t58q387wjvzn1wajQREdNrKPTF-gGF-GQcGG7fQIAMpvN86piLjgLyDxETYKRj2MJfEUA_E-oGz61Xyj7qBtXgP1FZ3eE7k_1zA-tuo_rEwsb2J7sglTVW63p3hWzAIKXCvwJZBDv8Bxp_NLhBYFHmbvdPwIbFoEGZcdzph_DS6DHa6yW3PPHc4XF6Ab-bSMco1-GFTLH1mkix9WPPDTGi-QKD7196WqQ">

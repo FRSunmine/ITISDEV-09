@@ -3,7 +3,16 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Student Onboarding &amp; Verification | SideQuest</title>
-<script>document.documentElement.classList.add('is-loading');</script>
+<script>
+document.documentElement.classList.add("is-loading");
+try {
+    const isDark = window.localStorage.getItem("sidequest-theme") === "dark";
+    document.documentElement.classList.toggle("dark", isDark);
+    document.documentElement.classList.toggle("light", !isDark);
+} catch {
+    document.documentElement.classList.add("light");
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
@@ -14,20 +23,21 @@
 </head>
 <body class="bg-background text-on-background h-full font-body-md text-body-md overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
 <!-- Top Navigation Bar -->
-<header class="fixed top-0 left-0 w-full h-16 z-50 flex justify-between items-center px-margin-page bg-surface-container-lowest border-b border-border-subtle dark:border-on-surface-variant shadow-sm transition-all duration-200">
-<div class="flex items-center gap-4">
-<span class="font-display-lg text-display-lg font-bold text-primary dark:text-primary-fixed tracking-tight">SideQuest</span>
+<header class="student-shell-topbar fixed top-0 left-0 w-full z-50 flex justify-between items-center bg-surface-container-lowest border-b border-border-subtle dark:border-on-surface-variant shadow-sm">
+<div class="student-shell-brand-wrap">
+<span aria-hidden="true" class="student-shell-brand-mark"></span>
+<span class="student-shell-brand text-primary dark:text-primary-fixed">SideQuest</span>
 </div>
 <div class="flex items-center gap-6">
 <nav class="hidden md:flex gap-6">
 <!-- Linear flow intent: We are in an onboarding/setup flow, but technically accessible via Dashboard nav shell. Given prompt "Dashboard selected", we simulate standard nav context if requested, but semantic rule suggests hiding standard top nav links during intense transactional steps. Keeping right actions minimal. -->
 </nav>
-<div class="flex items-center gap-4 border-l border-border-subtle pl-4">
+<div class="student-shell-actions border-l border-border-subtle pl-4">
 <button aria-label="Notifications" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors">
 <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
 </button>
-<div class="w-10 h-10 rounded-full overflow-hidden border border-border-subtle bg-surface-container cursor-pointer hover:ring-2 ring-primary transition-all">
-<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a young student looking confident against a clean, light studio background. Soft, flattering high-key lighting suitable for a modern SaaS platform profile picture. The student is wearing smart casual academic attire." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc_CW1ZxOkJ3UJ6_XGux0-QCDtX33jj-kJLuksirHsGbB7QIQIcLnt9TJ5MSna3XjkfT12oGZWqxCVQ7nSkb7gPyF85AiVC-u7txTF_d_-xu8cTg9dd0-lb0Fa3bkFm4YaQAdMZDWI3nxzHadD23A8IaAltPArvJBQp03mZa47DtlT03JuVB7N_4n8S_nAbuDB5juFMJI711h9V6CyxzTZYgR8MUVqBdIkkeZL2YeASrHMG_uAwnJzZruAhGatrxRTrkEr4Ggfsgk">
+<div class="student-shell-avatar overflow-hidden border border-border-subtle bg-surface-container cursor-pointer hover:ring-2 ring-primary transition-all">
+<img alt="User profile avatar" class="student-shell-avatar" data-alt="A professional headshot of a young student looking confident against a clean, light studio background. Soft, flattering high-key lighting suitable for a modern SaaS platform profile picture. The student is wearing smart casual academic attire." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc_CW1ZxOkJ3UJ6_XGux0-QCDtX33jj-kJLuksirHsGbB7QIQIcLnt9TJ5MSna3XjkfT12oGZWqxCVQ7nSkb7gPyF85AiVC-u7txTF_d_-xu8cTg9dd0-lb0Fa3bkFm4YaQAdMZDWI3nxzHadD23A8IaAltPArvJBQp03mZa47DtlT03JuVB7N_4n8S_nAbuDB5juFMJI711h9V6CyxzTZYgR8MUVqBdIkkeZL2YeASrHMG_uAwnJzZruAhGatrxRTrkEr4Ggfsgk">
 </div>
 </div>
 </div>
@@ -35,56 +45,49 @@
 <!-- Sidebar & Main Content Layout -->
 <div class="flex h-[calc(100vh-64px)] mt-16 overflow-hidden">
 <!-- Side Navigation (Student Profile) -->
-<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar-width bg-surface dark:bg-on-background border-r border-border-subtle dark:border-on-surface-variant flex flex-col py-stack-lg z-40 hidden md:flex transition-transform duration-300 ease-in-out transform translate-x-0 overflow-y-auto">
-<div class="px-stack-lg mb-8">
-<div class="flex items-center gap-3 mb-2">
-<div class="w-12 h-12 rounded-lg bg-surface-container-high border border-border-subtle overflow-hidden flex-shrink-0">
-<img alt="Student Avatar" class="w-full h-full object-cover" data-alt="A minimalist line-art icon representing a student cap or graduation motif, clean and precise, in dark green against a light gray background, fitting a corporate academic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0iG5ktnUfWGDYULlGUfK_MsgjPMQiIzqnQ8Yr1aqzKxQmInOQMtZpeKWhNmgT-rnNaVQTL-zqCKNBo6kJ6h3x3AurcCrea9kwv4ItwsyjaBetZ8TUZng8z4WvbfOxenGU_S2B62tuxWOge2V_f3ivrC-OWDWyioUAoyp9JH5Z8GsWngafSLIIYC-4Nc0wqA60HuyBCND7GmZI_BcurFj8wd2H65DX_oU5jLDIv4ougW5A8NXDM_gGmJQFotlrnW3ZyraVF-THoNo">
-</div>
-<div>
-<h2 class="font-headline-sm text-headline-sm text-on-surface line-clamp-1">Student Freelancer</h2>
-<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Freelance Hub</p>
+<aside class="student-shell-sidebar fixed left-0 bg-surface dark:bg-on-background border-r border-border-subtle dark:border-on-surface-variant flex flex-col z-40 hidden md:flex overflow-y-auto">
+<div class="student-shell-identity">
+<div class="overflow-hidden">
+<h2 class="student-shell-heading font-headline-sm text-headline-sm text-primary truncate">Student Freelancer</h2>
+<p class="student-shell-subheading text-on-surface-variant truncate">Freelance Hub</p>
 </div>
 </div>
-</div>
-<nav class="flex-1 space-y-1 px-stack-sm">
+<nav class="flex-1 px-stack-sm flex flex-col gap-1">
 <!-- Dashboard - Active -->
-<a aria-current="page" class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 bg-secondary-fixed dark:bg-secondary-container text-on-secondary-fixed dark:text-on-secondary-container font-semibold rounded-lg transition-all" href="student-dashboard.html">
-<span class="material-symbols-outlined transition-colors duration-200" data-icon="space_dashboard" data-weight="fill" style="font-variation-settings: 'FILL' 1;">space_dashboard</span>
-<span class="font-label-md text-label-md">Dashboard</span>
+<a aria-current="page" class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 bg-secondary-fixed dark:bg-secondary-container text-on-secondary-fixed dark:text-on-secondary-container rounded-lg transition-all" href="student-dashboard.html">
+<span class="student-shell-nav-icon material-symbols-outlined transition-colors duration-200" data-icon="space_dashboard" data-weight="fill" style="font-variation-settings: 'FILL' 1;">space_dashboard</span>
+<span class="student-shell-nav-label font-label-md text-label-md">Dashboard</span>
 </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="quest-marketplace.html">
-<span class="material-symbols-outlined transition-colors duration-200" data-icon="search">search</span>
-<span class="font-label-md text-label-md group-hover:text-on-surface transition-colors">Find Quests</span>
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="quest-marketplace.html">
+<span class="student-shell-nav-icon material-symbols-outlined transition-colors duration-200" data-icon="search">search</span>
+<span class="student-shell-nav-label font-label-md text-label-md group-hover:text-on-surface transition-colors">Find Quests</span>
 </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="student-dashboard.html">
-<span class="material-symbols-outlined transition-colors duration-200" data-icon="history_edu">history_edu</span>
-<span class="font-label-md text-label-md group-hover:text-on-surface transition-colors">Applications</span>
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="student-dashboard.html#applications">
+<span class="student-shell-nav-icon material-symbols-outlined transition-colors duration-200" data-icon="history_edu">history_edu</span>
+<span class="student-shell-nav-label font-label-md text-label-md group-hover:text-on-surface transition-colors">Applications</span>
 </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="student-quest-workspace.html">
-<span class="material-symbols-outlined transition-colors duration-200" data-icon="pending_actions">pending_actions</span>
-<span class="font-label-md text-label-md group-hover:text-on-surface transition-colors">Active Quests</span>
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="student-quest-workspace.html">
+<span class="student-shell-nav-icon material-symbols-outlined transition-colors duration-200" data-icon="pending_actions">pending_actions</span>
+<span class="student-shell-nav-label font-label-md text-label-md group-hover:text-on-surface transition-colors">Active Quests</span>
 </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="student-profile.html">
-<span class="material-symbols-outlined transition-colors duration-200" data-icon="account_box">account_box</span>
-<span class="font-label-md text-label-md group-hover:text-on-surface transition-colors">Portfolio</span>
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="student-profile.html">
+<span class="student-shell-nav-icon material-symbols-outlined transition-colors duration-200" data-icon="account_box">account_box</span>
+<span class="student-shell-nav-label font-label-md text-label-md group-hover:text-on-surface transition-colors">Portfolio</span>
 </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="student-dashboard.html">
-<span class="material-symbols-outlined transition-colors duration-200" data-icon="forum">forum</span>
-<span class="font-label-md text-label-md group-hover:text-on-surface transition-colors">Messages</span>
-</a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="student-profile.html">
-<span class="material-symbols-outlined transition-colors duration-200" data-icon="person">person</span>
-<span class="font-label-md text-label-md group-hover:text-on-surface transition-colors">Profile</span>
-</a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg mt-auto mb-4" href="student-profile.html">
-<span class="material-symbols-outlined transition-colors duration-200" data-icon="settings">settings</span>
-<span class="font-label-md text-label-md group-hover:text-on-surface transition-colors">Settings</span>
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="student-dashboard.html">
+<span class="student-shell-nav-icon material-symbols-outlined transition-colors duration-200" data-icon="forum">forum</span>
+<span class="student-shell-nav-label font-label-md text-label-md group-hover:text-on-surface transition-colors">Messages</span>
 </a>
 </nav>
+<div class="px-stack-sm mt-auto pt-4">
+<a class="student-shell-nav-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all rounded-lg" href="student-settings.html">
+<span class="student-shell-nav-icon material-symbols-outlined transition-colors duration-200" data-icon="settings">settings</span>
+<span class="student-shell-nav-label font-label-md text-label-md group-hover:text-on-surface transition-colors">Settings</span>
+</a>
+</div>
 </aside>
 <!-- Main Workspace -->
-<main class="flex-1 md:ml-sidebar-width w-full bg-background overflow-y-auto overflow-x-hidden relative scroll-smooth focus:outline-none">
+<main class="student-shell-main flex-1 md:ml-sidebar-width w-full bg-background overflow-y-auto overflow-x-hidden relative scroll-smooth focus:outline-none">
 <div class="max-w-[1280px] mx-auto w-full px-margin-page py-10 min-h-full pb-32">
 <!-- Onboarding Header & Breadcrumbs -->
 <div class="mb-10 space-y-4">
