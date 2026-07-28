@@ -13,9 +13,39 @@ html {
     scroll-behavior: smooth;
 }
 
+html.is-loading *,
+html.is-loading *::before,
+html.is-loading *::after {
+    animation: none !important;
+    transition: none !important;
+}
+
 body {
     min-height: 100%;
     margin: 0;
+}
+
+html.is-loading body {
+    visibility: hidden;
+}
+
+html.is-ready body {
+    visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 
 button,

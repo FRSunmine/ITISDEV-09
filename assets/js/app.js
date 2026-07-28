@@ -13,6 +13,26 @@ export const routes = {
     platformAnalytics: "/pages/platform-analytics.html",
 };
 
+document.documentElement.classList.add("is-loading");
+
+function waitForWindowLoad() {
+    if (document.readyState === "complete") {
+        return Promise.resolve();
+    }
+
+    return new Promise((resolve) => {
+        window.addEventListener("load", resolve, { once: true });
+    });
+}
+
+function waitForFonts() {
+    if (!("fonts" in document) || typeof document.fonts.ready?.then !== "function") {
+        return Promise.resolve();
+    }
+
+    return document.fonts.ready.catch(() => undefined);
+}
+
 function selectTargets(selectorList) {
     return selectorList
         .split(",")
@@ -95,3 +115,12 @@ document.addEventListener("click", (event) => {
 });
 
 activateRoleButton(document.querySelector("[data-role-button][aria-pressed='true']"));
+
+Promise.all([waitForWindowLoad(), waitForFonts()]).finally(() => {
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            document.documentElement.classList.remove("is-loading");
+            document.documentElement.classList.add("is-ready");
+        });
+    });
+});
