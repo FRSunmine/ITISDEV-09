@@ -1,3 +1,18 @@
+export const routes = {
+    login: "/pages/login.html",
+    studentDashboard: "/pages/student-dashboard.html",
+    studentMarketplace: "/pages/quest-marketplace.html",
+    studentWorkspace: "/pages/student-quest-workspace.html",
+    studentProfile: "/pages/student-profile.html",
+    studentVerification: "/pages/student-verification.html",
+    clientDashboard: "/pages/client-dashboard.html",
+    createQuest: "/pages/create-quest.html",
+    applicantSelection: "/pages/applicant-selection.html",
+    clientWorkspace: "/pages/client-quest-workspace.html",
+    adminOperations: "/pages/admin-operations.html",
+    platformAnalytics: "/pages/platform-analytics.html",
+};
+
 function selectTargets(selectorList) {
     return selectorList
         .split(",")
@@ -6,9 +21,9 @@ function selectTargets(selectorList) {
 }
 
 const roleRoutes = {
-    student: "/pages/student-dashboard.html",
-    client: "/pages/client-dashboard.html",
-    administrator: "/pages/admin-operations.html",
+    student: routes.studentDashboard,
+    client: routes.clientDashboard,
+    administrator: routes.adminOperations,
 };
 
 function activateRoleButton(button) {
@@ -47,6 +62,13 @@ document.addEventListener("click", (event) => {
     if (roleButton) {
         event.preventDefault();
         activateRoleButton(roleButton);
+        return;
+    }
+
+    const navTarget = event.target.closest("[data-nav]");
+    if (navTarget?.dataset.nav) {
+        event.preventDefault();
+        window.location.href = routes[navTarget.dataset.nav] || navTarget.dataset.nav;
         return;
     }
 

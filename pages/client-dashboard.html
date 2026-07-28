@@ -71,7 +71,7 @@
 </a>
 </nav>
 <div class="p-stack-md mt-auto">
-<button class="w-full bg-primary-container text-on-primary py-2 px-4 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity">Post a New Quest</button>
+<button class="w-full bg-primary-container text-on-primary py-2 px-4 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity" data-nav="createQuest">Post a New Quest</button>
 </div>
 </aside>
 <!-- Main Content Area -->
@@ -82,10 +82,10 @@
 <p class="font-body-lg text-body-lg text-on-surface-variant mt-2">Here's what's happening with your projects today.</p>
 </div>
 <div class="hidden lg:flex gap-3">
-<button class="bg-primary-container text-on-primary py-2 px-4 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center gap-2 shadow-sm shadow-black/5">
+<button class="bg-primary-container text-on-primary py-2 px-4 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center gap-2 shadow-sm shadow-black/5" data-nav="createQuest">
 <span class="material-symbols-outlined text-[18px]">add</span> Create Quest
                     </button>
-<button class="border border-primary-container text-primary-container bg-transparent py-2 px-4 rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors shadow-sm shadow-black/5">
+<button class="border border-primary-container text-primary-container bg-transparent py-2 px-4 rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors shadow-sm shadow-black/5" data-nav="applicantSelection">
                         Review Applicants
                     </button>
 </div>
@@ -145,7 +145,7 @@
 <span class="material-symbols-outlined text-primary">work</span>
                                 My Active Quests
                             </h3>
-<button class="font-label-md text-label-md text-primary hover:underline">View All</button>
+<button class="font-label-md text-label-md text-primary hover:underline" data-nav="clientWorkspace">View All</button>
 </div>
 <div class="overflow-x-auto">
 <table class="w-full text-left border-collapse">
@@ -174,7 +174,7 @@
 <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-status-info/10 text-status-info">Recruiting</span>
 </td>
 <td class="p-stack-md text-right">
-<button class="font-label-md text-label-md text-primary hover:bg-primary/10 px-3 py-1.5 rounded transition-colors border border-transparent group-hover:border-primary/20">Manage</button>
+<button class="font-label-md text-label-md text-primary hover:bg-primary/10 px-3 py-1.5 rounded transition-colors border border-transparent group-hover:border-primary/20" data-nav="clientWorkspace">Manage</button>
 </td>
 </tr>
 <tr class="border-b border-border-subtle hover:bg-surface-container-low transition-colors group">
@@ -192,7 +192,7 @@
 <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-status-info/10 text-status-info">Recruiting</span>
 </td>
 <td class="p-stack-md text-right">
-<button class="font-label-md text-label-md text-primary hover:bg-primary/10 px-3 py-1.5 rounded transition-colors border border-transparent group-hover:border-primary/20">Manage</button>
+<button class="font-label-md text-label-md text-primary hover:bg-primary/10 px-3 py-1.5 rounded transition-colors border border-transparent group-hover:border-primary/20" data-nav="clientWorkspace">Manage</button>
 </td>
 </tr>
 <tr class="hover:bg-surface-container-low transition-colors group">
@@ -210,7 +210,7 @@
 <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-status-success/10 text-status-success">In Progress</span>
 </td>
 <td class="p-stack-md text-right">
-<button class="font-label-md text-label-md text-primary hover:bg-primary/10 px-3 py-1.5 rounded transition-colors border border-transparent group-hover:border-primary/20">Manage</button>
+<button class="font-label-md text-label-md text-primary hover:bg-primary/10 px-3 py-1.5 rounded transition-colors border border-transparent group-hover:border-primary/20" data-nav="clientWorkspace">Manage</button>
 </td>
 </tr>
 </tbody>
@@ -250,7 +250,7 @@
 </div>
 </div>
 <div class="flex flex-col justify-center shrink-0 border-t sm:border-t-0 sm:border-l border-border-subtle pt-3 sm:pt-0 sm:pl-4 mt-3 sm:mt-0">
-<button class="bg-primary-container text-on-primary py-2 px-4 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity w-full sm:w-auto">Review</button>
+<button class="bg-primary-container text-on-primary py-2 px-4 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity w-full sm:w-auto" data-nav="applicantSelection">Review</button>
 </div>
 </div>
 <!-- Applicant Card -->
@@ -276,7 +276,7 @@
 </div>
 </div>
 <div class="flex flex-col justify-center shrink-0 border-t sm:border-t-0 sm:border-l border-border-subtle pt-3 sm:pt-0 sm:pl-4 mt-3 sm:mt-0">
-<button class="bg-primary-container text-on-primary py-2 px-4 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity w-full sm:w-auto">Review</button>
+<button class="bg-primary-container text-on-primary py-2 px-4 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity w-full sm:w-auto" data-nav="applicantSelection">Review</button>
 </div>
 </div>
 </div>
