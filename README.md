@@ -86,8 +86,7 @@ This permanently removes local changes and recreates the database with the sampl
 The core end-to-end workflow is functional and covered by integration tests. Remaining proposal
 work is:
 
-1. Full portfolio history directly inside the applicant selection matrix.
-2. A decision on whether skill tags require an administrator-managed taxonomy.
+1. A decision on whether skill tags require an administrator-managed taxonomy.
 
 See `docs/MVP_CHECKLIST.md` for acceptance-level status and release checks.
 

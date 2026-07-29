@@ -626,11 +626,23 @@ export function createApp({ db, serveStatic = false, production = false } = {}) 
             const criteriaCoverage = questSkills.length
                 ? Math.round((matchedSkills.length / questSkills.length) * 100)
                 : 100;
+            const portfolio = db.prepare(`
+                SELECT portfolio_entries.id, portfolio_entries.title, portfolio_entries.summary,
+                       portfolio_entries.completed_at, quests.category,
+                       (SELECT rating FROM reviews
+                        WHERE reviews.quest_id = portfolio_entries.quest_id
+                          AND reviews.reviewee_id = portfolio_entries.student_id) AS client_rating
+                FROM portfolio_entries
+                JOIN quests ON quests.id = portfolio_entries.quest_id
+                WHERE portfolio_entries.student_id = ?
+                ORDER BY portfolio_entries.completed_at DESC
+            `).all(application.student_id);
             return {
                 ...application,
                 skills: studentSkills,
                 matched_skills: matchedSkills,
                 criteria_coverage: criteriaCoverage,
+                portfolio,
             };
         });
 

@@ -18,7 +18,7 @@ Status key: **Complete**, **Partial**, **Not started**, **Release check**
 | Freelancer discovery | Clients see matching freelancer results | **Complete** | Responsive result cards show verified matching talent and core evidence. |
 | Freelancer discovery | Clients can inspect profiles and invite a freelancer | **Complete** | Full profile dialogs support invitations to owned open quests; students accept or decline in Applications. |
 | Structured selection | Quest creation requires skill tags and a deliverables checklist | **Partial** | Both are mandatory and become immutable after creation; skill tags are free-form rather than selected from a controlled taxonomy. |
-| Structured selection | Selection matrix shows verification, history, and alignment | **Partial** | Verification, rating, completed count, and rule-based skill coverage are shown; full portfolio history is not shown in the matrix. |
+| Structured selection | Selection matrix shows verification, history, and alignment | **Complete** | Verification, rule-based skill coverage, ratings, and full project-level portfolio evidence appear in the review drawer. |
 | Structured selection | Selection starts work and locks communication/submissions to a workspace | **Partial** | Selection atomically starts the quest and creates a participant-only workspace and conversation. Deliveries use links/notes because file storage is outside the MVP. |
 | Structured selection | Every deliverable must pass client review before closure | **Complete** | The API blocks completion until all locked deliverables are approved. |
 | Quest discovery | Students can search by keyword | **Complete** | Server-side search covers title, description, category, client, and skills. |
@@ -43,8 +43,7 @@ Status key: **Complete**, **Partial**, **Not started**, **Release check**
 
 ## Next development priorities
 
-1. Show full portfolio history directly inside the applicant selection matrix.
-2. Decide whether standardized skill tags require a controlled administrator-managed taxonomy.
+1. Decide whether standardized skill tags require a controlled administrator-managed taxonomy.
 
 ## Release checks
 

@@ -24,7 +24,7 @@ SideQuest is a campus-focused micro-freelancing platform connecting verified stu
 
 ## Proposal gaps remaining
 
-- Full portfolio history directly inside the applicant selection matrix
+- Administrator-managed skill taxonomy, if required by the final grading specification
 
 Acceptance-level status is tracked in `MVP_CHECKLIST.md`.
 

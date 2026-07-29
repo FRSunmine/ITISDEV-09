@@ -293,6 +293,15 @@ test("quest creation requires skills and deliverables", async () => {
 
 test("client reviews applicants and accepts exactly one", async () => {
     const client = await login("client@sidequest.demo", "client");
+    const seededQuest = db.prepare("SELECT id FROM quests WHERE title = 'Event Registration Website'").get();
+    const seededMatrix = await request(
+        `/api/v1/client/applications?questId=${seededQuest.id}`,
+        { cookie: client.cookie },
+    );
+    const jamie = seededMatrix.payload.applications.find((item) => item.student_name === "Jamie Cruz");
+    assert.equal(jamie.portfolio[0].title, "Alumni Newsletter Redesign");
+    assert.equal(jamie.portfolio[0].client_rating, 5);
+
     const created = await request("/api/v1/quests", {
         method: "POST",
         cookie: client.cookie,

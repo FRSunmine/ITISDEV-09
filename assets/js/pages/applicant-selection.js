@@ -23,6 +23,11 @@ function formatCurrency(cents) {
     }).format(cents / 100);
 }
 
+function formatDate(value) {
+    const normalized = String(value).includes(" ") ? String(value).replace(" ", "T") : value;
+    return new Intl.DateTimeFormat("en-PH", { dateStyle: "medium" }).format(new Date(normalized));
+}
+
 function initials(name) {
     return String(name)
         .split(/\s+/)
@@ -110,6 +115,20 @@ function renderDrawer(application) {
     const skills = application.skills.length
         ? application.skills.map((skill) => `<span class="px-2 py-1 bg-surface-container border border-border-subtle rounded font-label-sm text-label-sm">${escapeHtml(skill)}</span>`).join("")
         : '<span class="text-on-surface-variant">No skills listed yet.</span>';
+    const portfolio = application.portfolio.length
+        ? application.portfolio.map((entry) => `
+            <article class="p-3 border border-border-subtle rounded-lg bg-surface-container-low">
+                <div class="flex items-start justify-between gap-3">
+                    <div>
+                        <h5 class="font-label-md text-label-md font-semibold text-on-background">${escapeHtml(entry.title)}</h5>
+                        <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">${escapeHtml(entry.category)}</p>
+                    </div>
+                    <span class="shrink-0 font-label-sm text-label-sm text-primary">${entry.client_rating ? `${entry.client_rating}/5` : "Not rated"}</span>
+                </div>
+                <p class="text-on-surface-variant mt-2">${escapeHtml(entry.summary || "Verified SideQuest completion.")}</p>
+                <p class="font-label-sm text-label-sm text-outline mt-2">Completed ${escapeHtml(formatDate(entry.completed_at))}</p>
+            </article>`).join("")
+        : '<p class="p-3 border border-dashed border-border-subtle rounded-lg text-on-surface-variant">No completed SideQuest projects yet.</p>';
     const decisionActions = application.status === "pending" && matrix.quest.status === "open"
         ? `<button class="flex-1 py-2 border border-border-subtle rounded font-label-md text-label-md text-on-surface-variant hover:bg-surface transition-colors"
                 data-reject-application="${application.id}" type="button">Reject</button>
@@ -153,6 +172,13 @@ function renderDrawer(application) {
             <section>
                 <h4 class="font-label-md text-label-md text-on-background mb-2">Profile</h4>
                 <p class="text-on-surface-variant">${escapeHtml(application.bio || "This student has not added a profile summary yet.")}</p>
+            </section>
+            <section>
+                <div class="flex items-center justify-between gap-3 mb-2">
+                    <h4 class="font-label-md text-label-md text-on-background">Verified Portfolio</h4>
+                    <span class="font-label-sm text-label-sm text-on-surface-variant">${application.portfolio.length} completed</span>
+                </div>
+                <div class="grid gap-3">${portfolio}</div>
             </section>
         </div>
         <div class="p-stack-lg border-t border-border-subtle bg-surface-bright sticky bottom-0 flex gap-3">

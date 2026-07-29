@@ -15,8 +15,8 @@
 ## Proposal alignment
 
 The implemented workflow is stable and the four proposal user stories now have complete primary
-flows. Remaining alignment work is full portfolio history inside the applicant selection matrix
-and a decision on controlled skill taxonomy. See `MVP_CHECKLIST.md` for acceptance-level status.
+flows. Remaining alignment work is a decision on controlled skill taxonomy. See
+`MVP_CHECKLIST.md` for acceptance-level status.
 
 ## Release hardening
 - Run manual acceptance tests on current Chrome, Edge, and Firefox.
