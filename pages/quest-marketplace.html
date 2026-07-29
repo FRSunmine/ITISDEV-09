@@ -107,22 +107,62 @@ try {
 </select>
 </div>
 </div>
-<form class="quest-filter-form" data-quest-filters>
-<label><span>Skill</span><input data-quest-filter="skill" maxlength="80" placeholder="e.g. Branding" type="search"></label>
-<label><span>Category</span><select data-quest-filter="category">
-<option value="">All categories</option><option>Data</option><option>Design</option><option>Development</option><option>Marketing</option><option>Multimedia</option><option>Operations</option><option>Tutoring</option><option>Video</option><option>Writing</option>
-</select></label>
-<label><span>Minimum budget</span><div class="quest-money-input"><span>PHP</span><input data-quest-filter="minBudget" min="0" placeholder="0" step="100" type="number"></div></label>
-<label><span>Maximum budget</span><div class="quest-money-input"><span>PHP</span><input data-quest-filter="maxBudget" min="0" placeholder="Any" step="100" type="number"></div></label>
-<label><span>Deadline on or before</span><input data-quest-filter="deadlineBefore" type="date"></label>
-<label><span>Arrangement</span><select data-quest-filter="workArrangement">
-<option value="">Any</option><option value="remote">Remote</option><option value="hybrid">Hybrid</option><option value="onsite">On-site</option>
-</select></label>
-<div class="quest-filter-actions">
-<button class="quest-filter-clear" data-clear-quest-filters type="button">Clear</button>
-<button class="quest-filter-apply" type="submit"><span class="material-symbols-outlined">tune</span>Apply filters</button>
+<!-- Quest Filters -->
+<div class="quest-filter-bar" data-filter-bar>
+<button class="quest-filter-toggle" type="button" data-filter-toggle aria-expanded="false" aria-controls="quest-filter-panel">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Filters</span>
+<span class="quest-filter-count" data-filter-count hidden>0</span>
+</button>
+<div class="quest-active-filters" data-active-filters aria-live="polite"></div>
+<button class="quest-clear-filters" type="button" data-clear-filters hidden>Clear all</button>
 </div>
-</form>
+<div class="quest-filter-panel" id="quest-filter-panel" data-filter-panel hidden>
+<div class="quest-filter-grid">
+<label class="quest-filter-field">
+<span>Category</span>
+<select data-filter-category>
+<option value="">All categories</option>
+</select>
+</label>
+<label class="quest-filter-field">
+<span>Required skill</span>
+<select data-filter-skill>
+<option value="">All skills</option>
+</select>
+</label>
+<label class="quest-filter-field">
+<span>Minimum budget</span>
+<input data-filter-budget-min min="0" placeholder="₱0" step="100" type="number">
+</label>
+<label class="quest-filter-field">
+<span>Maximum budget</span>
+<input data-filter-budget-max min="0" placeholder="No maximum" step="100" type="number">
+</label>
+<label class="quest-filter-field">
+<span>Deadline</span>
+<select data-filter-deadline>
+<option value="">Any deadline</option>
+<option value="7">Within 7 days</option>
+<option value="14">Within 14 days</option>
+<option value="30">Within 30 days</option>
+</select>
+</label>
+<label class="quest-filter-field">
+<span>Work arrangement</span>
+<select data-filter-arrangement>
+<option value="">Any arrangement</option>
+<option value="remote">Remote</option>
+<option value="hybrid">Hybrid</option>
+<option value="onsite">On-site</option>
+</select>
+</label>
+</div>
+<div class="quest-filter-actions">
+<button class="quest-filter-reset" type="button" data-clear-filters>Reset filters</button>
+<button class="quest-filter-apply" type="button" data-apply-filters>Show results</button>
+</div>
+</div>
 </div>
 <!-- Scrollable Content -->
 <div class="flex-1 overflow-y-auto custom-scrollbar p-margin-page">
@@ -536,3 +576,4 @@ try {
 <script type="module" src="../assets/js/app.js"></script>
 <script type="module" src="../assets/js/pages/quest-marketplace.js"></script>
 </body></html>
+
