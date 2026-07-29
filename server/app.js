@@ -954,6 +954,120 @@ export function createApp({ db, serveStatic = false, production = false } = {}) 
         });
     });
 
+    app.get("/api/v1/client/profile", requireUser(["client"]), (req, res) => {
+        const profile = db.prepare(`
+            SELECT users.display_name, users.email, client_profiles.organization_name,
+                   client_profiles.organization_type
+            FROM users
+            JOIN client_profiles ON client_profiles.user_id = users.id
+            WHERE users.id = ?
+        `).get(req.user.id);
+        res.json({ profile });
+    });
+
+    app.patch("/api/v1/client/profile", requireUser(["client"]), (req, res) => {
+        const organizationName = String(req.body?.organizationName ?? "").trim();
+        const organizationType = String(req.body?.organizationType ?? "").trim();
+        if (!organizationName || !organizationType) {
+            return validationError(res, "Organization name and type are required.");
+        }
+        if (organizationName.length > 120 || organizationType.length > 80) {
+            return validationError(res, "Organization name or type is too long.");
+        }
+        db.prepare(`
+            UPDATE client_profiles
+            SET organization_name = ?, organization_type = ?
+            WHERE user_id = ?
+        `).run(organizationName, organizationType, req.user.id);
+        const profile = db.prepare(`
+            SELECT users.display_name, users.email, client_profiles.organization_name,
+                   client_profiles.organization_type
+            FROM users
+            JOIN client_profiles ON client_profiles.user_id = users.id
+            WHERE users.id = ?
+        `).get(req.user.id);
+        res.json({ profile });
+    });
+
+    function readPreferences(userId) {
+        db.prepare("INSERT OR IGNORE INTO user_preferences (user_id) VALUES (?)").run(userId);
+        const item = db.prepare("SELECT * FROM user_preferences WHERE user_id = ?").get(userId);
+        return {
+            theme: item.theme,
+            applicationUpdates: Boolean(item.application_updates),
+            messageNotifications: Boolean(item.message_notifications),
+            questRecommendations: Boolean(item.quest_recommendations),
+            profileVisibility: item.profile_visibility,
+            reduceMotion: Boolean(item.reduce_motion),
+        };
+    }
+
+    app.get("/api/v1/preferences", requireUser(), (req, res) => {
+        res.json({ preferences: readPreferences(req.user.id) });
+    });
+
+    app.patch("/api/v1/preferences", requireUser(), (req, res) => {
+        const current = readPreferences(req.user.id);
+        const next = { ...current, ...req.body };
+        if (!["light", "dark"].includes(next.theme)) {
+            return validationError(res, "Theme must be light or dark.");
+        }
+        if (!["campus", "clients", "private"].includes(next.profileVisibility)) {
+            return validationError(res, "Select a valid profile visibility.");
+        }
+        for (const key of ["applicationUpdates", "messageNotifications", "questRecommendations", "reduceMotion"]) {
+            if (typeof next[key] !== "boolean") {
+                return validationError(res, `${key} must be true or false.`);
+            }
+        }
+        db.prepare(`
+            UPDATE user_preferences
+            SET theme = ?, application_updates = ?, message_notifications = ?,
+                quest_recommendations = ?, profile_visibility = ?, reduce_motion = ?,
+                updated_at = CURRENT_TIMESTAMP
+            WHERE user_id = ?
+        `).run(
+            next.theme,
+            Number(next.applicationUpdates),
+            Number(next.messageNotifications),
+            Number(next.questRecommendations),
+            next.profileVisibility,
+            Number(next.reduceMotion),
+            req.user.id,
+        );
+        res.json({ preferences: readPreferences(req.user.id) });
+    });
+
+    app.get("/api/v1/reports/me", requireUser(["student", "client"]), (req, res) => {
+        const reports = db.prepare(`
+            SELECT id, subject, category, description, status, admin_notes, created_at, updated_at
+            FROM reports WHERE reporter_id = ? ORDER BY created_at DESC
+        `).all(req.user.id);
+        res.json({ reports });
+    });
+
+    app.post("/api/v1/reports", requireUser(["student", "client"]), (req, res) => {
+        const subject = String(req.body?.subject ?? "").trim();
+        const category = String(req.body?.category ?? "").trim();
+        const description = String(req.body?.description ?? "").trim();
+        const categories = ["user_conduct", "quest_content", "payment_dispute", "technical_issue", "other"];
+        if (!subject || subject.length > 120) {
+            return validationError(res, "Subject must contain 1 to 120 characters.");
+        }
+        if (!categories.includes(category)) {
+            return validationError(res, "Select a valid report category.");
+        }
+        if (description.length < 10 || description.length > 2000) {
+            return validationError(res, "Description must contain 10 to 2000 characters.");
+        }
+        const result = db.prepare(`
+            INSERT INTO reports (reporter_id, subject, category, description)
+            VALUES (?, ?, ?, ?)
+        `).run(req.user.id, subject, category, description);
+        const report = db.prepare("SELECT * FROM reports WHERE id = ?").get(result.lastInsertRowid);
+        res.status(201).json({ report });
+    });
+
     function skillGaps() {
         return db.prepare(`
             SELECT skills.name,
@@ -964,8 +1078,9 @@ export function createApp({ db, serveStatic = false, production = false } = {}) 
                       AND quests.status IN ('open', 'in_progress', 'submitted')) AS demand
             FROM skills
             ORDER BY (demand - supply) DESC, skills.name
-            LIMIT 10
-        `).all().map((item) => ({ ...item, gap: item.supply - item.demand }));
+        `).all()
+            .filter((item) => item.supply > 0 || item.demand > 0)
+            .map((item) => ({ ...item, gap: item.supply - item.demand }));
     }
 
     app.get("/api/v1/admin/operations", requireUser(["admin"]), (_req, res) => {
@@ -996,6 +1111,16 @@ export function createApp({ db, serveStatic = false, production = false } = {}) 
             ORDER BY created_at DESC
             LIMIT 20
         `).all();
+        const reports = db.prepare(`
+            SELECT reports.id, reports.subject, reports.category, reports.description,
+                   reports.status, reports.admin_notes, reports.created_at,
+                   users.display_name AS reporter_name, users.email AS reporter_email,
+                   users.role AS reporter_role
+            FROM reports
+            JOIN users ON users.id = reports.reporter_id
+            ORDER BY CASE reports.status WHEN 'open' THEN 0 ELSE 1 END, reports.created_at DESC
+            LIMIT 50
+        `).all();
         res.json({
             summary: {
                 verifiedStudents,
@@ -1005,8 +1130,28 @@ export function createApp({ db, serveStatic = false, production = false } = {}) 
             },
             pendingStudents,
             users,
+            reports,
             skillGaps: skillGaps(),
         });
+    });
+
+    app.patch("/api/v1/admin/reports/:id", requireUser(["admin"]), (req, res) => {
+        const status = String(req.body?.status ?? "");
+        const adminNotes = String(req.body?.adminNotes ?? "").trim();
+        if (!["resolved", "dismissed"].includes(status)) {
+            return validationError(res, "Report status must be resolved or dismissed.");
+        }
+        if (adminNotes.length > 1000) {
+            return validationError(res, "Administrative notes must be at most 1000 characters.");
+        }
+        const result = db.prepare(`
+            UPDATE reports SET status = ?, admin_notes = ?, updated_at = CURRENT_TIMESTAMP
+            WHERE id = ?
+        `).run(status, adminNotes || null, req.params.id);
+        if (!result.changes) {
+            return res.status(404).json({ error: { code: "NOT_FOUND", message: "Report not found." } });
+        }
+        res.json({ report: db.prepare("SELECT * FROM reports WHERE id = ?").get(req.params.id) });
     });
 
     app.patch("/api/v1/admin/students/:id/verification", requireUser(["admin"]), (req, res) => {

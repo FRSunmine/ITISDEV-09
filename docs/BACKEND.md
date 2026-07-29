@@ -25,12 +25,18 @@ The SQLite database is created at `data/sidequest.db` and ignored by Git.
 - `POST /api/v1/auth/login`
 - `POST /api/v1/auth/logout`
 - `GET /api/v1/auth/me`
+- `GET /api/v1/preferences`
+- `PATCH /api/v1/preferences`
+- `GET /api/v1/reports/me`
+- `POST /api/v1/reports`
 - `GET /api/v1/quests`
 - `GET /api/v1/quests/:id`
 - `POST /api/v1/quests`
 - `POST /api/v1/quests/:id/applications`
 - `GET /api/v1/applications/me`
 - `GET /api/v1/client/dashboard`
+- `GET /api/v1/client/profile`
+- `PATCH /api/v1/client/profile`
 - `GET /api/v1/client/applications`
 - `PATCH /api/v1/client/applications/:id`
 - `GET /api/v1/messages`
@@ -46,9 +52,11 @@ The SQLite database is created at `data/sidequest.db` and ignored by Git.
 - `GET /api/v1/admin/operations`
 - `PATCH /api/v1/admin/students/:id/verification`
 - `PATCH /api/v1/admin/users/:id/status`
+- `PATCH /api/v1/admin/reports/:id`
 - `GET /api/v1/admin/analytics`
 
 Run API tests with `npm test`. Build with `npm run build`, then run the production server with `npm start`.
+Reset and reseed local demo data with `npm run db:reset` while the server is stopped.
 
 Quest creation requires a client or administrator session plus `title`, `description`, `category`,
 `budgetCents`, `deadline`, `workArrangement`, and non-empty `skills` and `deliverables` arrays.
@@ -75,3 +83,10 @@ can apply to quests. Editing an already verified profile does not remove its ver
 Administrator endpoints expose the verification queue, account controls, auditable platform
 totals, quest/application distributions, completion trends, and rule-based skill gaps. Suspended
 accounts have their sessions invalidated and cannot sign in until restored.
+
+## Current API limitations
+
+- Quest discovery supports keyword search but not structured filter query parameters.
+- There is no client-facing freelancer directory, public freelancer endpoint, or invitation flow.
+- Messages are persisted and participant-only but use request/response updates rather than sockets.
+- Deliverable submissions store links or notes; binary file storage is not implemented.

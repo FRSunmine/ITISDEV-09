@@ -198,17 +198,18 @@ function renderFiles() {
 }
 
 function renderMessages() {
+    const messagesUrl = role === "student"
+        ? `/pages/student-messages.html?questId=${encodeURIComponent(workspace.quest.id)}`
+        : `/pages/client-messages.html?questId=${encodeURIComponent(workspace.quest.id)}`;
     canvas.innerHTML = `
         <section class="lg:col-span-12 bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-lg text-center shadow-sm">
             <span class="material-symbols-outlined text-primary text-[48px]">forum</span>
             <h2 class="font-headline-sm text-headline-sm text-on-background mt-3">Quest messages</h2>
             <p class="font-body-md text-body-md text-on-surface-variant mt-2">Keep project decisions and updates together in the dedicated conversation.</p>
-            ${role === "student"
-                ? `<a class="inline-flex items-center gap-2 px-5 py-3 bg-primary-container text-white rounded font-label-md text-label-md mt-6 hover:opacity-90"
-                        href="/pages/student-messages.html?questId=${encodeURIComponent(workspace.quest.id)}">
-                        Open conversation <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-                   </a>`
-                : '<p class="font-body-sm text-body-sm text-on-surface-variant mt-5">Client messaging is not available from this screen yet.</p>'}
+            <a class="inline-flex items-center gap-2 px-5 py-3 bg-primary-container text-white rounded font-label-md text-label-md mt-6 hover:opacity-90"
+                href="${messagesUrl}">
+                Open conversation <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </a>
         </section>`;
 }
 
@@ -281,7 +282,7 @@ function renderWorkspace() {
 
     const allApproved = workspace.deliverables.every((item) => item.submission_status === "approved");
     actions.innerHTML = `
-        <select aria-label="Select active quest" class="px-3 py-2 border border-border-subtle rounded bg-surface font-label-md text-label-md" data-workspace-select>
+        <select aria-label="Select active quest" class="min-w-[180px] max-w-[280px] pl-3 pr-10 py-2 border border-border-subtle rounded bg-surface font-label-md text-label-md" data-workspace-select>
             ${workspace.quests.map((quest) => `<option value="${quest.id}" ${quest.id === workspace.quest.id ? "selected" : ""}>
                 ${escapeHtml(quest.title)}
             </option>`).join("")}

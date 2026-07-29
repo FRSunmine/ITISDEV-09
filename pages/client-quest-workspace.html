@@ -30,23 +30,22 @@
 </div>
 </header>
 <div class="flex pt-16 h-screen">
-<!-- SideNavBar - Student -->
+<!-- SideNavBar - Client -->
 <aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar-width bg-surface dark:bg-on-background border-r border-border-subtle dark:border-on-surface-variant hidden md:flex flex-col py-stack-lg overflow-y-auto">
-<div class="px-stack-lg mb-stack-lg flex items-center gap-3">
-<div class="client-company-logo-frame rounded-lg bg-surface-container-high flex items-center justify-center overflow-hidden shrink-0">
-<img alt="Student Avatar" class="w-full h-full object-cover" data-alt="A minimalist logo for a student freelancer, featuring abstract geometric shapes resembling a digital pen or stylus in shades of professional deep green and muted grey on a white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTlnfes4Z8tS767OaZmHWtxqQ2CYofZ-xwLAWd4sUKdgHuwMNNvahRqYlAxX7WMAWWzYVCiYC1WHMuuNaUYHekB1RBfMHCvhNbXliq50Twz8UOw11MPpwDwHajZcL5FMb4-RLPz8gFrbyb_MJYrrAZ-c8n-GJCYm_NR7cBtOWUnYyAZtQT-O__1m-esOYqXlK9tEUHIP7fadxkxQm8c89Bz5jNsIewCc45awLmN679mwxOzfbZhyOl9bSaBcOvcWVDg8ZD5Y0wBm0">
+<div class="client-shell-identity">
+<img alt="Organization Logo" class="client-shell-logo rounded-lg object-cover border border-border-subtle">
+<div class="client-shell-identity-copy"><h2 class="font-headline-sm text-headline-sm text-on-surface">Client Portal</h2>
+<p class="font-label-md text-label-md text-on-surface-variant">Manage Quests</p></div>
 </div>
-<div class="overflow-hidden">
-<h2 class="font-headline-sm text-headline-sm text-primary truncate">Client Portal</h2>
-<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Project Management</p>
-</div>
-</div>
-<nav class="flex-1 flex flex-col px-stack-sm gap-1">
+<nav class="flex-1 overflow-y-auto px-stack-sm space-y-1">
 <a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="client-dashboard.html"><span class="material-symbols-outlined shrink-0">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a>
 <a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="client-dashboard.html#my-quests"><span class="material-symbols-outlined shrink-0">work</span><span class="font-label-md text-label-md">My Quests</span></a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 bg-secondary-fixed dark:bg-secondary-container text-on-secondary-fixed dark:text-on-secondary-container font-semibold rounded-lg transition-all" href="client-quest-workspace.html"><span class="material-symbols-outlined shrink-0" style="font-variation-settings: 'FILL' 1;">assignment</span><span class="font-label-md text-label-md">Active Quests</span></a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="applicant-selection.html"><span class="material-symbols-outlined shrink-0">group</span><span class="font-label-md text-label-md">Freelancers</span></a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="account-profile.html"><span class="material-symbols-outlined shrink-0">settings</span><span class="font-label-md text-label-md">Settings</span></a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="create-quest.html"><span class="material-symbols-outlined shrink-0">add_box</span><span class="font-label-md text-label-md">Create Quest</span></a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="applicant-selection.html"><span class="material-symbols-outlined shrink-0">group</span><span class="font-label-md text-label-md">Applicants</span></a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 bg-secondary-fixed dark:bg-secondary-container text-on-secondary-fixed dark:text-on-secondary-container font-semibold rounded-lg transition-all" href="client-quest-workspace.html"><span class="material-symbols-outlined shrink-0" style="font-variation-settings: 'FILL' 1;">assignment</span><span class="font-label-md text-label-md" data-nav-label>Active Projects</span></a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="client-messages.html"><span class="material-symbols-outlined shrink-0">forum</span><span class="font-label-md text-label-md" data-nav-label>Messages</span></a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="client-organization-profile.html"><span class="material-symbols-outlined shrink-0">business</span><span class="font-label-md text-label-md" data-nav-label>Organization Profile</span></a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all" href="client-settings.html"><span class="material-symbols-outlined shrink-0">settings</span><span class="font-label-md text-label-md" data-nav-label>Settings</span></a>
 </nav>
 </aside>
 <!-- Main Content Area -->
@@ -75,11 +74,11 @@
 </div>
 <!-- Tabs -->
 <div class="flex gap-8 border-b border-border-subtle mt-8">
-<button class="pb-3 border-b-2 border-transparent font-label-md text-label-md text-on-surface-variant hover:text-on-background transition-colors">Overview</button>
-<button class="pb-3 border-b-2 border-primary text-primary font-label-md text-label-md font-bold transition-colors">Deliverables</button>
-<button class="pb-3 border-b-2 border-transparent font-label-md text-label-md text-on-surface-variant hover:text-on-background transition-colors flex items-center gap-1">Files <span class="bg-surface-container-high text-on-surface px-1.5 py-0.5 rounded-full text-[10px]">3</span></button>
-<button class="pb-3 border-b-2 border-transparent font-label-md text-label-md text-on-surface-variant hover:text-on-background transition-colors flex items-center gap-1">Messages <span class="bg-primary-container text-white px-1.5 py-0.5 rounded-full text-[10px]">1</span></button>
-<button class="pb-3 border-b-2 border-transparent font-label-md text-label-md text-on-surface-variant hover:text-on-background transition-colors">Activity Log</button>
+<button class="pb-3 border-b-2 border-transparent font-label-md text-label-md text-on-surface-variant hover:text-on-background transition-colors" data-workspace-tab="overview" type="button">Overview</button>
+<button class="pb-3 border-b-2 border-primary text-primary font-label-md text-label-md font-bold transition-colors" data-workspace-tab="deliverables" type="button">Deliverables</button>
+<button class="pb-3 border-b-2 border-transparent font-label-md text-label-md text-on-surface-variant hover:text-on-background transition-colors" data-workspace-tab="files" type="button">Files</button>
+<button class="pb-3 border-b-2 border-transparent font-label-md text-label-md text-on-surface-variant hover:text-on-background transition-colors" data-workspace-tab="messages" type="button">Messages</button>
+<button class="pb-3 border-b-2 border-transparent font-label-md text-label-md text-on-surface-variant hover:text-on-background transition-colors" data-workspace-tab="activity" type="button">Activity Log</button>
 </div>
 </div>
 </div>

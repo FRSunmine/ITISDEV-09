@@ -602,3 +602,76 @@ test("client dashboard is persisted and pending students cannot apply", async ()
     assert.equal(application.response.status, 403);
     assert.equal(application.payload.error.code, "VERIFICATION_REQUIRED");
 });
+
+test("client can read and update a separate organization profile", async () => {
+    const client = await login("client@sidequest.demo", "client");
+    const initial = await request("/api/v1/client/profile", { cookie: client.cookie });
+    assert.equal(initial.response.status, 200);
+    assert.equal(initial.payload.profile.organization_name, "DLSU Student Council");
+
+    const updated = await request("/api/v1/client/profile", {
+        method: "PATCH",
+        cookie: client.cookie,
+        body: {
+            organizationName: "DLSU Student Council Office",
+            organizationType: "University media organization",
+        },
+    });
+    assert.equal(updated.response.status, 200);
+    assert.equal(updated.payload.profile.organization_name, "DLSU Student Council Office");
+});
+
+test("preferences persist per account instead of per device", async () => {
+    const student = await login("student@dlsu.edu.ph", "student");
+    const saved = await request("/api/v1/preferences", {
+        method: "PATCH",
+        cookie: student.cookie,
+        body: {
+            theme: "dark",
+            applicationUpdates: true,
+            messageNotifications: false,
+            questRecommendations: true,
+            profileVisibility: "campus",
+            reduceMotion: true,
+        },
+    });
+    assert.equal(saved.response.status, 200);
+    assert.equal(saved.payload.preferences.theme, "dark");
+    assert.equal(saved.payload.preferences.reduceMotion, true);
+
+    const client = await login("client@sidequest.demo", "client");
+    const clientPreferences = await request("/api/v1/preferences", { cookie: client.cookie });
+    assert.equal(clientPreferences.response.status, 200);
+    assert.equal(clientPreferences.payload.preferences.theme, "light");
+    assert.equal(clientPreferences.payload.preferences.messageNotifications, true);
+});
+
+test("users submit reports and administrators resolve them", async () => {
+    const student = await login("student@dlsu.edu.ph", "student");
+    const submitted = await request("/api/v1/reports", {
+        method: "POST",
+        cookie: student.cookie,
+        body: {
+            subject: "Quest scope changed after acceptance",
+            category: "quest_content",
+            description: "The requested deliverables no longer match the accepted quest scope.",
+        },
+    });
+    assert.equal(submitted.response.status, 201);
+
+    const admin = await login("admin@sidequest.demo", "admin");
+    const operations = await request("/api/v1/admin/operations", { cookie: admin.cookie });
+    assert.ok(operations.payload.reports.some((report) => report.id === submitted.payload.report.id));
+
+    const resolved = await request(`/api/v1/admin/reports/${submitted.payload.report.id}`, {
+        method: "PATCH",
+        cookie: admin.cookie,
+        body: { status: "resolved", adminNotes: "The client was asked to restore the accepted scope." },
+    });
+    assert.equal(resolved.response.status, 200);
+
+    const history = await request("/api/v1/reports/me", { cookie: student.cookie });
+    const report = history.payload.reports.find((item) => item.id === submitted.payload.report.id);
+    assert.equal(report.status, "resolved");
+    assert.match(report.admin_notes, /restore the accepted scope/);
+});

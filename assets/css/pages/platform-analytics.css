@@ -1,5 +1,350 @@
-.tonal-card {
-            background-color: theme('colors.surface-container-lowest');
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            border: 1px solid theme('colors.surface-variant');
-        }
+body {
+    overflow-x: hidden;
+}
+
+[data-platform-analytics] {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.analytics-loading {
+    padding: 4rem 1rem;
+    color: #5d6a62;
+    text-align: center;
+}
+
+.analytics-hero {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    padding: 2rem;
+    overflow: hidden;
+    border: 1px solid #b9cec2;
+    border-radius: 1.25rem;
+    background:
+        radial-gradient(circle at 82% 20%, rgb(106 177 143 / 28%), transparent 28%),
+        linear-gradient(135deg, #e9f5ee, #f8fbf9 65%);
+    color: #10291d;
+}
+
+.analytics-hero > div,
+.analytics-metric > div,
+.analytics-panel-heading > div {
+    min-width: 0;
+}
+
+.analytics-hero p,
+.analytics-panel-heading p {
+    margin: 0 0 0.35rem;
+    color: #49705d;
+    font: 700 0.7rem/1.2 "JetBrains Mono", monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.analytics-hero h1 {
+    margin: 0;
+    font: 700 clamp(2rem, 4vw, 3.4rem)/1 "Hanken Grotesk", sans-serif;
+    overflow-wrap: anywhere;
+}
+
+.analytics-hero > div > span {
+    display: block;
+    max-width: 42rem;
+    margin-top: 0.8rem;
+    color: #52645a;
+}
+
+.analytics-hero > a {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    background: #143c2b;
+    color: #fff;
+    font-weight: 700;
+}
+
+.analytics-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.analytics-metric,
+.analytics-panel {
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #d3dfd8;
+    background: #fff;
+    box-shadow: 0 8px 24px rgb(20 60 43 / 6%);
+}
+
+.analytics-metric {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-radius: 1rem;
+}
+
+.analytics-metric p,
+.analytics-metric span {
+    display: block;
+    margin: 0;
+    color: #66736b;
+    font-size: 0.75rem;
+}
+
+.analytics-metric strong {
+    display: block;
+    margin: 0.25rem 0;
+    color: #143c2b;
+    font: 700 2rem/1 "Hanken Grotesk", sans-serif;
+}
+
+.analytics-metric > .material-symbols-outlined {
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    place-items: center;
+    border-radius: 0.75rem;
+    background: #dceee4;
+    color: #1f6547;
+    font-size: 1.35rem;
+}
+
+.analytics-layout {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.analytics-panel {
+    grid-column: span 6;
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+
+.analytics-panel-heading {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.35rem;
+}
+
+.analytics-panel-heading h2 {
+    margin: 0;
+    color: #1a3025;
+    font: 700 1.35rem/1.2 "Hanken Grotesk", sans-serif;
+}
+
+.analytics-panel-heading a,
+.analytics-chip {
+    color: #286849;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.analytics-bars {
+    display: grid;
+    gap: 1rem;
+}
+
+.analytics-bar-row > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.35rem;
+    color: #4d5e54;
+    font-size: 0.82rem;
+}
+
+.analytics-bar-row > div:first-child span,
+.analytics-panel-heading h2,
+.analytics-table th,
+.analytics-table td {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.analytics-track {
+    height: 0.6rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e3ebe6;
+}
+
+.analytics-track span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #286849, #7cc29f);
+}
+
+.analytics-columns {
+    display: flex;
+    align-items: end;
+    min-height: 13rem;
+    gap: 0.75rem;
+}
+
+.analytics-column {
+    display: grid;
+    flex: 1;
+    height: 12rem;
+    grid-template-rows: 1.2rem 1fr 1.4rem;
+    text-align: center;
+}
+
+.analytics-column > div {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    margin: 0.35rem 0;
+    border-radius: 0.5rem;
+    background: #edf2ef;
+}
+
+.analytics-column > div span {
+    width: 70%;
+    border-radius: 0.4rem 0.4rem 0 0;
+    background: linear-gradient(#7cc29f, #286849);
+}
+
+.analytics-column small {
+    overflow: hidden;
+    color: #66736b;
+    font-size: 0.65rem;
+    text-overflow: ellipsis;
+}
+
+.analytics-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.analytics-table th {
+    padding: 0.7rem;
+    color: #66736b;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.analytics-table td {
+    padding: 0.85rem 0.7rem;
+    border-top: 1px solid #e0e8e3;
+    color: #35483e;
+    font-size: 0.85rem;
+}
+
+.analytics-deficit,
+.analytics-surplus,
+.analytics-status {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    background: #e2eee7;
+    color: #286849;
+    font-weight: 700;
+}
+
+.analytics-deficit {
+    background: #f9e3df;
+    color: #a53c2f;
+}
+
+.analytics-recent {
+    margin-top: 1rem;
+}
+
+.analytics-empty {
+    color: #66736b;
+}
+
+html.dark .analytics-hero {
+    border-color: #476355;
+    background:
+        radial-gradient(circle at 82% 20%, rgb(124 194 159 / 18%), transparent 28%),
+        linear-gradient(135deg, #173326, #1b2620 65%);
+    color: #eef8f2;
+}
+
+html.dark .analytics-hero p,
+html.dark .analytics-panel-heading p,
+html.dark .analytics-panel-heading a,
+html.dark .analytics-chip {
+    color: #9dd8ba;
+}
+
+html.dark .analytics-hero > div > span,
+html.dark .analytics-metric p,
+html.dark .analytics-metric span,
+html.dark .analytics-bar-row > div:first-child,
+html.dark .analytics-column small,
+html.dark .analytics-table th,
+html.dark .analytics-empty {
+    color: #b7c7bd;
+}
+
+html.dark .analytics-metric,
+html.dark .analytics-panel {
+    border-color: #476056;
+    background: #202d26;
+    box-shadow: 0 10px 28px rgb(0 0 0 / 20%);
+}
+
+html.dark .analytics-metric strong,
+html.dark .analytics-panel-heading h2,
+html.dark .analytics-table td {
+    color: #edf7f1;
+}
+
+html.dark .analytics-metric > .material-symbols-outlined {
+    background: #315542;
+    color: #a8e2c3;
+}
+
+html.dark .analytics-track,
+html.dark .analytics-column > div {
+    background: #35463d;
+}
+
+html.dark .analytics-table td {
+    border-color: #3f5147;
+}
+
+@media (max-width: 1250px) {
+    .analytics-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .analytics-panel {
+        grid-column: span 12;
+    }
+}
+
+@media (max-width: 900px) {
+    .analytics-hero {
+        align-items: start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    .analytics-metrics {
+        grid-template-columns: 1fr;
+    }
+}

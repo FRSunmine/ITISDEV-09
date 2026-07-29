@@ -17,7 +17,18 @@ SideQuest is a campus-focused micro-freelancing platform connecting verified stu
 - Student and client quest workspaces with deliverable review states
 - Quest completion, participant reviews, and verified portfolio entries
 - Administrator verification, account controls, and persisted analytics
-- SQLite persistence for users, profiles, quests, applications, conversations, messages, deliverables, reviews, and sessions
+- Student/client issue reporting with administrator resolution notes
+- Account-based theme, notification, visibility, and motion preferences
+- SQLite persistence for users, preferences, profiles, quests, applications, conversations, messages, deliverables, reviews, reports, and sessions
+
+## Proposal gaps remaining
+
+- Student quest filters for skill, category, budget, deadline, and work arrangement
+- Client freelancer discovery and filtering
+- Client-facing full student portfolios and freelancer invitations
+- Per-project rating display within portfolio entries
+
+Acceptance-level status is tracked in `MVP_CHECKLIST.md`.
 
 ## Explicitly out of scope
 - Payment processing or escrow

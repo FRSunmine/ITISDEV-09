@@ -5,9 +5,9 @@
 - `assets/css/base.css`: global reset and accessibility rules.
 - `assets/css/pages/`: page-specific styles.
 - `assets/js/config/*.tailwind.js`: current page-level Tailwind design tokens.
-- `assets/js/app.js`: shared demo UI interactions.
+- `assets/js/app.js`: shared navigation, account menu, preferences, and message indicators.
 - `assets/js/pages/`: page-specific interactions.
-- `assets/js/services/`: browser API service layer.
+- `assets/js/services/`: browser API client.
 - `server/`: Express API, authentication, and SQLite persistence.
 - `docs/`: scope, route map, and implementation plan.
 
@@ -22,7 +22,7 @@ Turn the approved static Stitch export into a coherent full-stack SideQuest MVP 
 - Criteria coverage is rule-based, not AI matching.
 - Implement authentication and core persistence with Node.js, Express, and SQLite.
 - Do not implement RAG, MCP, escrow, payment gateways, or blockchain.
-- `assets/js/services/rag-service.js` is experimental and must not be imported by production pages.
+- Real-time sockets, file storage, password reset, and outbound email are post-MVP work.
 
 ## Engineering rules
 - First preserve the current static multipage application and make it run without broken links or console errors.
@@ -39,10 +39,14 @@ Turn the approved static Stitch export into a coherent full-stack SideQuest MVP 
 - Develop: `npm run dev`
 - Build check: `npm run build`
 - Preview production build: `npm run preview`
+- Test API: `npm test`
+- Reset demo data: `npm run db:reset`
+- Serve production build: `npm start`
 
 ## Definition of done for each task
 - Requested flow works in the browser.
 - No new console errors.
+- Relevant integration tests pass.
 - `npm run build` succeeds.
 - Existing approved screens remain visually recognizable.
 - Summarize changed files, behavior added, tests run, and remaining limitations.

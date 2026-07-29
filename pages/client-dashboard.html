@@ -10,7 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <script type="module" src="../assets/js/config/client-dashboard.tailwind.js"></script>
 <link href="../assets/css/base.css" rel="stylesheet">
-<link href="../assets/css/pages/client-dashboard.css" rel="stylesheet">
 </head>
 <body class="bg-background text-on-background h-full font-body-md overflow-x-hidden">
 <!-- TopNavBar (Hidden on Mobile, Visible on Desktop) -->
@@ -28,10 +27,10 @@
 <div class="flex pt-16 h-full">
 <!-- SideNavBar (Client Portal) -->
 <aside class="hidden md:flex flex-col fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar-width bg-surface border-r border-border-subtle py-stack-lg z-40">
-<div class="px-margin-page mb-6 flex flex-col items-center">
-<img alt="Organization Logo" class="w-16 h-16 rounded-lg object-cover border border-border-subtle mb-3" data-alt="A modern, minimalist corporate logo for 'DLSU Green Media', featuring an abstract geometric leaf or 'G' motif in dark green on a crisp white background. High resolution, flat design, professional identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBui7BDVxlGTa4DZKCroo40X24IkZy3KyzItJEunPVMZGuPyq5vLbGI9exifFa3mW6f9Tv51Ix9vt49BdMsPa3F3noKrD5b24-msGUua1mR0thBv1_GQWSB0kIhEYL1A2BEW9xuXEWTTYUljLPIlQWbgLyszCElepmzN_BkaAQ7nQSmKZIen_TMpRQb5N_TIwQFt3BLRLsLkccIF1rTjxwIe1y62VvgkUKARnp-N3YQ_F3GfZ61PRB8KzG0fvB4pr9S7EkqmjkGWZo">
-<h2 class="font-headline-sm text-headline-sm text-on-surface text-center">Client Portal</h2>
-<p class="font-label-md text-label-md text-on-surface-variant text-center">Manage Quests</p>
+<div class="client-shell-identity">
+<img alt="Organization Logo" class="client-shell-logo rounded-lg object-cover border border-border-subtle" data-alt="A modern, minimalist corporate logo for 'DLSU Green Media', featuring an abstract geometric leaf or 'G' motif in dark green on a crisp white background. High resolution, flat design, professional identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBui7BDVxlGTa4DZKCroo40X24IkZy3KyzItJEunPVMZGuPyq5vLbGI9exifFa3mW6f9Tv51Ix9vt49BdMsPa3F3noKrD5b24-msGUua1mR0thBv1_GQWSB0kIhEYL1A2BEW9xuXEWTTYUljLPIlQWbgLyszCElepmzN_BkaAQ7nQSmKZIen_TMpRQb5N_TIwQFt3BLRLsLkccIF1rTjxwIe1y62VvgkUKARnp-N3YQ_F3GfZ61PRB8KzG0fvB4pr9S7EkqmjkGWZo">
+<div class="client-shell-identity-copy"><h2 class="font-headline-sm text-headline-sm text-on-surface">Client Portal</h2>
+<p class="font-label-md text-label-md text-on-surface-variant">Manage Quests</p></div>
 </div>
 <nav class="flex-1 overflow-y-auto px-stack-sm space-y-1">
 <a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 bg-secondary-fixed text-on-secondary-fixed font-semibold rounded-lg" href="client-dashboard.html">
@@ -52,15 +51,19 @@
 </a>
 <a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="client-quest-workspace.html">
 <span class="material-symbols-outlined">assignment</span>
-<span class="font-label-md text-label-md">Active Projects</span>
+<span class="font-label-md text-label-md" data-nav-label>Active Projects</span>
 </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="account-profile.html">
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="client-messages.html">
+<span class="material-symbols-outlined">forum</span>
+<span class="font-label-md text-label-md" data-nav-label>Messages</span>
+</a>
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="client-organization-profile.html">
 <span class="material-symbols-outlined">business</span>
-<span class="font-label-md text-label-md">Organization Profile</span>
+<span class="font-label-md text-label-md" data-nav-label>Organization Profile</span>
 </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="account-profile.html">
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant hover:bg-surface-container-high transition-all rounded-lg" href="client-settings.html">
 <span class="material-symbols-outlined">settings</span>
-<span class="font-label-md text-label-md">Settings</span>
+<span class="font-label-md text-label-md" data-nav-label>Settings</span>
 </a>
 </nav>
 <div class="p-stack-md mt-auto">

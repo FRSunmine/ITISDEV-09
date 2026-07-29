@@ -13,7 +13,7 @@
 <link href="../assets/css/base.css" rel="stylesheet">
 <link href="../assets/css/pages/admin-operations.css" rel="stylesheet">
 </head>
-<body class="bg-background text-on-background font-body-md text-body-md h-screen overflow-hidden flex flex-col">
+<body class="bg-background text-on-background font-body-md text-body-md min-h-screen">
 <!-- TopNavBar -->
 <header class="fixed top-0 left-0 w-full h-16 z-50 flex justify-between items-center px-margin-page bg-surface-container-lowest border-b border-border-subtle dark:border-on-surface-variant font-body-md text-body-md">
 <div class="flex items-center gap-4">
@@ -30,46 +30,42 @@
 <img alt="User profile avatar" class="w-8 h-8 rounded-full border border-border-subtle object-cover" data-alt="A highly detailed close-up portrait of a professional administrator, wearing modern smart-casual attire, in a brightly lit modern office setting. The lighting is soft and flattering, creating a high-end corporate aesthetic. The background is slightly blurred showing modern architectural elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjqHViINmpsPQclHJkLDt9H7DeWTd0HVACP1nVo9yWkbma9lNr6Hg6Wq2K473cqy8NWwN-Q1tqhRarpNtJ9mdWZww3IhKfL5dE8sYNmmbVU5SAZN600vFubfVGO5LcCQWYO89xE0P6K6IBwu79SSlWF1ATnsi2RX9X8FKZSyN2ATvpbm69JiUIV-EPxmhuid4TcOIxPW4yZVvIpquWyXkjxOfO8Kq2gTC_tEZqGPRWHZOt7i_1SFF8dIbRwiaAWvedss5cUjiRYJ0">
 </div>
 </header>
-<div class="flex flex-1 pt-16">
+<div class="flex pt-16 min-h-screen">
 <!-- SideNavBar -->
-<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar-width bg-surface dark:bg-on-background border-r border-border-subtle dark:border-on-surface-variant flex flex-col py-stack-lg z-40">
-<div class="px-stack-lg mb-8 flex items-center gap-4">
-<img alt="Admin Seal" class="w-12 h-12 rounded-lg object-cover border border-border-subtle" data-alt="A beautifully crafted, modern minimalist emblem representing an administrative seal. It features clean geometric lines forming a stylized shield or crest, rendered in deep primary greens against a pristine white background. The aesthetic is extremely polished and high-end SaaS corporate." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWxQikaCsSXZLi-x9fWrEcnoOa-3IW_jeu2xtrorMBke8xsSwOHFxuag91dla-6DIn3kYt0MopMd__mHvu8-ltAvA_hs4O6e-dgydV2gJsTd4s_SQ_U9KiLIYaj2CUOn3Q8j5lXnrcBZuZO-KM3SAKiNILkCkKJL-GF_CH7j0DSueoZ4iHeW4SQk4c1V2mb4wmluUQPaO7z-Jtni-T-wedweMr_amIgk0CR80fG_54KkP_wJiaI_pDr5VdzV8yGeWpd-Mr2dQl9gU">
-<div><h2 class="font-headline-sm text-headline-sm text-primary">Administrator</h2><p class="font-label-sm text-label-sm text-secondary">— System Control</p></div>
+<aside class="admin-shell-sidebar fixed left-0 top-16 h-[calc(100vh-64px)] bg-surface dark:bg-on-background border-r border-border-subtle dark:border-on-surface-variant flex flex-col py-stack-lg z-40">
+<div class="admin-shell-identity">
+<div aria-label="SideQuest administration" class="admin-shell-logo admin-shell-mark"><span class="material-symbols-outlined">shield_person</span></div>
+<div><h2 class="font-headline-sm text-headline-sm text-primary">Administrator</h2><p class="font-label-sm text-label-sm text-secondary">System Control</p></div>
 </div>
 <nav class="flex-1 overflow-y-auto font-label-md text-label-md">
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 bg-secondary-fixed dark:bg-secondary-container text-on-secondary-fixed dark:text-on-secondary-container font-semibold rounded-lg transition-all cursor-pointer" href="admin-operations.html">
+<a class="admin-section-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container rounded-lg transition-all cursor-pointer" data-admin-section="dashboard" href="admin-operations.html">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">admin_panel_settings</span>
                     Dashboard
                 </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" href="account-profile.html">
+<a class="admin-section-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" data-admin-section="verification-queue" href="admin-operations.html#verification-queue">
 <span class="material-symbols-outlined">verified_user</span>
                     Verification Queue
                 </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" href="admin-operations.html">
+<a class="admin-section-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" data-admin-section="reports" href="admin-operations.html#reports">
+<span class="material-symbols-outlined">flag</span>
+                    User Reports
+                </a>
+<a class="admin-section-link group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" data-admin-section="users" href="admin-operations.html#users">
 <span class="material-symbols-outlined">group</span>
                     Users
-                </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" href="admin-operations.html">
-<span class="material-symbols-outlined">list_alt</span>
-                    Quests
-                </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" href="platform-analytics.html">
-<span class="material-symbols-outlined">analytics</span>
-                    Reports
                 </a>
 <a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" href="platform-analytics.html">
 <span class="material-symbols-outlined">monitoring</span>
                     Analytics
                 </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" href="admin-operations.html">
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" href="admin-settings.html">
 <span class="material-symbols-outlined">settings_applications</span>
                     Platform Settings
                 </a>
 </nav>
 </aside>
 <!-- Main Content -->
-<main class="flex-1 ml-sidebar-width overflow-y-auto p-margin-page">
+<main class="admin-shell-main p-margin-page">
 <div class="max-w-container-max mx-auto space-y-gutter" data-admin-operations>
 <header class="mb-8">
 <h1 class="font-display-lg text-display-lg text-primary">Operations Overview</h1>

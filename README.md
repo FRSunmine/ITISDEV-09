@@ -76,7 +76,8 @@ This permanently removes local changes and recreates the database with the sampl
 - Student/client workspaces with deliverable review and completion
 - Participant reviews and automatic verified portfolio entries
 - Client dashboard and administrator operations/analytics
-- Persistent SQLite data and dark-mode preferences
+- Persistent SQLite data and account-based preferences
+- Student/client issue reporting with administrator resolution
 
 ## Limitations
 
@@ -88,6 +89,7 @@ This permanently removes local changes and recreates the database with the sampl
 ## Documentation
 
 - `docs/BACKEND.md` - API reference
+- `docs/MVP_CHECKLIST.md` - proposal acceptance status and next priorities
 - `docs/PRODUCT_SCOPE.md` - MVP scope
 - `docs/SCREEN_AND_ROUTE_MAP.md` - screens and routes
 - `docs/IMPLEMENTATION_PLAN.md` - completed work and release hardening

@@ -36,6 +36,18 @@ function migrate(db) {
             created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
         );
 
+        CREATE TABLE IF NOT EXISTS user_preferences (
+            user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+            theme TEXT NOT NULL DEFAULT 'light' CHECK (theme IN ('light', 'dark')),
+            application_updates INTEGER NOT NULL DEFAULT 1 CHECK (application_updates IN (0, 1)),
+            message_notifications INTEGER NOT NULL DEFAULT 1 CHECK (message_notifications IN (0, 1)),
+            quest_recommendations INTEGER NOT NULL DEFAULT 1 CHECK (quest_recommendations IN (0, 1)),
+            profile_visibility TEXT NOT NULL DEFAULT 'campus'
+                CHECK (profile_visibility IN ('campus', 'clients', 'private')),
+            reduce_motion INTEGER NOT NULL DEFAULT 0 CHECK (reduce_motion IN (0, 1)),
+            updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+        );
+
         CREATE TABLE IF NOT EXISTS student_profiles (
             user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
             university TEXT NOT NULL,
@@ -134,6 +146,20 @@ function migrate(db) {
             UNIQUE (quest_id, reviewer_id, reviewee_id)
         );
 
+        CREATE TABLE IF NOT EXISTS reports (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            reporter_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+            subject TEXT NOT NULL,
+            category TEXT NOT NULL
+                CHECK (category IN ('user_conduct', 'quest_content', 'payment_dispute', 'technical_issue', 'other')),
+            description TEXT NOT NULL,
+            status TEXT NOT NULL DEFAULT 'open'
+                CHECK (status IN ('open', 'resolved', 'dismissed')),
+            admin_notes TEXT,
+            created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+        );
+
         CREATE TABLE IF NOT EXISTS portfolio_entries (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             student_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
@@ -148,6 +174,7 @@ function migrate(db) {
         CREATE INDEX IF NOT EXISTS idx_applications_student ON applications(student_id);
         CREATE INDEX IF NOT EXISTS idx_applications_quest ON applications(quest_id);
         CREATE INDEX IF NOT EXISTS idx_messages_conversation ON messages(conversation_id, created_at);
+        CREATE INDEX IF NOT EXISTS idx_reports_status ON reports(status, created_at);
         CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);
     `);
 

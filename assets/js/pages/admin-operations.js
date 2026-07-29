@@ -50,8 +50,34 @@ function renderUsers(query = "") {
         : '<tr><td class="p-stack-lg text-center text-secondary" colspan="4">No users match this search.</td></tr>';
 }
 
+function renderSkills(query = "") {
+    const table = root.querySelector("[data-admin-skills]");
+    if (!table || !operations) return;
+    const normalized = query.trim().toLowerCase();
+    const skills = operations.skillGaps.filter((item) => item.name.toLowerCase().includes(normalized));
+    table.innerHTML = skills.length
+        ? skills.map((item) => `
+            <tr class="border-b border-border-subtle">
+                <td class="p-stack-md text-primary">${escapeHtml(item.name)}</td>
+                <td class="p-stack-md text-right">${item.supply}</td>
+                <td class="p-stack-md text-right">${item.demand}</td>
+                <td class="p-stack-md text-right ${item.gap < 0 ? "text-error" : "text-status-success"}">${item.gap > 0 ? "+" : ""}${item.gap}</td>
+            </tr>`).join("")
+        : '<tr><td class="p-stack-lg text-center text-secondary" colspan="4">No active skills match this search.</td></tr>';
+}
+
+function syncSectionNavigation() {
+    const activeSection = window.location.hash.slice(1) || "dashboard";
+    document.querySelectorAll("[data-admin-section]").forEach((link) => {
+        const isActive = link.dataset.adminSection === activeSection;
+        link.classList.toggle("is-active", isActive);
+        if (isActive) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+    });
+}
+
 function render() {
-    const { summary, pendingStudents, skillGaps } = operations;
+    const { summary, pendingStudents } = operations;
     root.innerHTML = `
         <header class="mb-8">
             <h1 class="font-display-lg text-display-lg text-primary">Operations Overview</h1>
@@ -65,7 +91,7 @@ function render() {
         </div>
         <p class="min-h-6 text-secondary" aria-live="polite" data-admin-message></p>
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-gutter">
-            <section class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden">
+            <section class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden scroll-mt-24" id="verification-queue">
                 <div class="p-stack-md border-b border-border-subtle bg-surface-container-low">
                     <h2 class="font-headline-sm text-headline-sm text-primary">Verification Queue</h2>
                 </div>
@@ -92,24 +118,48 @@ function render() {
                 </div>
             </section>
             <section class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden">
-                <div class="p-stack-md border-b border-border-subtle bg-surface-container-low">
+                <div class="p-stack-md border-b border-border-subtle bg-surface-container-low flex flex-wrap items-center justify-between gap-3">
                     <h2 class="font-headline-sm text-headline-sm text-primary">Skill Supply and Demand</h2>
+                    <label class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-secondary">search</span>
+                        <input class="w-56 rounded-lg border border-border-subtle bg-surface pl-9 pr-3 py-2 text-sm" data-skill-search placeholder="Search skills" type="search">
+                    </label>
                 </div>
                 <table class="w-full text-left">
                     <thead><tr class="border-b border-border-subtle">
                         <th class="p-stack-md text-secondary">Skill</th><th class="p-stack-md text-right text-secondary">Supply</th>
                         <th class="p-stack-md text-right text-secondary">Demand</th><th class="p-stack-md text-right text-secondary">Gap</th>
                     </tr></thead>
-                    <tbody>${skillGaps.map((item) => `
-                        <tr class="border-b border-border-subtle">
-                            <td class="p-stack-md text-primary">${escapeHtml(item.name)}</td>
-                            <td class="p-stack-md text-right">${item.supply}</td><td class="p-stack-md text-right">${item.demand}</td>
-                            <td class="p-stack-md text-right ${item.gap < 0 ? "text-error" : "text-status-success"}">${item.gap > 0 ? "+" : ""}${item.gap}</td>
-                        </tr>`).join("")}</tbody>
+                    <tbody data-admin-skills></tbody>
                 </table>
             </section>
         </div>
-        <section class="mt-gutter bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden">
+        <section class="mt-gutter bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden scroll-mt-24" id="reports">
+            <div class="p-stack-md border-b border-border-subtle bg-surface-container-low">
+                <h2 class="font-headline-sm text-headline-sm text-primary">User Reports</h2>
+                <p class="text-sm text-secondary mt-1">Issues submitted by students and clients.</p>
+            </div>
+            <div class="divide-y divide-border-subtle">
+                ${operations.reports.length ? operations.reports.map((report) => `
+                    <article class="p-stack-md">
+                        <div class="flex flex-wrap items-start justify-between gap-3">
+                            <div><h3 class="font-semibold text-primary">${escapeHtml(report.subject)}</h3>
+                                <p class="text-xs text-secondary mt-1">${escapeHtml(report.reporter_name)} (${escapeHtml(report.reporter_role)}) · ${escapeHtml(formatDate(report.created_at))}</p>
+                            </div>
+                            <span class="px-2 py-1 rounded-full bg-surface-container-high text-xs capitalize">${escapeHtml(report.status)}</span>
+                        </div>
+                        <p class="mt-3 text-sm text-on-surface-variant whitespace-pre-line">${escapeHtml(report.description)}</p>
+                        <p class="mt-2 text-xs uppercase tracking-wider text-secondary">${escapeHtml(report.category.replaceAll("_", " "))}</p>
+                        ${report.status === "open" ? `
+                            <div class="mt-4 flex flex-col md:flex-row gap-2">
+                                <input class="flex-1 rounded-lg border border-border-subtle bg-surface px-3 py-2 text-sm" data-report-notes="${report.id}" maxlength="1000" placeholder="Optional administrative note">
+                                <button class="px-3 py-2 rounded border border-border-subtle text-secondary" data-report-action="${report.id}" data-report-status="dismissed" type="button">Dismiss</button>
+                                <button class="px-3 py-2 rounded bg-primary text-on-primary" data-report-action="${report.id}" data-report-status="resolved" type="button">Resolve</button>
+                            </div>` : report.admin_notes ? `<p class="mt-3 text-sm text-secondary"><strong>Admin note:</strong> ${escapeHtml(report.admin_notes)}</p>` : ""}
+                    </article>`).join("") : '<p class="p-stack-lg text-center text-secondary">No reports have been submitted.</p>'}
+            </div>
+        </section>
+        <section class="mt-gutter bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden scroll-mt-24" id="users">
             <div class="p-stack-md border-b border-border-subtle bg-surface-container-low">
                 <h2 class="font-headline-sm text-headline-sm text-primary">Account Management</h2>
             </div>
@@ -122,6 +172,11 @@ function render() {
             </table></div>
         </section>`;
     renderUsers(search?.value);
+    renderSkills();
+    syncSectionNavigation();
+    if (window.location.hash) {
+        requestAnimationFrame(() => document.querySelector(window.location.hash)?.scrollIntoView());
+    }
 }
 
 async function loadOperations(message = "") {
@@ -152,18 +207,28 @@ async function update(path, body, successMessage) {
 }
 
 search?.addEventListener("input", () => renderUsers(search.value));
+window.addEventListener("hashchange", syncSectionNavigation);
+syncSectionNavigation();
+root.addEventListener("input", (event) => {
+    if (event.target.matches("[data-skill-search]")) renderSkills(event.target.value);
+});
 document.addEventListener("click", async (event) => {
     const verification = event.target.closest("[data-verify-student]");
     const userStatus = event.target.closest("[data-user-status]");
-    if (!verification && !userStatus) return;
+    const reportAction = event.target.closest("[data-report-action]");
+    if (!verification && !userStatus && !reportAction) return;
     event.target.disabled = true;
     try {
         if (verification) {
             await update(`/api/v1/admin/students/${verification.dataset.verifyStudent}/verification`,
                 { decision: verification.dataset.decision }, "Verification decision saved.");
-        } else {
+        } else if (userStatus) {
             await update(`/api/v1/admin/users/${userStatus.dataset.userStatus}/status`,
                 { status: userStatus.dataset.nextStatus }, "Account status updated.");
+        } else {
+            const notes = document.querySelector(`[data-report-notes="${reportAction.dataset.reportAction}"]`);
+            await update(`/api/v1/admin/reports/${reportAction.dataset.reportAction}`,
+                { status: reportAction.dataset.reportStatus, adminNotes: notes?.value || "" }, "Report updated.");
         }
     } catch (error) {
         globalThis.alert(error.message);

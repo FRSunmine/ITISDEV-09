@@ -8,20 +8,26 @@ export const routes = {
     studentProfile: "/pages/student-profile.html",
     studentSettings: "/pages/student-settings.html",
     studentVerification: "/pages/student-verification.html",
+    studentReport: "/pages/student-report.html",
     clientDashboard: "/pages/client-dashboard.html",
+    clientMessages: "/pages/client-messages.html",
+    clientOrganizationProfile: "/pages/client-organization-profile.html",
+    clientSettings: "/pages/client-settings.html",
+    clientReport: "/pages/client-report.html",
     createQuest: "/pages/create-quest.html",
     applicantSelection: "/pages/applicant-selection.html",
     clientWorkspace: "/pages/client-quest-workspace.html",
     adminOperations: "/pages/admin-operations.html",
     platformAnalytics: "/pages/platform-analytics.html",
+    adminSettings: "/pages/admin-settings.html",
     accountProfile: "/pages/account-profile.html",
 };
 
 document.documentElement.classList.add("is-loading");
 
 const THEME_STORAGE_KEY = "sidequest-theme";
-const PREFERENCES_STORAGE_KEY = "sidequest-preferences";
 const defaultPreferences = Object.freeze({
+    theme: "light",
     applicationUpdates: true,
     messageNotifications: true,
     questRecommendations: true,
@@ -63,20 +69,27 @@ function syncThemeControls(theme = document.documentElement.dataset.theme || "li
 initializeTheme();
 
 function loadPreferences() {
-    try {
-        const storedPreferences = JSON.parse(window.localStorage.getItem(PREFERENCES_STORAGE_KEY) || "{}");
-        return { ...defaultPreferences, ...storedPreferences };
-    } catch {
-        return { ...defaultPreferences };
-    }
+    return { ...defaultPreferences };
 }
 
-function savePreferences(preferences) {
-    try {
-        window.localStorage.setItem(PREFERENCES_STORAGE_KEY, JSON.stringify(preferences));
-    } catch {
-        // Keep preferences working for this page even when storage is unavailable.
+async function savePreferences(nextPreferences) {
+    const response = await fetch("/api/v1/preferences", {
+        method: "PATCH",
+        credentials: "include",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify(nextPreferences),
+    });
+    if (!response.ok) {
+        throw new Error("Preferences could not be saved.");
     }
+    const result = await response.json();
+    preferences = { ...defaultPreferences, ...result.preferences };
+    try {
+        window.localStorage.setItem(THEME_STORAGE_KEY, preferences.theme);
+    } catch {
+        // The server remains authoritative when local theme caching is unavailable.
+    }
+    return preferences;
 }
 
 function applyPreferences(preferences) {
@@ -96,7 +109,7 @@ function applyPreferences(preferences) {
     });
 }
 
-function announceSettingsSaved(message = "Preferences saved on this device.") {
+function announceSettingsSaved(message = "Preferences saved to your account.") {
     const status = document.querySelector("[data-settings-status]");
     if (status) {
         status.textContent = message;
@@ -105,6 +118,24 @@ function announceSettingsSaved(message = "Preferences saved on this device.") {
 
 let preferences = loadPreferences();
 applyPreferences(preferences);
+
+async function hydrateAccountPreferences() {
+    const response = await fetch("/api/v1/preferences", {
+        credentials: "include",
+        headers: { Accept: "application/json" },
+    });
+    if (!response.ok) return;
+    const result = await response.json();
+    preferences = { ...defaultPreferences, ...result.preferences };
+    applyTheme(preferences.theme);
+    applyPreferences(preferences);
+    syncThemeControls(preferences.theme);
+    try {
+        window.localStorage.setItem(THEME_STORAGE_KEY, preferences.theme);
+    } catch {
+        // Theme caching is optional; persisted preferences live on the account.
+    }
+}
 
 const sharedAssets = Object.freeze({
     studentAvatar:
@@ -212,11 +243,14 @@ function normalizeAccountNavigation() {
     const role = inferPageRole();
     document.querySelectorAll("a").forEach((link) => {
         const label = link.textContent.trim().toLowerCase();
-        if (
-            (role === "client" && ["settings", "organization profile"].includes(label))
-            || (role === "admin" && label === "platform settings")
-        ) {
-            link.href = routes.accountProfile;
+        if (role === "client" && label === "settings") {
+            link.href = routes.clientSettings;
+        }
+        if (role === "client" && label === "organization profile") {
+            link.href = routes.clientOrganizationProfile;
+        }
+        if (role === "admin" && label === "platform settings") {
+            link.href = routes.adminSettings;
         }
         if (role === "client" && label === "my quests") {
             link.href = `${routes.clientDashboard}#my-quests`;
@@ -227,11 +261,16 @@ function normalizeAccountNavigation() {
         if (role === "student" && label === "messages") {
             link.href = routes.studentMessages;
         }
+        if (role === "client" && label === "messages") {
+            link.href = routes.clientMessages;
+        }
     });
 }
 
 async function refreshMessageIndicators() {
-    if (inferPageRole() !== "student") return;
+    const role = inferPageRole();
+    if (!["student", "client"].includes(role)) return;
+    const messageRoute = role === "student" ? routes.studentMessages : routes.clientMessages;
     const response = await fetch("/api/v1/messages", {
         credentials: "include",
         headers: { Accept: "application/json" },
@@ -240,10 +279,11 @@ async function refreshMessageIndicators() {
     const inbox = await response.json();
     const unreadCount = Number(inbox.unreadCount) || 0;
 
-    document.querySelectorAll(".student-shell-nav-link").forEach((link) => {
-        const label = link.querySelector(".student-shell-nav-label")?.textContent.trim().toLowerCase();
+    document.querySelectorAll("a").forEach((link) => {
+        const labelElement = link.querySelector(".student-shell-nav-label, [data-nav-label]");
+        const label = labelElement?.textContent.trim().toLowerCase();
         if (label !== "messages") return;
-        link.href = routes.studentMessages;
+        link.href = messageRoute;
         link.querySelectorAll("[data-message-count], .bg-status-error").forEach((badge) => badge.remove());
         if (unreadCount > 0) {
             const badge = document.createElement("span");
@@ -272,7 +312,9 @@ async function refreshMessageIndicators() {
 }
 
 function initializeMessageNavigation() {
-    if (inferPageRole() !== "student") return;
+    const role = inferPageRole();
+    if (!["student", "client"].includes(role)) return;
+    const messageRoute = role === "student" ? routes.studentMessages : routes.clientMessages;
     document.querySelectorAll(".material-symbols-outlined").forEach((icon) => {
         if (icon.textContent.trim() !== "notifications") return;
         let control = icon.closest("a, button");
@@ -284,11 +326,11 @@ function initializeMessageNavigation() {
         control.classList.add("message-notification-control");
         control.querySelectorAll("span.absolute").forEach((badge) => badge.remove());
         if (control.tagName === "A") {
-            control.href = routes.studentMessages;
+            control.href = messageRoute;
         } else {
             control.type = "button";
             control.addEventListener("click", () => {
-                window.location.href = routes.studentMessages;
+                window.location.href = messageRoute;
             });
         }
     });
@@ -347,14 +389,19 @@ function initializeAccountMenu() {
             [routes.studentProfile, "account_circle", "Profile"],
             [routes.studentMessages, "forum", "Messages"],
             [routes.studentSettings, "settings", "Settings"],
+            [routes.studentReport, "flag", "Report an issue"],
         ],
         client: [
-            [routes.accountProfile, "account_circle", "Profile"],
+            [routes.clientOrganizationProfile, "business", "Organization Profile"],
+            [routes.clientMessages, "forum", "Messages"],
             [`${routes.clientDashboard}#my-quests`, "work", "My quests"],
+            [routes.clientSettings, "settings", "Settings"],
+            [routes.clientReport, "flag", "Report an issue"],
         ],
         admin: [
             [routes.accountProfile, "account_circle", "Profile"],
             [routes.platformAnalytics, "monitoring", "Analytics"],
+            [routes.adminSettings, "settings", "Settings"],
         ],
     };
 
@@ -535,14 +582,10 @@ document.addEventListener("click", (event) => {
     const resetPreferences = event.target.closest("[data-reset-preferences]");
     if (resetPreferences) {
         preferences = { ...defaultPreferences };
-        savePreferences(preferences);
         applyPreferences(preferences);
         const appliedTheme = applyTheme("light");
-        try {
-            window.localStorage.setItem(THEME_STORAGE_KEY, appliedTheme);
-        } catch {
-            // Keep the restored theme active for this page when storage is unavailable.
-        }
+        preferences.theme = appliedTheme;
+        savePreferences(preferences).catch(() => announceSettingsSaved("Preferences could not be saved."));
         syncThemeControls(appliedTheme);
         announceSettingsSaved("Preferences restored to their defaults.");
     }
@@ -564,13 +607,8 @@ document.addEventListener("change", (event) => {
     if (themeToggle) {
         const nextTheme = themeToggle.checked ? "dark" : "light";
         const appliedTheme = applyTheme(nextTheme);
-
-        try {
-            window.localStorage.setItem(THEME_STORAGE_KEY, appliedTheme);
-        } catch {
-            // Ignore storage failures and continue with the in-memory theme state.
-        }
-
+        preferences.theme = appliedTheme;
+        savePreferences(preferences).catch(() => announceSettingsSaved("Preferences could not be saved."));
         syncThemeControls(appliedTheme);
         announceSettingsSaved();
         return;
@@ -581,7 +619,7 @@ document.addEventListener("change", (event) => {
         const key = preferenceControl.dataset.preference;
         preferences[key] =
             preferenceControl.type === "checkbox" ? preferenceControl.checked : preferenceControl.value;
-        savePreferences(preferences);
+        savePreferences(preferences).catch(() => announceSettingsSaved("Preferences could not be saved."));
         applyPreferences(preferences);
         announceSettingsSaved();
     }
@@ -593,6 +631,7 @@ initializeMessageNavigation();
 initializeAccountMenu();
 activateRoleButton(document.querySelector("[data-role-button][aria-pressed='true']"));
 syncThemeControls();
+hydrateAccountPreferences().catch(() => {});
 
 document.addEventListener("sidequest:messages-read", () => {
     refreshMessageIndicators().catch(() => {});

@@ -8,7 +8,15 @@
 - Added dedicated student application history and persisted quest conversations.
 - Connected client dashboard, quest creation, applicant selection, and workspace flows.
 - Connected administrator verification, moderation, and analytics.
+- Added account-scoped preferences and persisted user/client reporting.
 - Added backend integration tests and production build checks.
+
+## Proposal alignment
+
+The implemented workflow is stable, but the original proposal is not fully complete. The remaining
+development priorities are student quest filters, a client freelancer directory with invitations,
+and fuller portfolio evidence during applicant review. See `MVP_CHECKLIST.md` for acceptance-level
+status.
 
 ## Release hardening
 - Run manual acceptance tests on current Chrome, Edge, and Firefox.

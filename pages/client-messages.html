@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Client Messages | SideQuest</title>
+<script>
+document.documentElement.classList.add("is-loading");
+try {
+    const dark = localStorage.getItem("sidequest-theme") === "dark";
+    document.documentElement.classList.toggle("dark", dark);
+    document.documentElement.classList.toggle("light", !dark);
+} catch {}
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script type="module" src="../assets/js/config/client-dashboard.tailwind.js"></script>
+<link href="../assets/css/base.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-surface min-h-screen font-body-md">
+<header class="fixed top-0 left-0 w-full h-16 z-50 hidden md:flex justify-between items-center px-margin-page bg-surface-container-lowest border-b border-border-subtle">
+<span class="font-display-lg text-display-lg font-bold text-primary">SideQuest</span>
+<div class="flex items-center gap-5"><button aria-label="Notifications" class="p-2 rounded-full text-primary"><span class="material-symbols-outlined">notifications</span></button><img alt="User profile avatar" class="w-8 h-8 rounded-full border border-border-subtle"></div>
+</header>
+<aside class="hidden md:flex flex-col fixed left-0 top-16 h-[calc(100vh-64px)] w-sidebar-width bg-surface border-r border-border-subtle py-stack-lg z-40">
+<div class="client-shell-identity"><img alt="Organization Logo" class="client-shell-logo rounded-lg object-cover border border-border-subtle"><div class="client-shell-identity-copy"><h2 class="font-headline-sm text-headline-sm text-on-surface">Client Portal</h2><p class="font-label-md text-label-md text-on-surface-variant">Manage Quests</p></div></div>
+<nav class="flex-1 overflow-y-auto px-stack-sm space-y-1">
+<a class="client-nav-link" href="client-dashboard.html"><span class="material-symbols-outlined">dashboard</span><span data-nav-label>Dashboard</span></a>
+<a class="client-nav-link" href="client-dashboard.html#my-quests"><span class="material-symbols-outlined">work</span><span data-nav-label>My Quests</span></a>
+<a class="client-nav-link" href="create-quest.html"><span class="material-symbols-outlined">add_box</span><span data-nav-label>Create Quest</span></a>
+<a class="client-nav-link" href="applicant-selection.html"><span class="material-symbols-outlined">group</span><span data-nav-label>Applicants</span></a>
+<a class="client-nav-link" href="client-quest-workspace.html"><span class="material-symbols-outlined">assignment</span><span data-nav-label>Active Projects</span></a>
+<a class="client-nav-link bg-secondary-fixed text-on-secondary-fixed font-semibold" href="client-messages.html" aria-current="page"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">forum</span><span data-nav-label>Messages</span></a>
+<a class="client-nav-link" href="client-organization-profile.html"><span class="material-symbols-outlined">business</span><span data-nav-label>Organization Profile</span></a>
+<a class="client-nav-link" href="client-settings.html"><span class="material-symbols-outlined">settings</span><span data-nav-label>Settings</span></a>
+</nav>
+</aside>
+<main class="md:ml-sidebar-width pt-16 h-screen overflow-hidden">
+<div class="h-full p-4 md:p-6 grid md:grid-cols-[320px_1fr] gap-4 max-w-[1200px] mx-auto">
+<aside class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden flex flex-col">
+<div class="p-4 border-b border-border-subtle"><h1 class="font-headline-md text-headline-md">Messages</h1><p class="text-sm text-on-surface-variant mt-1">Student conversations</p></div>
+<div class="overflow-y-auto divide-y divide-border-subtle" data-conversation-list><p class="p-5 text-on-surface-variant">Loading conversations...</p></div>
+</aside>
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden flex flex-col min-h-0">
+<header class="p-4 border-b border-border-subtle" data-message-header><h2 class="font-headline-sm text-headline-sm">Select a conversation</h2></header>
+<div class="flex-1 overflow-y-auto p-5 space-y-4" data-message-list><p class="text-on-surface-variant">Quest messages will appear here.</p></div>
+<form class="p-4 border-t border-border-subtle flex gap-3" data-message-form>
+<input class="flex-1 rounded-lg border border-border-subtle bg-surface px-4 py-2.5" data-message-input disabled maxlength="2000" placeholder="Write a message..." required>
+<button class="px-4 py-2.5 rounded-lg bg-primary text-on-primary disabled:opacity-50" disabled type="submit">Send</button>
+</form>
+</section>
+</div>
+</main>
+<script type="module" src="../assets/js/app.js"></script>
+<script type="module" src="../assets/js/pages/student-messages.js"></script>
+</body>
+</html>

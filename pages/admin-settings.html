@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Platform Settings | SideQuest</title>
+<script>document.documentElement.classList.add("is-loading");try{const dark=localStorage.getItem("sidequest-theme")==="dark";document.documentElement.classList.toggle("dark",dark);document.documentElement.classList.toggle("light",!dark)}catch{}</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script type="module" src="../assets/js/config/admin-operations.tailwind.js"></script><link href="../assets/css/base.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-surface min-h-screen font-body-md">
+<header class="fixed top-0 left-0 w-full h-16 z-50 flex justify-between items-center px-margin-page bg-surface-container-lowest border-b border-border-subtle"><span class="font-display-lg text-display-lg font-bold text-primary dark:text-primary-fixed">SideQuest</span><img alt="Administrator profile avatar" class="w-8 h-8 rounded-full border border-border-subtle"></header>
+<aside class="admin-shell-sidebar fixed left-0 top-16 h-[calc(100vh-64px)] bg-surface dark:bg-on-background border-r border-border-subtle hidden md:flex flex-col py-stack-lg">
+<div class="admin-shell-identity"><div aria-label="SideQuest administration" class="admin-shell-logo admin-shell-mark"><span class="material-symbols-outlined">shield_person</span></div><div><h2 class="font-headline-sm text-headline-sm text-primary">Administrator</h2><p class="text-on-surface-variant">System Control</p></div></div>
+<nav class="flex-1 px-stack-sm space-y-1">
+<a class="client-nav-link" href="admin-operations.html"><span class="material-symbols-outlined">dashboard</span><span>Dashboard</span></a>
+<a class="client-nav-link" href="admin-operations.html#verification-queue"><span class="material-symbols-outlined">verified_user</span><span>Verification Queue</span></a>
+<a class="client-nav-link" href="admin-operations.html#reports"><span class="material-symbols-outlined">flag</span><span>User Reports</span></a>
+<a class="client-nav-link" href="admin-operations.html#users"><span class="material-symbols-outlined">group</span><span>Users</span></a>
+<a class="client-nav-link" href="platform-analytics.html"><span class="material-symbols-outlined">analytics</span><span>Analytics</span></a>
+<a class="client-nav-link bg-secondary-fixed text-on-secondary-fixed font-semibold" href="admin-settings.html" aria-current="page"><span class="material-symbols-outlined">settings_applications</span><span>Platform Settings</span></a>
+</nav></aside>
+<main class="admin-shell-main pt-16 min-h-screen"><div class="max-w-4xl mx-auto p-margin-page">
+<div class="mb-8"><p class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Administration</p><h1 class="font-display-lg text-display-lg mt-2">Platform Settings</h1><p class="text-on-surface-variant mt-2">Control administrator display preferences and session access.</p></div>
+<div class="grid gap-6">
+<section class="tonal-card bg-surface-container-lowest border border-border-subtle rounded-xl p-6"><h2 class="font-headline-sm text-headline-sm flex items-center gap-2"><span class="material-symbols-outlined text-primary">palette</span>Appearance</h2>
+<label class="flex items-center justify-between gap-6 mt-6"><span><strong class="block">Dark mode</strong><span class="text-sm text-on-surface-variant" data-theme-label>Dark mode is off</span></span><input class="w-5 h-5" data-theme-toggle type="checkbox"></label>
+<label class="flex items-center justify-between gap-6 mt-6 pt-6 border-t border-border-subtle"><span><strong class="block">Reduce motion</strong><span class="text-sm text-on-surface-variant">Minimize nonessential interface movement.</span></span><input class="w-5 h-5" data-preference="reduceMotion" type="checkbox"></label></section>
+<section class="tonal-card bg-surface-container-lowest border border-border-subtle rounded-xl p-6"><h2 class="font-headline-sm text-headline-sm">Administrative session</h2><p class="text-sm text-on-surface-variant mt-2">Account moderation and verification changes remain protected by your administrator session.</p><button class="mt-5 border border-error/40 text-error px-5 py-2.5 rounded-lg hover:bg-error/10" data-logout type="button">Sign out</button><p data-settings-status aria-live="polite"></p></section>
+</div></div></main>
+<script type="module" src="../assets/js/app.js"></script>
+</body></html>

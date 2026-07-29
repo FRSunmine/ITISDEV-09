@@ -10,72 +10,118 @@ function titleCase(value) {
     return String(value).replaceAll("_", " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
-function bars(title, items, labelKey, valueKey = "count") {
+function metric(label, value, icon, note) {
+    return `
+        <article class="analytics-metric">
+            <div>
+                <p>${escapeHtml(label)}</p>
+                <strong>${value}</strong>
+                <span>${escapeHtml(note)}</span>
+            </div>
+            <span class="material-symbols-outlined">${icon}</span>
+        </article>`;
+}
+
+function horizontalBars(title, eyebrow, items, labelKey, valueKey = "count") {
     const max = Math.max(1, ...items.map((item) => item[valueKey]));
     return `
-        <section class="tonal-card rounded-xl p-6">
-            <h2 class="font-headline-md text-headline-md text-on-surface text-lg mb-5">${title}</h2>
-            <div class="space-y-4">${items.length ? items.map((item) => `
-                <div>
-                    <div class="flex justify-between font-label-sm text-label-sm mb-1">
-                        <span>${escapeHtml(titleCase(item[labelKey]))}</span><span>${item[valueKey]}</span>
-                    </div>
-                    <div class="h-3 bg-surface-variant rounded-full overflow-hidden">
-                        <div class="h-full bg-primary rounded-full" style="width:${Math.round((item[valueKey] / max) * 100)}%"></div>
-                    </div>
-                </div>`).join("") : '<p class="text-on-surface-variant">No data yet.</p>'}</div>
+        <section class="analytics-panel">
+            <div class="analytics-panel-heading"><div><p>${eyebrow}</p><h2>${title}</h2></div></div>
+            <div class="analytics-bars">
+                ${items.length ? items.map((item) => `
+                    <div class="analytics-bar-row">
+                        <div><span>${escapeHtml(titleCase(item[labelKey]))}</span><strong>${item[valueKey]}</strong></div>
+                        <div class="analytics-track"><span style="width:${Math.round((item[valueKey] / max) * 100)}%"></span></div>
+                    </div>`).join("") : '<p class="analytics-empty">No data recorded yet.</p>'}
+            </div>
         </section>`;
 }
 
-function metric(label, value) {
-    return `<article class="tonal-card rounded-xl p-5"><p class="font-label-sm text-label-sm text-on-surface-variant uppercase">${label}</p>
-        <p class="font-display-lg text-display-lg text-primary mt-2">${value}</p></article>`;
+function completionTrend(items) {
+    const max = Math.max(1, ...items.map((item) => item.count));
+    return `
+        <section class="analytics-panel analytics-trend">
+            <div class="analytics-panel-heading">
+                <div><p>Delivery health</p><h2>Monthly completions</h2></div>
+                <span class="analytics-chip">${items.reduce((total, item) => total + item.count, 0)} total</span>
+            </div>
+            <div class="analytics-columns">
+                ${items.length ? items.map((item) => `
+                    <div class="analytics-column">
+                        <strong>${item.count}</strong>
+                        <div><span style="height:${Math.max(8, Math.round((item.count / max) * 100))}%"></span></div>
+                        <small>${escapeHtml(item.month)}</small>
+                    </div>`).join("") : '<p class="analytics-empty">Completed quests will create the first trend point.</p>'}
+            </div>
+        </section>`;
+}
+
+function skillTable(items) {
+    return `
+        <section class="analytics-panel">
+            <div class="analytics-panel-heading">
+                <div><p>Marketplace balance</p><h2>Highest-priority skill gaps</h2></div>
+                <a href="admin-operations.html">Search all skills</a>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="analytics-table">
+                    <thead><tr><th>Skill</th><th>Supply</th><th>Demand</th><th>Balance</th></tr></thead>
+                    <tbody>${items.slice(0, 8).map((item) => `
+                        <tr><td>${escapeHtml(item.name)}</td><td>${item.supply}</td><td>${item.demand}</td>
+                        <td><span class="${item.gap < 0 ? "analytics-deficit" : "analytics-surplus"}">${item.gap > 0 ? "+" : ""}${item.gap}</span></td></tr>
+                    `).join("")}</tbody>
+                </table>
+            </div>
+        </section>`;
+}
+
+function recentQuests(items) {
+    return `
+        <section class="analytics-panel analytics-recent">
+            <div class="analytics-panel-heading"><div><p>Latest activity</p><h2>Recent quests</h2></div></div>
+            <div class="overflow-x-auto"><table class="analytics-table">
+                <thead><tr><th>Quest</th><th>Client</th><th>Category</th><th>Status</th></tr></thead>
+                <tbody>${items.map((quest) => `
+                    <tr><td><strong>${escapeHtml(quest.title)}</strong></td><td>${escapeHtml(quest.client_name)}</td>
+                    <td>${escapeHtml(quest.category)}</td><td><span class="analytics-status">${escapeHtml(titleCase(quest.status))}</span></td></tr>
+                `).join("")}</tbody>
+            </table></div>
+        </section>`;
 }
 
 async function loadAnalytics() {
-    root.innerHTML = '<p class="p-6 text-center text-on-surface-variant">Loading analytics...</p>';
+    root.innerHTML = '<p class="analytics-loading">Loading platform intelligence...</p>';
     try {
-        const response = await fetch("/api/v1/admin/analytics", { credentials: "include", headers: { Accept: "application/json" } });
+        const response = await fetch("/api/v1/admin/analytics", {
+            credentials: "include",
+            headers: { Accept: "application/json" },
+        });
         const data = await response.json().catch(() => ({}));
         if (!response.ok) throw new Error(data.error?.message || "Analytics could not be loaded.");
         root.innerHTML = `
-            <header class="mb-8">
-                <h1 class="font-display-lg text-display-lg text-primary">Platform Analytics</h1>
-                <p class="font-body-md text-body-md text-on-surface-variant mt-2">Live ecosystem activity and supply/demand metrics.</p>
+            <header class="analytics-hero">
+                <div><p>Platform intelligence</p><h1>Operational pulse</h1>
+                    <span>Live demand, participation, and delivery signals from persisted SideQuest activity.</span>
+                </div>
+                <a href="admin-operations.html">Open operations <span class="material-symbols-outlined">arrow_forward</span></a>
             </header>
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                ${metric("Users", data.totals.users)}${metric("Quests", data.totals.quests)}
-                ${metric("Applications", data.totals.applications)}${metric("Completed", data.totals.completed)}
+            <div class="analytics-metrics">
+                ${metric("Users", data.totals.users, "group", "Registered accounts")}
+                ${metric("Open work", data.questStatuses.find((item) => item.status === "open")?.count || 0, "work", "Quests accepting talent")}
+                ${metric("Applications", data.totals.applications, "description", "Submitted proposals")}
+                ${metric("Completed", data.totals.completed, "task_alt", "Verified outcomes")}
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                ${bars("User Distribution", data.roleDistribution, "role")}
-                ${bars("Quest Status", data.questStatuses, "status")}
-                ${bars("Quest Categories", data.categories, "category")}
-                ${bars("Application Status", data.applicationStatuses, "status")}
-                ${bars("Monthly Completions", data.completionTrend, "month")}
-                <section class="tonal-card rounded-xl p-6">
-                    <h2 class="font-headline-md text-headline-md text-on-surface text-lg mb-5">Skill Gaps</h2>
-                    <div class="overflow-x-auto"><table class="w-full text-left">
-                        <thead><tr><th class="py-2">Skill</th><th class="py-2 text-right">Supply</th><th class="py-2 text-right">Demand</th><th class="py-2 text-right">Gap</th></tr></thead>
-                        <tbody>${data.skillGaps.map((item) => `<tr class="border-t border-outline-variant/20">
-                            <td class="py-3">${escapeHtml(item.name)}</td><td class="py-3 text-right">${item.supply}</td>
-                            <td class="py-3 text-right">${item.demand}</td><td class="py-3 text-right ${item.gap < 0 ? "text-error" : "text-primary"}">${item.gap > 0 ? "+" : ""}${item.gap}</td>
-                        </tr>`).join("")}</tbody>
-                    </table></div>
-                </section>
+            <div class="analytics-layout">
+                ${horizontalBars("Community mix", "Participation", data.roleDistribution, "role")}
+                ${horizontalBars("Quest pipeline", "Work status", data.questStatuses, "status")}
+                ${completionTrend(data.completionTrend)}
+                ${horizontalBars("Demand by category", "Marketplace", data.categories, "category")}
+                ${horizontalBars("Application outcomes", "Conversion", data.applicationStatuses, "status")}
+                ${skillTable(data.skillGaps)}
             </div>
-            <section class="tonal-card rounded-xl mt-6 overflow-hidden">
-                <div class="p-6 border-b border-outline-variant/30"><h2 class="font-headline-md text-headline-md text-on-surface text-lg">Recent Quests</h2></div>
-                <div class="overflow-x-auto"><table class="w-full text-left">
-                    <thead><tr class="bg-surface-container-low"><th class="p-4">Quest</th><th class="p-4">Client</th><th class="p-4">Category</th><th class="p-4">Status</th></tr></thead>
-                    <tbody>${data.recentQuests.map((quest) => `<tr class="border-t border-outline-variant/20">
-                        <td class="p-4 font-medium">${escapeHtml(quest.title)}</td><td class="p-4">${escapeHtml(quest.client_name)}</td>
-                        <td class="p-4">${escapeHtml(quest.category)}</td><td class="p-4">${escapeHtml(titleCase(quest.status))}</td>
-                    </tr>`).join("")}</tbody>
-                </table></div>
-            </section>`;
+            ${recentQuests(data.recentQuests)}`;
     } catch (error) {
-        root.innerHTML = `<p class="p-6 text-center text-error">${escapeHtml(error.message)}</p>`;
+        root.innerHTML = `<p class="analytics-loading text-error">${escapeHtml(error.message)}</p>`;
     }
 }
 
