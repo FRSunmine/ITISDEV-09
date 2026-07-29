@@ -20,7 +20,7 @@
 <span class="font-display-lg text-display-lg font-bold text-primary dark:text-primary-fixed">SideQuest</span>
 <div class="hidden md:flex items-center bg-surface-container-low rounded-full px-4 py-2 ml-8 w-64 border border-border-subtle focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/10 transition-all">
 <span class="material-symbols-outlined text-secondary mr-2">search</span>
-<input class="bg-transparent border-none focus:outline-none text-body-sm w-full" placeholder="Search..." type="text">
+<input class="bg-transparent border-none focus:outline-none text-body-sm w-full" data-admin-search placeholder="Search users..." type="search">
 </div>
 </div>
 <div class="flex items-center gap-4">
@@ -42,7 +42,7 @@
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">admin_panel_settings</span>
                     Dashboard
                 </a>
-<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" href="student-verification.html">
+<a class="group flex items-center gap-stack-md p-stack-md mx-stack-sm my-1 text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-container transition-all cursor-pointer rounded-lg" href="account-profile.html">
 <span class="material-symbols-outlined">verified_user</span>
                     Verification Queue
                 </a>
@@ -70,7 +70,7 @@
 </aside>
 <!-- Main Content -->
 <main class="flex-1 ml-sidebar-width overflow-y-auto p-margin-page">
-<div class="max-w-container-max mx-auto space-y-gutter">
+<div class="max-w-container-max mx-auto space-y-gutter" data-admin-operations>
 <header class="mb-8">
 <h1 class="font-display-lg text-display-lg text-primary">Operations Overview</h1>
 <p class="font-body-lg text-body-lg text-secondary mt-2">Platform metrics and pending administrative tasks.</p>
@@ -278,4 +278,5 @@
 </main>
 </div>
 <script type="module" src="../assets/js/app.js"></script>
+<script type="module" src="../assets/js/pages/admin-operations.js"></script>
 </body></html>

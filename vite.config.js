@@ -5,6 +5,8 @@ const pages = [
   "login",
   "student-verification",
   "student-dashboard",
+  "student-applications",
+  "student-messages",
   "quest-marketplace",
   "student-quest-workspace",
   "student-profile",
@@ -15,9 +17,18 @@ const pages = [
   "client-quest-workspace",
   "admin-operations",
   "platform-analytics",
+  "account-profile",
 ];
 
 export default defineConfig({
+  server: {
+    fs: {
+      deny: ["data/**", "server/**", "tests/**"],
+    },
+    proxy: {
+      "/api": "http://127.0.0.1:3000",
+    },
+  },
   build: {
     rollupOptions: {
       input: Object.fromEntries([

@@ -3,6 +3,9 @@ dist/
 .vscode/
 .DS_Store
 *.log
+data/*.db
+data/*.db-shm
+data/*.db-wal
 .env
 .env.*
 !.env.example

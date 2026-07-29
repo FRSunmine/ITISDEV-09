@@ -1,46 +1,93 @@
-# SideQuest Prototype
+# SideQuest
 
-A desktop-first static prototype for a campus-focused student micro-freelancing platform. The current repository contains the approved Stitch-exported screens, styles, Tailwind runtime configurations, and basic demo interactions.
+SideQuest is a campus micro-freelancing platform connecting verified student freelancers with
+clients offering short-term quests. It uses a Vite multipage frontend, Express API, and SQLite.
 
-## Run locally
+## Setup
 
-```bash
+Requires Node.js 24+ and npm 11+.
+
+```powershell
 npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite. The root page redirects to `pages/login.html`.
+Open `http://localhost:5173`. The local database is created at `data/sidequest.db`.
+Frontend changes reload automatically while the development server is running.
 
-## Production build
+## Demo accounts
 
-```bash
-npm run build
-npm run preview
+All demo accounts use `SideQuest123!`.
+
+| Role | Email |
+|---|---|
+| Student (main) | `student@dlsu.edu.ph` |
+| Student (completed work) | `jamie.cruz@dlsu.edu.ph` |
+| Student (multimedia profile) | `sam.lee@dlsu.edu.ph` |
+| Student (pending verification) | `nina.patel@dlsu.edu.ph` |
+| Client (main) | `client@sidequest.demo` |
+| Client (active/completed quests) | `luis@sidequest.demo` |
+| Client (open quest) | `bea@sidequest.demo` |
+| Administrator | `admin@sidequest.demo` |
+
+## Commands
+
+```powershell
+npm run dev      # Start frontend and API
+npm test         # Run backend integration tests
+npm run build    # Verify the production frontend build
+npm run db:reset # Reset and reseed the local database
+npm start        # Serve the built app at http://localhost:3000
 ```
 
-Vite builds `index.html` and every approved screen in `pages/` as separate HTML entry points. Local JavaScript referenced from those pages, including the page-level Tailwind configuration files, must use `<script type="module" src="...">` so Vite includes them in its asset graph. Stylesheets should remain linked with paths relative to each HTML page.
+Run `npm run build` before `npm start`. You do not need to build after every development change.
 
-The production build was last verified successfully on July 20, 2026.
+## Testing
 
-## Current phase
+Run the automated checks:
 
-The immediate goal is to make the static multipage prototype coherent and navigable. Backend integration, real authentication, database work, payments, and AI features are intentionally deferred.
+```powershell
+npm test
+npm run build
+```
 
-## Next milestone
+For manual testing, use separate regular/private browser windows for different roles:
 
-- Smoke-test navigation and interactions across all built pages.
-- Fix broken links or browser console errors without changing the approved visual design.
-- Keep using mock data and external payment handling for the current MVP.
+1. Register a student, submit verification details, and approve the student as an administrator.
+2. Create a quest as a client and apply as the verified student.
+3. Accept the student, submit and approve all deliverables, then complete the quest.
+4. Review from both accounts and confirm the student's portfolio and admin analytics update.
+5. Check navigation, dark mode, refresh behavior, and mobile layout for visual issues.
 
-## Maintenance
+To reset local test data, stop the server and run:
 
-Update this README whenever setup, build behavior, project structure, supported flows, or known limitations change.
+```powershell
+npm run db:reset
+```
 
-## Key documents
+This permanently removes local changes and recreates the database with the sample data.
 
-- `AGENTS.md` — Codex repository instructions
-- `docs/PRODUCT_SCOPE.md` — MVP boundaries
-- `docs/SCREEN_AND_ROUTE_MAP.md` — canonical screens and intended routes
-- `docs/IMPLEMENTATION_PLAN.md` — phased work plan
-- `docs/FIRST_CODEX_PROMPT.md` — first task to paste into Codex
-"# ITISDEV-09" 
+## MVP features
+
+- Student and client registration with role-based login and protected sessions
+- Student verification and verified-only quest applications
+- Quest discovery, creation, applications, and applicant selection
+- Dedicated student application history and quest conversations
+- Student/client workspaces with deliverable review and completion
+- Participant reviews and automatic verified portfolio entries
+- Client dashboard and administrator operations/analytics
+- Persistent SQLite data and dark-mode preferences
+
+## Limitations
+
+- Real-time messaging, notifications, uploads, password reset, and email delivery are not implemented.
+- Payments are external; SideQuest does not process or hold funds.
+- AI matching, RAG, MCP, blockchain, and escrow are outside the MVP.
+- SQLite is intended for local/course use rather than production scaling.
+
+## Documentation
+
+- `docs/BACKEND.md` - API reference
+- `docs/PRODUCT_SCOPE.md` - MVP scope
+- `docs/SCREEN_AND_ROUTE_MAP.md` - screens and routes
+- `docs/IMPLEMENTATION_PLAN.md` - completed work and release hardening

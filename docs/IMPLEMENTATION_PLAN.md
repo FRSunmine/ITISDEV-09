@@ -1,33 +1,25 @@
-# Implementation plan
+# SideQuest implementation plan
 
-## Phase 0 — Baseline and inventory
-- Install dependencies and run Vite.
-- Open every canonical page.
-- Record console errors, missing resources, and broken controls.
-- Do not refactor yet.
+## Completed
+- Stabilized the approved multipage Stitch UI and shared navigation shell.
+- Normalized typography, spacing, branding, avatars, theme behavior, and page loading.
+- Added Express, SQLite persistence, password hashing, sessions, and role authorization.
+- Connected student discovery, applications, verification, workspace, reviews, and portfolio flows.
+- Added dedicated student application history and persisted quest conversations.
+- Connected client dashboard, quest creation, applicant selection, and workspace flows.
+- Connected administrator verification, moderation, and analytics.
+- Added backend integration tests and production build checks.
 
-## Phase 1 — Static navigation and demo behavior
-- Make role buttons on login update the active role.
-- Route demo login to the selected role dashboard.
-- Replace sidebar `href="#"` values with canonical page routes.
-- Wire dashboard actions to the appropriate pages.
-- Verify quest drawer, application modal, applicant drawer, and confirmation modal.
-- Keep all data static.
+## Release hardening
+- Run manual acceptance tests on current Chrome, Edge, and Firefox.
+- Verify mobile and tablet layouts for every canonical page.
+- Complete keyboard, focus-order, labels, contrast, and screen-reader checks.
+- Confirm production environment, database backup, logging, and deployment settings.
 
-## Phase 2 — Consistency cleanup
-- Centralize route constants and repeated navigation behavior.
-- Consolidate duplicate interaction code.
-- Identify a canonical set of design tokens without changing visual output.
-- Preserve page-level Tailwind configs until parity is confirmed.
+## Post-MVP candidates
+- Real-time messaging and notification services.
+- Secure file storage and deliverable attachments.
+- Password reset and email verification delivery.
+- Managed relational database and deployment observability.
 
-## Phase 3 — Component migration decision
-Choose only after the static application is stable:
-1. Keep the multi-page HTML architecture for the course prototype, or
-2. Migrate incrementally to React/Vite with shared layouts and mock-data modules.
-
-Do not begin a full React rewrite before Phase 1 is complete and visually verified.
-
-## Phase 4 — Backend preparation
-- Define data contracts for users, quests, applications, deliverables, reviews, and portfolio entries.
-- Keep API access behind service modules.
-- Add backend integration only when the frontend flow and course requirements are stable.
+Payments remain external. AI matching, RAG, MCP, blockchain, and escrow remain out of scope.

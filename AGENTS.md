@@ -7,19 +7,21 @@
 - `assets/js/config/*.tailwind.js`: current page-level Tailwind design tokens.
 - `assets/js/app.js`: shared demo UI interactions.
 - `assets/js/pages/`: page-specific interactions.
-- `assets/js/services/`: future API service layer; not active in the MVP UI.
+- `assets/js/services/`: browser API service layer.
+- `server/`: Express API, authentication, and SQLite persistence.
 - `docs/`: scope, route map, and implementation plan.
 
 ## Current objective
-Turn the approved static Stitch export into a coherent, navigable SideQuest frontend while preserving visual parity. Work incrementally. Do not redesign the UI.
+Turn the approved static Stitch export into a coherent full-stack SideQuest MVP while preserving visual parity. Integrate backend features incrementally and do not redesign the UI.
 
 ## MVP boundaries
 - Campus-focused student micro-gig platform.
 - Roles: student freelancer, client, administrator.
-- Use mock data only for the current milestone.
+- Use SQLite-backed persisted data and seeded demo accounts for the backend milestone.
 - Payments are handled externally; SideQuest does not process or hold funds.
 - Criteria coverage is rule-based, not AI matching.
-- Do not implement RAG, MCP, escrow, payment gateways, blockchain, real authentication, or a database yet.
+- Implement authentication and core persistence with Node.js, Express, and SQLite.
+- Do not implement RAG, MCP, escrow, payment gateways, or blockchain.
 - `assets/js/services/rag-service.js` is experimental and must not be imported by production pages.
 
 ## Engineering rules

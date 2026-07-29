@@ -24,7 +24,7 @@
 <span class="text-on-surface-variant hidden md:inline font-body-sm text-body-sm">Client Quest Scope Wizard</span>
 </div>
 <div class="flex items-center gap-4">
-<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-2 rounded-full hover:bg-surface-variant">
+<button aria-label="Close quest creation" class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-2 rounded-full hover:bg-surface-variant" data-nav="clientDashboard" type="button">
 <span class="material-symbols-outlined" data-icon="close">close</span>
 </button>
 </div>
@@ -107,7 +107,7 @@
 <h2 class="font-headline-md text-headline-md text-primary mb-2">Mandatory Deliverables</h2>
 <p class="font-body-sm text-body-sm text-on-surface-variant">Specify the exact items expected upon completion.</p>
 </div>
-<button class="inline-flex items-center gap-2 bg-primary text-on-primary font-button text-button px-4 py-2 rounded hover:bg-primary/90 transition-colors" type="button">
+<button class="inline-flex items-center gap-2 bg-primary text-on-primary font-button text-button px-4 py-2 rounded hover:bg-primary/90 transition-colors" data-add-deliverable type="button">
 <span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
                             Add Deliverable
                         </button>
@@ -120,7 +120,7 @@
                         </p>
 </div>
 <!-- Deliverables Checklist -->
-<div class="space-y-4">
+<div class="space-y-4" data-deliverables-list>
 <!-- Item 1 -->
 <div class="flex items-center justify-between p-4 bg-surface-container-low border border-outline-variant rounded group hover:border-outline transition-colors">
 <div class="flex items-center gap-4 flex-1">
@@ -128,11 +128,11 @@
 <span class="material-symbols-outlined text-[16px] text-primary" data-icon="check" data-weight="fill">check</span>
 </div>
 <div class="flex-1">
-<input class="bg-transparent border-none p-0 focus:ring-0 font-body-md text-body-md text-on-surface w-full" type="text" value="3 initial logo concepts">
+<input class="bg-transparent border-none p-0 focus:ring-0 font-body-md text-body-md text-on-surface w-full" data-deliverable-input type="text" value="3 initial logo concepts">
 <span class="font-label-sm text-label-sm text-outline font-label-sm block mt-1 tracking-widest uppercase">REQ_ID: DEL-001</span>
 </div>
 </div>
-<button class="text-outline hover:text-error transition-colors p-2 opacity-0 group-hover:opacity-100 focus:opacity-100">
+<button aria-label="Remove deliverable" class="text-outline hover:text-error transition-colors p-2 opacity-0 group-hover:opacity-100 focus:opacity-100" data-remove-deliverable type="button">
 <span class="material-symbols-outlined" data-icon="delete">delete</span>
 </button>
 </div>
@@ -143,11 +143,11 @@
 <span class="material-symbols-outlined text-[16px] text-primary" data-icon="check" data-weight="fill">check</span>
 </div>
 <div class="flex-1">
-<input class="bg-transparent border-none p-0 focus:ring-0 font-body-md text-body-md text-on-surface w-full" type="text" value="1 final logo (iterated from concepts)">
+<input class="bg-transparent border-none p-0 focus:ring-0 font-body-md text-body-md text-on-surface w-full" data-deliverable-input type="text" value="1 final logo (iterated from concepts)">
 <span class="font-label-sm text-label-sm text-outline block mt-1 tracking-widest uppercase">REQ_ID: DEL-002</span>
 </div>
 </div>
-<button class="text-outline hover:text-error transition-colors p-2 opacity-0 group-hover:opacity-100 focus:opacity-100">
+<button aria-label="Remove deliverable" class="text-outline hover:text-error transition-colors p-2 opacity-0 group-hover:opacity-100 focus:opacity-100" data-remove-deliverable type="button">
 <span class="material-symbols-outlined" data-icon="delete">delete</span>
 </button>
 </div>
@@ -158,11 +158,11 @@
 <span class="material-symbols-outlined text-[16px] text-primary" data-icon="check" data-weight="fill">check</span>
 </div>
 <div class="flex-1">
-<input class="bg-transparent border-none p-0 focus:ring-0 font-body-md text-body-md text-on-surface w-full" type="text" value="Exports (PNG, SVG, PDF)">
+<input class="bg-transparent border-none p-0 focus:ring-0 font-body-md text-body-md text-on-surface w-full" data-deliverable-input type="text" value="Exports (PNG, SVG, PDF)">
 <span class="font-label-sm text-label-sm text-outline block mt-1 tracking-widest uppercase">REQ_ID: DEL-003</span>
 </div>
 </div>
-<button class="text-outline hover:text-error transition-colors p-2 opacity-0 group-hover:opacity-100 focus:opacity-100">
+<button aria-label="Remove deliverable" class="text-outline hover:text-error transition-colors p-2 opacity-0 group-hover:opacity-100 focus:opacity-100" data-remove-deliverable type="button">
 <span class="material-symbols-outlined" data-icon="delete">delete</span>
 </button>
 </div>
@@ -173,11 +173,11 @@
 <span class="material-symbols-outlined text-[16px] text-primary" data-icon="check" data-weight="fill">check</span>
 </div>
 <div class="flex-1">
-<input class="bg-transparent border-none p-0 focus:ring-0 font-body-md text-body-md text-on-surface w-full" type="text" value="Brand color &amp; typography guide (1-2 pages)">
+<input class="bg-transparent border-none p-0 focus:ring-0 font-body-md text-body-md text-on-surface w-full" data-deliverable-input type="text" value="Brand color &amp; typography guide (1-2 pages)">
 <span class="font-label-sm text-label-sm text-outline block mt-1 tracking-widest uppercase">REQ_ID: DEL-004</span>
 </div>
 </div>
-<button class="text-outline hover:text-error transition-colors p-2 opacity-0 group-hover:opacity-100 focus:opacity-100">
+<button aria-label="Remove deliverable" class="text-outline hover:text-error transition-colors p-2 opacity-0 group-hover:opacity-100 focus:opacity-100" data-remove-deliverable type="button">
 <span class="material-symbols-outlined" data-icon="delete">delete</span>
 </button>
 </div>
@@ -195,61 +195,79 @@
 <div class="space-y-6">
 <!-- Budget -->
 <div>
-<label class="block font-label-md text-label-md text-on-surface-variant mb-2 uppercase tracking-widest">ESTIMATED BUDGET (PHP)</label>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2 uppercase tracking-widest" for="quest_budget">ESTIMATED BUDGET (PHP)</label>
 <div class="relative">
 <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-on-surface-variant font-body-md text-body-md">₱</span>
-<input class="block w-full rounded border-outline-variant bg-surface-container-low pl-8 text-on-surface focus:border-primary focus:ring-0 font-body-md text-body-md py-2" type="text" value="8,000">
+<input class="block w-full rounded border-outline-variant bg-surface-container-low pl-8 text-on-surface focus:border-primary focus:ring-0 font-body-md text-body-md py-2" id="quest_budget" inputmode="numeric" min="0" name="quest_budget" type="number" value="8000">
 </div>
 <p class="mt-2 font-label-sm text-label-sm text-outline italic">Payment arrangements are completed externally. SideQuest does not process or hold funds.</p>
 </div>
 <hr class="border-outline-variant">
 <!-- Deadline -->
 <div>
-<label class="block font-label-md text-label-md text-on-surface-variant mb-2 uppercase tracking-widest">ESTIMATED BUDGET (PHP)</label>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2 uppercase tracking-widest" for="quest_deadline">DEADLINE</label>
 <div class="relative">
-<input class="block w-full rounded border-outline-variant bg-surface-container-low text-on-surface focus:border-primary focus:ring-0 font-body-md text-body-md py-2 px-3" type="date" value="2026-10-15">
+<input class="block w-full rounded border-outline-variant bg-surface-container-low text-on-surface focus:border-primary focus:ring-0 font-body-md text-body-md py-2 px-3" id="quest_deadline" name="quest_deadline" type="date" value="2026-10-15">
 </div>
+</div>
+<hr class="border-outline-variant">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2 uppercase tracking-widest" for="quest_category">CATEGORY</label>
+<select class="block w-full rounded border-outline-variant bg-surface-container-low text-on-surface focus:border-primary focus:ring-0 font-body-sm text-body-sm py-2 px-3" id="quest_category" name="quest_category">
+<option value="Design">Design</option>
+<option value="Development">Development</option>
+<option value="Tutoring">Tutoring</option>
+<option value="Operations">Operations</option>
+<option value="Writing">Writing</option>
+</select>
+</div>
+<hr class="border-outline-variant">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2 uppercase tracking-widest" for="quest_arrangement">WORK ARRANGEMENT</label>
+<select class="block w-full rounded border-outline-variant bg-surface-container-low text-on-surface focus:border-primary focus:ring-0 font-body-sm text-body-sm py-2 px-3" id="quest_arrangement" name="quest_arrangement">
+<option value="remote">Remote</option>
+<option value="hybrid">Hybrid</option>
+<option value="onsite">On-site</option>
+</select>
 </div>
 <hr class="border-outline-variant">
 <!-- Skills -->
 <div>
-<label class="block font-label-md text-label-md text-on-surface-variant mb-2 uppercase tracking-widest">ESTIMATED BUDGET (PHP)</label>
-<div class="flex flex-wrap gap-2 mb-3">
-<span class="inline-flex items-center gap-1 px-3 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm border border-secondary-container">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2 uppercase tracking-widest" for="quest_skill">REQUIRED SKILLS</label>
+<div class="flex flex-wrap gap-2 mb-3" data-skills-list>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm border border-secondary-container" data-skill="Graphic Design">
                                     Graphic Design
-                                    <button class="hover:text-primary"><span class="material-symbols-outlined text-[14px]" data-icon="close">close</span></button>
+                                    <button aria-label="Remove Graphic Design" class="hover:text-primary" data-remove-skill type="button"><span class="material-symbols-outlined text-[14px]" data-icon="close">close</span></button>
 </span>
-<span class="inline-flex items-center gap-1 px-3 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm border border-secondary-container">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm border border-secondary-container" data-skill="Branding">
                                     Branding
-                                    <button class="hover:text-primary"><span class="material-symbols-outlined text-[14px]" data-icon="close">close</span></button>
+                                    <button aria-label="Remove Branding" class="hover:text-primary" data-remove-skill type="button"><span class="material-symbols-outlined text-[14px]" data-icon="close">close</span></button>
 </span>
-<span class="inline-flex items-center gap-1 px-3 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm border border-secondary-container">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm border border-secondary-container" data-skill="Adobe Illustrator">
                                     Adobe Illustrator
-                                    <button class="hover:text-primary"><span class="material-symbols-outlined text-[14px]" data-icon="close">close</span></button>
+                                    <button aria-label="Remove Adobe Illustrator" class="hover:text-primary" data-remove-skill type="button"><span class="material-symbols-outlined text-[14px]" data-icon="close">close</span></button>
 </span>
 </div>
-<input class="block w-full rounded border-outline-variant bg-surface-container-low text-on-surface focus:border-primary focus:ring-0 font-body-sm text-body-sm py-2 px-3" placeholder="Add a skill..." type="text">
+<input class="block w-full rounded border-outline-variant bg-surface-container-low text-on-surface focus:border-primary focus:ring-0 font-body-sm text-body-sm py-2 px-3" id="quest_skill" placeholder="Add a skill and press Enter" type="text">
 </div>
 </div>
 </aside>
 <!-- Actions Card -->
 <aside class="bg-surface-container-low border border-surface-variant rounded-lg p-6">
 <div class="flex flex-col gap-3">
-<button class="w-full bg-primary text-on-primary font-button text-button py-3 px-4 rounded hover:bg-primary/90 transition-colors flex justify-center items-center gap-2" data-nav="applicantSelection">
-                             Continue to Next Step
+<button class="w-full bg-primary text-on-primary font-button text-button py-3 px-4 rounded hover:bg-primary/90 transition-colors flex justify-center items-center gap-2" data-publish-quest type="button">
+                             Publish Quest
                              <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
 </button>
 <div class="grid grid-cols-2 gap-3 mt-2">
-<button class="col-span-1 border border-outline-variant text-on-surface font-button text-button py-2 px-4 rounded hover:bg-surface-variant transition-colors">
+<button class="col-span-1 border border-outline-variant text-on-surface font-button text-button py-2 px-4 rounded opacity-60 cursor-not-allowed" disabled title="Drafts are not included in the MVP" type="button">
                                 Save Draft
                             </button>
-<button class="col-span-1 border border-outline-variant text-on-surface font-button text-button py-2 px-4 rounded hover:bg-surface-variant transition-colors" data-nav="clientDashboard">
-                                Preview
+<button class="col-span-1 border border-outline-variant text-on-surface font-button text-button py-2 px-4 rounded hover:bg-surface-variant transition-colors" data-nav="clientDashboard" type="button">
+                                Cancel
                             </button>
 </div>
-<button class="w-full border-t border-outline-variant mt-4 pt-4 text-primary font-button text-button py-2 px-4 hover:underline transition-colors text-center">
-                                Publish Immediately
-                        </button>
+<p aria-live="polite" class="min-h-6 text-center font-body-sm text-body-sm text-on-surface-variant" data-create-quest-status></p>
 </div>
 </aside>
 </div>
@@ -265,4 +283,5 @@
 </div>
 </footer>
 <script type="module" src="../assets/js/app.js"></script>
+<script type="module" src="../assets/js/pages/create-quest.js"></script>
 </body></html>

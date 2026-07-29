@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Applications | SideQuest</title>
+<script>
+document.documentElement.classList.add("is-loading");
+try {
+    const dark = window.localStorage.getItem("sidequest-theme") === "dark";
+    document.documentElement.classList.toggle("dark", dark);
+    document.documentElement.classList.toggle("light", !dark);
+} catch {
+    document.documentElement.classList.add("light");
+}
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script type="module" src="../assets/js/config/student-dashboard.tailwind.js"></script>
+<link href="../assets/css/base.css" rel="stylesheet">
+</head>
+<body class="bg-surface text-on-surface min-h-screen font-body-md">
+<header class="student-shell-topbar fixed top-0 left-0 w-full z-50 flex justify-between items-center bg-surface-container-lowest border-b border-border-subtle">
+<div class="student-shell-brand-wrap"><span aria-hidden="true" class="student-shell-brand-mark"></span><span class="student-shell-brand text-primary">SideQuest</span></div>
+<div class="student-shell-actions"><span class="material-symbols-outlined">notifications</span><img alt="User profile avatar" class="student-shell-avatar border border-border-subtle"></div>
+</header>
+<aside class="student-shell-sidebar hidden md:flex flex-col fixed left-0 bg-surface border-r border-border-subtle z-40">
+<div class="student-shell-identity"><h2 class="student-shell-heading text-primary">Student Freelancer</h2><p class="student-shell-subheading text-on-surface-variant">Freelance Hub</p></div>
+<nav class="flex-1 px-stack-sm">
+<a class="student-shell-nav-link text-on-surface-variant" href="student-dashboard.html"><span class="student-shell-nav-icon material-symbols-outlined">space_dashboard</span><span class="student-shell-nav-label">Dashboard</span></a>
+<a class="student-shell-nav-link text-on-surface-variant" href="quest-marketplace.html"><span class="student-shell-nav-icon material-symbols-outlined">search</span><span class="student-shell-nav-label">Find Quests</span></a>
+<a class="student-shell-nav-link bg-secondary-fixed text-on-secondary-fixed" href="student-applications.html" aria-current="page"><span class="student-shell-nav-icon material-symbols-outlined" style="font-variation-settings:'FILL' 1">history_edu</span><span class="student-shell-nav-label">Applications</span></a>
+<a class="student-shell-nav-link text-on-surface-variant" href="student-quest-workspace.html"><span class="student-shell-nav-icon material-symbols-outlined">pending_actions</span><span class="student-shell-nav-label">Active Quests</span></a>
+<a class="student-shell-nav-link text-on-surface-variant" href="student-profile.html"><span class="student-shell-nav-icon material-symbols-outlined">account_box</span><span class="student-shell-nav-label">Portfolio</span></a>
+<a class="student-shell-nav-link text-on-surface-variant" href="student-messages.html"><span class="student-shell-nav-icon material-symbols-outlined">forum</span><span class="student-shell-nav-label">Messages</span></a>
+</nav>
+<div class="px-stack-sm"><a class="student-shell-nav-link text-on-surface-variant" href="student-settings.html"><span class="student-shell-nav-icon material-symbols-outlined">settings</span><span class="student-shell-nav-label">Settings</span></a></div>
+</aside>
+<main class="student-shell-main md:ml-sidebar-width pt-16 min-h-screen">
+<div class="max-w-[1100px] mx-auto p-margin-page">
+<header class="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div><p class="font-label-sm text-label-sm text-primary uppercase tracking-wider">Student activity</p><h1 class="font-display-lg text-display-lg text-on-surface mt-2">Applications</h1><p class="text-on-surface-variant mt-2">Track every quest proposal and its current decision.</p></div>
+<a class="px-4 py-2.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md" href="quest-marketplace.html">Find more quests</a>
+</header>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6" data-application-summary></div>
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden shadow-sm">
+<div class="divide-y divide-border-subtle" data-applications-list><p class="p-8 text-center text-on-surface-variant">Loading applications...</p></div>
+</section>
+</div>
+</main>
+<script type="module" src="../assets/js/app.js"></script>
+<script type="module" src="../assets/js/pages/student-applications.js"></script>
+</body>
+</html>

@@ -18,8 +18,8 @@
 <!-- Split Layout Container -->
 <main class="w-full h-screen flex flex-col md:flex-row">
 <!-- Left Side: Authentication Form (Workspace) -->
-<section class="w-full md:w-[45%] lg:w-[40%] xl:w-[35%] bg-surface-container-lowest flex flex-col justify-center px-8 sm:px-12 lg:px-16 xl:px-24 overflow-y-auto custom-scrollbar relative z-10 shadow-lg">
-<div class="w-full max-w-md mx-auto py-12">
+<section class="w-full md:w-[45%] lg:w-[40%] xl:w-[35%] bg-surface-container-lowest flex flex-col justify-start px-8 sm:px-12 lg:px-16 xl:px-24 overflow-y-auto custom-scrollbar relative z-10 shadow-lg">
+<div class="w-full max-w-md mx-auto py-8 lg:py-12">
 <!-- Brand Header -->
 <header class="mb-12">
 <div class="flex items-center gap-3 mb-4">
@@ -30,10 +30,10 @@
 </div>
 <p class="font-body-lg text-body-lg text-on-surface-variant">Build experience. Find talent. Complete quests.</p>
 </header>
-<!-- Role Selector -->
-<div class="mb-8">
-<h2 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-3">Select your role</h2>
-<div class="grid grid-cols-3 gap-2 p-1 bg-surface-container-low rounded-lg border border-outline-variant" role="group" aria-label="Select your login role" data-role-group>
+<!-- Account Type (registration only) -->
+<div class="hidden mb-8" data-registration-only>
+<h2 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-3">Create an account as</h2>
+<div class="grid grid-cols-2 gap-2 p-1 bg-surface-container-low rounded-lg border border-outline-variant" role="group" aria-label="Select your account type" data-role-group>
 <button type="button" data-role-button="student" aria-pressed="true" class="flex flex-col items-center justify-center py-2 px-1 rounded bg-surface-container-lowest shadow-sm border border-outline-variant transition-all cursor-pointer">
 <span class="material-symbols-outlined text-primary mb-1 text-sm" style="font-variation-settings: 'FILL' 1;">school</span>
 <span class="font-label-sm text-label-sm text-primary text-center leading-tight">Student<br>Freelancer</span>
@@ -42,14 +42,20 @@
 <span class="material-symbols-outlined mb-1 text-sm">business</span>
 <span class="font-label-sm text-label-sm text-center leading-tight">Client</span>
 </button>
-<button type="button" data-role-button="administrator" aria-pressed="false" class="flex flex-col items-center justify-center py-2 px-1 rounded text-on-surface-variant hover:bg-surface-container transition-all cursor-pointer">
-<span class="material-symbols-outlined mb-1 text-sm">admin_panel_settings</span>
-<span class="font-label-sm text-label-sm text-center leading-tight">Administrator</span>
-</button>
 </div>
 </div>
 <!-- Login Form -->
-<form class="space-y-6" data-demo-form="login">
+<form class="space-y-6" data-auth-form>
+<div class="hidden space-y-4" data-register-fields>
+<div class="space-y-1">
+<label class="font-label-md text-label-md text-on-surface" for="display_name">Display Name <span class="text-error">*</span></label>
+<input class="w-full px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md" id="display_name" name="displayName" placeholder="Your full name" type="text">
+</div>
+<div class="hidden space-y-1" data-organization-field>
+<label class="font-label-md text-label-md text-on-surface" for="organization_name">Organization <span class="text-error">*</span></label>
+<input class="w-full px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md" id="organization_name" name="organizationName" placeholder="Organization name" type="text">
+</div>
+</div>
 <div class="space-y-1">
 <label class="font-label-md text-label-md text-on-surface flex items-center gap-2" for="email">
                             Email Address
@@ -61,9 +67,9 @@
 </div>
 <input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent transition-all" id="email" name="email" placeholder="name@university.edu" required="" type="email">
 </div>
-<p class="font-label-sm text-label-sm text-on-surface-variant mt-1 flex items-center gap-1">
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1 flex items-center gap-1" data-email-hint>
 <span class="material-symbols-outlined text-[14px]">info</span>
-                            Please use your university email.
+                            Your account type is detected automatically.
                         </p>
 </div>
 <div class="space-y-1">
@@ -72,34 +78,39 @@
                                 Password
                                 <span class="text-error">*</span>
 </label>
-<a class="font-label-md text-label-md text-primary hover:underline underline-offset-4 decoration-primary-container/30 transition-all" href="login.html">Forgot password?</a>
+<a class="font-label-md text-label-md text-primary hover:underline underline-offset-4 decoration-primary-container/30 transition-all" data-login-only href="login.html">Forgot password?</a>
 </div>
 <div class="relative">
 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
 <span class="material-symbols-outlined text-outline text-sm">lock</span>
 </div>
 <input class="w-full pl-10 pr-10 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent transition-all" id="password" name="password" placeholder="••••••••" required="" type="password">
-<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-outline hover:text-on-surface transition-colors" type="button">
+<button aria-label="Show password" class="absolute inset-y-0 right-0 pr-3 flex items-center text-outline hover:text-on-surface transition-colors" data-password-toggle type="button">
 <span class="material-symbols-outlined text-sm">visibility_off</span>
 </button>
 </div>
 </div>
-<div class="flex items-center">
+<div class="flex items-center" data-login-only>
 <input class="h-4 w-4 rounded border-outline-variant text-primary-container focus:ring-primary-container bg-surface-container-lowest cursor-pointer" id="remember" name="remember" type="checkbox">
 <label class="ml-2 block font-body-sm text-body-sm text-on-surface cursor-pointer" for="remember">
                             Remember me on this device
                         </label>
 </div>
 <button class="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-lg text-on-primary bg-primary-container hover:bg-primary transition-colors font-button text-button cursor-pointer shadow-sm" type="submit">
-                        Sign In
+<span data-auth-submit-label>Sign In</span>
                         <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </button>
+<p aria-live="polite" class="font-body-sm text-body-sm text-on-surface-variant" data-auth-status></p>
 </form>
+<div class="mt-5 rounded-lg border border-outline-variant bg-surface-container-low p-3" data-login-only>
+<p class="font-label-sm text-label-sm text-primary mb-1">Demo password: SideQuest123!</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">student@dlsu.edu.ph · client@sidequest.demo · admin@sidequest.demo</p>
+</div>
 <!-- Footer Actions -->
 <div class="mt-8 pt-6 border-t border-outline-variant text-center">
 <p class="font-body-sm text-body-sm text-on-surface-variant">
-                        Don't have an account? 
-                        <a class="font-label-md text-label-md text-primary hover:underline underline-offset-4 decoration-primary-container/30 transition-all ml-1" href="login.html">Create account</a>
+<span data-auth-toggle-prompt>Don't have an account?</span>
+<button class="font-label-md text-label-md text-primary hover:underline underline-offset-4 decoration-primary-container/30 transition-all ml-1" data-auth-mode-toggle type="button">Create account</button>
 </p>
 </div>
 <footer class="mt-12 text-center">
@@ -147,4 +158,5 @@
 </section>
 </main>
 <script type="module" src="../assets/js/app.js"></script>
+<script type="module" src="../assets/js/pages/login.js"></script>
 </body></html>

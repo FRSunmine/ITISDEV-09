@@ -4,9 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node scripts/dev.js",
+    "dev:frontend": "vite",
+    "dev:api": "node --watch server/index.js",
     "build": "vite build",
-    "preview": "vite preview"
+    "db:reset": "node scripts/reset-db.js",
+    "preview": "vite preview",
+    "start": "node scripts/start.js",
+    "test": "node --test"
   },
   "devDependencies": {
     "vite": "^7.0.0"

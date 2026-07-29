@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Messages | SideQuest</title>
+<script>
+document.documentElement.classList.add("is-loading");
+try {
+    const dark = window.localStorage.getItem("sidequest-theme") === "dark";
+    document.documentElement.classList.toggle("dark", dark);
+    document.documentElement.classList.toggle("light", !dark);
+} catch {
+    document.documentElement.classList.add("light");
+}
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script type="module" src="../assets/js/config/student-dashboard.tailwind.js"></script>
+<link href="../assets/css/base.css" rel="stylesheet">
+</head>
+<body class="bg-surface text-on-surface min-h-screen font-body-md">
+<header class="student-shell-topbar fixed top-0 left-0 w-full z-50 flex justify-between items-center bg-surface-container-lowest border-b border-border-subtle">
+<div class="student-shell-brand-wrap"><span aria-hidden="true" class="student-shell-brand-mark"></span><span class="student-shell-brand text-primary">SideQuest</span></div>
+<div class="student-shell-actions"><span class="material-symbols-outlined">notifications</span><img alt="User profile avatar" class="student-shell-avatar border border-border-subtle"></div>
+</header>
+<aside class="student-shell-sidebar hidden md:flex flex-col fixed left-0 bg-surface border-r border-border-subtle z-40">
+<div class="student-shell-identity"><h2 class="student-shell-heading text-primary">Student Freelancer</h2><p class="student-shell-subheading text-on-surface-variant">Freelance Hub</p></div>
+<nav class="flex-1 px-stack-sm">
+<a class="student-shell-nav-link text-on-surface-variant" href="student-dashboard.html"><span class="student-shell-nav-icon material-symbols-outlined">space_dashboard</span><span class="student-shell-nav-label">Dashboard</span></a>
+<a class="student-shell-nav-link text-on-surface-variant" href="quest-marketplace.html"><span class="student-shell-nav-icon material-symbols-outlined">search</span><span class="student-shell-nav-label">Find Quests</span></a>
+<a class="student-shell-nav-link text-on-surface-variant" href="student-applications.html"><span class="student-shell-nav-icon material-symbols-outlined">history_edu</span><span class="student-shell-nav-label">Applications</span></a>
+<a class="student-shell-nav-link text-on-surface-variant" href="student-quest-workspace.html"><span class="student-shell-nav-icon material-symbols-outlined">pending_actions</span><span class="student-shell-nav-label">Active Quests</span></a>
+<a class="student-shell-nav-link text-on-surface-variant" href="student-profile.html"><span class="student-shell-nav-icon material-symbols-outlined">account_box</span><span class="student-shell-nav-label">Portfolio</span></a>
+<a class="student-shell-nav-link bg-secondary-fixed text-on-secondary-fixed" href="student-messages.html" aria-current="page"><span class="student-shell-nav-icon material-symbols-outlined" style="font-variation-settings:'FILL' 1">forum</span><span class="student-shell-nav-label">Messages</span></a>
+</nav>
+<div class="px-stack-sm"><a class="student-shell-nav-link text-on-surface-variant" href="student-settings.html"><span class="student-shell-nav-icon material-symbols-outlined">settings</span><span class="student-shell-nav-label">Settings</span></a></div>
+</aside>
+<main class="student-shell-main md:ml-sidebar-width pt-16 h-screen overflow-hidden">
+<div class="h-full p-4 md:p-6 grid md:grid-cols-[320px_1fr] gap-4 max-w-[1200px] mx-auto">
+<aside class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden flex flex-col">
+<div class="p-4 border-b border-border-subtle"><h1 class="font-headline-md text-headline-md">Messages</h1><p class="text-sm text-on-surface-variant mt-1">Quest conversations</p></div>
+<div class="overflow-y-auto divide-y divide-border-subtle" data-conversation-list><p class="p-5 text-on-surface-variant">Loading conversations...</p></div>
+</aside>
+<section class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden flex flex-col min-h-0">
+<header class="p-4 border-b border-border-subtle" data-message-header><h2 class="font-headline-sm text-headline-sm">Select a conversation</h2></header>
+<div class="flex-1 overflow-y-auto p-5 space-y-4" data-message-list><p class="text-on-surface-variant">Your quest messages will appear here.</p></div>
+<form class="p-4 border-t border-border-subtle flex gap-3" data-message-form>
+<input class="flex-1 rounded-lg border border-border-subtle bg-surface px-4 py-2.5" data-message-input disabled maxlength="2000" placeholder="Write a message..." required>
+<button class="px-4 py-2.5 rounded-lg bg-primary text-on-primary disabled:opacity-50" disabled type="submit">Send</button>
+</form>
+</section>
+</div>
+</main>
+<script type="module" src="../assets/js/app.js"></script>
+<script type="module" src="../assets/js/pages/student-messages.js"></script>
+</body>
+</html>

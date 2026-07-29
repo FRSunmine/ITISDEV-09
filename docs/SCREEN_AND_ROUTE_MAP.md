@@ -6,6 +6,8 @@
 | Student | Verification | `/pages/student-verification.html` |
 | Student | Dashboard | `/pages/student-dashboard.html` |
 | Student | Quest marketplace/details/application | `/pages/quest-marketplace.html` |
+| Student | Applications | `/pages/student-applications.html` |
+| Student | Messages | `/pages/student-messages.html` |
 | Student | Active quest workspace | `/pages/student-quest-workspace.html` |
 | Student | Profile and verified portfolio | `/pages/student-profile.html` |
 | Client | Dashboard | `/pages/client-dashboard.html` |

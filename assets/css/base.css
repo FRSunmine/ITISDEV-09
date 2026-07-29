@@ -147,6 +147,140 @@ a,
     object-fit: cover;
 }
 
+img[alt="Organization Logo"] {
+    flex: 0 0 80px;
+    width: 80px !important;
+    height: 80px !important;
+}
+
+.client-company-logo-frame {
+    flex: 0 0 80px !important;
+    width: 80px !important;
+    height: 80px !important;
+}
+
+[data-account-menu-trigger] {
+    cursor: pointer;
+}
+
+[data-account-menu-trigger]:focus-visible {
+    outline: 3px solid var(--color-primary-container, #4f806f);
+    outline-offset: 3px;
+}
+
+.account-menu {
+    position: fixed;
+    z-index: 100;
+    width: min(280px, calc(100vw - 24px));
+    overflow: hidden;
+    border: 1px solid var(--color-border-subtle, #d8dedb);
+    border-radius: 12px;
+    background: var(--color-surface-container-lowest, #fff);
+    box-shadow: 0 16px 40px rgb(0 36 29 / 18%);
+    color: var(--color-on-surface, #17201d);
+}
+
+.account-menu[hidden] {
+    display: none;
+}
+
+.account-menu-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 16px;
+    border-bottom: 1px solid var(--color-border-subtle, #d8dedb);
+}
+
+.account-menu-summary strong {
+    overflow: hidden;
+    font-family: Inter, sans-serif;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.account-menu-summary > span:not(.account-menu-role) {
+    overflow: hidden;
+    color: var(--color-on-surface-variant, #52605b);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.account-menu-role {
+    width: fit-content;
+    margin-top: 5px;
+    padding: 3px 7px;
+    border-radius: 999px;
+    background: var(--color-primary-container, #cce8dd);
+    color: var(--color-on-primary-container, #092f27);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.account-menu nav {
+    padding: 6px;
+}
+
+.account-menu-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: inherit;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.account-menu-item:hover,
+.account-menu-item:focus-visible {
+    outline: none;
+    background: var(--color-surface-container-low, #f1f5f3);
+}
+
+.account-menu-item .material-symbols-outlined {
+    font-size: 19px;
+}
+
+.account-menu-signout {
+    margin: 0;
+    padding: 12px 18px;
+    border-top: 1px solid var(--color-border-subtle, #d8dedb);
+    border-radius: 0;
+    color: var(--color-error, #ba1a1a);
+}
+
+.dark .account-menu {
+    border-color: #3e4945;
+    background: #17201d;
+    color: #e2e9e5;
+}
+
+.dark .account-menu-summary,
+.dark .account-menu-signout {
+    border-color: #3e4945;
+}
+
+.dark .account-menu-summary > span:not(.account-menu-role) {
+    color: #bac5c0;
+}
+
+.dark .account-menu-item:hover,
+.dark .account-menu-item:focus-visible {
+    background: #29332f;
+}
+
 .student-shell-sidebar {
     top: 64px !important;
     width: 280px !important;
@@ -305,4 +439,43 @@ html.dark .student-shell-brand-mark {
 
 html.dark .student-shell-brand-mark::after {
     background: #315442;
+}
+
+.message-unread-count {
+    min-width: 1.25rem;
+    height: 1.25rem;
+    margin-left: auto;
+    padding: 0 0.35rem;
+    border-radius: 999px;
+    background: var(--color-error, #ba1a1a);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+    text-align: center;
+}
+
+.message-notification-control {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.message-notification-count {
+    position: absolute;
+    top: -0.35rem;
+    right: -0.45rem;
+    min-width: 1rem;
+    height: 1rem;
+    padding: 0 0.2rem;
+    border: 2px solid var(--color-surface-container-lowest, white);
+    border-radius: 999px;
+    background: var(--color-error, #ba1a1a);
+    color: white;
+    font-size: 0.55rem;
+    font-weight: 700;
+    line-height: 0.75rem;
+    text-align: center;
 }

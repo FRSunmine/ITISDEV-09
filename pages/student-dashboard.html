@@ -96,24 +96,24 @@ try {
 <!-- KPI Card -->
 <div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-md hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-shadow">
 <div class="font-label-sm text-label-sm text-on-surface-variant mb-2">Active Applications</div>
-<div class="font-headline-md text-headline-md text-primary">4</div>
+<div class="font-headline-md text-headline-md text-primary" data-dashboard-metric="activeApplications">0</div>
 </div>
 <div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-md hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-shadow">
 <div class="font-label-sm text-label-sm text-on-surface-variant mb-2">Accepted</div>
-<div class="font-headline-md text-headline-md text-status-info">2</div>
+<div class="font-headline-md text-headline-md text-status-info" data-dashboard-metric="accepted">0</div>
 </div>
 <div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-md hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-shadow">
 <div class="font-label-sm text-label-sm text-on-surface-variant mb-2">Active Quests</div>
-<div class="font-headline-md text-headline-md text-status-pending">1</div>
+<div class="font-headline-md text-headline-md text-status-pending" data-dashboard-metric="activeQuests">0</div>
 </div>
 <div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-md hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-shadow">
 <div class="font-label-sm text-label-sm text-on-surface-variant mb-2">Completed</div>
-<div class="font-headline-md text-headline-md text-status-success">7</div>
+<div class="font-headline-md text-headline-md text-status-success" data-dashboard-metric="completed">0</div>
 </div>
 <div class="bg-surface-container-lowest border border-border-subtle rounded-xl p-stack-md hover:shadow-[0_2px_4px_rgba(0,0,0,0.05)] transition-shadow">
 <div class="font-label-sm text-label-sm text-on-surface-variant mb-2">Rating</div>
 <div class="font-headline-md text-headline-md text-primary flex items-center gap-1">
-                            4.8 <span class="material-symbols-outlined fill text-status-pending text-[18px]">star</span>
+<span data-dashboard-metric="rating">—</span> <span class="material-symbols-outlined fill text-status-pending text-[18px]">star</span>
 </div>
 </div>
 </div>
@@ -196,6 +196,7 @@ try {
 <section class="bg-surface-container-lowest border border-border-subtle rounded-xl overflow-hidden" id="applications">
 <div class="p-stack-lg border-b border-border-subtle flex justify-between items-center bg-surface-bright">
 <h2 class="font-headline-sm text-headline-sm text-primary">Recent Applications</h2>
+<span aria-live="polite" class="font-body-sm text-body-sm text-on-surface-variant" data-dashboard-status>Loading...</span>
 </div>
 <div class="overflow-x-auto">
 <table class="w-full text-left border-collapse">
@@ -207,7 +208,7 @@ try {
 <th class="p-stack-md font-label-sm text-label-sm text-on-surface-variant text-right">STATUS</th>
 </tr>
 </thead>
-<tbody class="font-body-sm text-body-sm">
+<tbody class="font-body-sm text-body-sm" data-application-list>
 <tr class="border-b border-border-subtle hover:bg-surface-bright transition-colors cursor-pointer group">
 <td class="p-stack-md font-medium text-primary">SEO Audit Report</td>
 <td class="p-stack-md text-on-surface-variant">Local Bakery Hub</td>
@@ -265,7 +266,7 @@ try {
 <span class="material-symbols-outlined text-primary">event</span>
 <h2 class="font-headline-sm text-headline-sm text-primary">Upcoming Deadlines</h2>
 </div>
-<div class="flex flex-col gap-4 relative before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-border-subtle">
+<div class="flex flex-col gap-4 relative before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-border-subtle" data-dashboard-deadlines>
 <!-- Timeline Item -->
 <div class="relative pl-8">
 <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-surface-container-lowest border-2 border-status-pending flex items-center justify-center z-10">
@@ -292,10 +293,10 @@ try {
 <div>
 <div class="flex justify-between text-label-sm font-label-sm mb-1">
 <span class="text-on-surface-variant">Verified Projects</span>
-<span class="text-primary font-bold">12 / 15</span>
+<span class="text-primary font-bold" data-dashboard-profile-projects>0 completed</span>
 </div>
 <div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
-<div class="h-full bg-primary" style="width: 80%"></div>
+<div class="h-full bg-primary" data-dashboard-profile-progress style="width: 0"></div>
 </div>
 </div>
 <div class="p-4 rounded-lg bg-surface-container-low border border-border-subtle flex flex-col gap-3">
@@ -308,7 +309,7 @@ try {
 </div>
 <div class="border-t border-border-subtle pt-3">
 <h4 class="font-label-md text-label-md text-primary mb-1">Recent Feedback</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant italic">"Excellent technical delivery"</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Completed quests and client feedback will appear in your portfolio.</p>
 </div>
 </div>
 </div>
@@ -318,4 +319,5 @@ try {
 </div>
 </main>
 <script type="module" src="../assets/js/app.js"></script>
+<script type="module" src="../assets/js/pages/student-dashboard.js"></script>
 </body></html>
