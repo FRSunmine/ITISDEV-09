@@ -79,6 +79,17 @@ This permanently removes local changes and recreates the database with the sampl
 - Persistent SQLite data and account-based preferences
 - Student/client issue reporting with administrator resolution
 
+## Current status
+
+The core end-to-end workflow is functional and covered by integration tests. Remaining proposal
+work is:
+
+1. Student quest filters for skill, category, budget, deadline, and work arrangement.
+2. A client freelancer directory with profile viewing and invitations.
+3. Full portfolio evidence during applicant review and per-project ratings on portfolio entries.
+
+See `docs/MVP_CHECKLIST.md` for acceptance-level status and release checks.
+
 ## Limitations
 
 - Real-time messaging, notifications, uploads, password reset, and email delivery are not implemented.
