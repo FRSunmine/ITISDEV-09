@@ -4,6 +4,7 @@ const questList = document.querySelector("[data-quest-list]");
 const questStatus = document.querySelector("[data-quest-status]");
 const searchInput = document.querySelector("[data-quest-search]");
 const sortSelect = document.querySelector("[data-quest-sort]");
+const filtersForm = document.querySelector("[data-quest-filters]");
 const drawer = document.querySelector("#quest-drawer");
 const drawerPanel = document.querySelector("#drawer-panel");
 const modal = document.querySelector("#application-modal");
@@ -120,17 +121,35 @@ function renderQuests() {
     const items = sortedQuests();
     questList.innerHTML = items.map(renderQuestCard).join("");
     if (!items.length) {
-        showStatus("No open quests match your search.");
+        showStatus("No open quests match the current search and filters.");
     } else {
         showStatus(`${items.length} open quest${items.length === 1 ? "" : "s"} found.`);
     }
 }
 
-async function loadQuests(search = "") {
+function questQuery() {
+    const params = new URLSearchParams();
+    const search = searchInput.value.trim();
+    if (search) params.set("search", search);
+
+    filtersForm.querySelectorAll("[data-quest-filter]").forEach((control) => {
+        const value = control.value.trim();
+        if (!value) return;
+        const name = control.dataset.questFilter;
+        if (name === "minBudget" || name === "maxBudget") {
+            params.set(`${name}Cents`, String(Math.round(Number(value) * 100)));
+        } else {
+            params.set(name, value);
+        }
+    });
+    return params;
+}
+
+async function loadQuests() {
     showStatus("Loading quests...");
     questList.innerHTML = "";
     try {
-        const response = await apiClient.get(`/quests?search=${encodeURIComponent(search)}`);
+        const response = await apiClient.get(`/quests?${questQuery().toString()}`);
         quests = response.quests;
         renderQuests();
     } catch (error) {
@@ -243,9 +262,17 @@ questList.addEventListener("keydown", (event) => {
 
 searchInput.addEventListener("input", () => {
     clearTimeout(searchTimer);
-    searchTimer = setTimeout(() => loadQuests(searchInput.value.trim()), 250);
+    searchTimer = setTimeout(loadQuests, 250);
 });
 sortSelect.addEventListener("change", renderQuests);
+filtersForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    loadQuests();
+});
+filtersForm.querySelector("[data-clear-quest-filters]").addEventListener("click", () => {
+    filtersForm.reset();
+    loadQuests();
+});
 document.querySelector("[data-open-application]").addEventListener("click", openApplication);
 submitButton.addEventListener("click", submitApplication);
 

@@ -62,6 +62,10 @@ Quest creation requires a client or administrator session plus `title`, `descrip
 `budgetCents`, `deadline`, `workArrangement`, and non-empty `skills` and `deliverables` arrays.
 Quest details and all metadata are committed together.
 
+Quest discovery accepts optional `search`, `skill`, `category`, `minBudgetCents`,
+`maxBudgetCents`, `deadlineBefore`, and `workArrangement` query parameters. Structured filters
+combine with keyword search and only return open quests.
+
 Client application endpoints only expose quests owned by the signed-in client. Accepting an
 application rejects other pending applicants and moves the quest to `in_progress` atomically.
 Accepting an application also creates its participant-only conversation. Students and clients can
@@ -86,7 +90,6 @@ accounts have their sessions invalidated and cannot sign in until restored.
 
 ## Current API limitations
 
-- Quest discovery supports keyword search but not structured filter query parameters.
 - There is no client-facing freelancer directory, public freelancer endpoint, or invitation flow.
 - Messages are persisted and participant-only but use request/response updates rather than sockets.
 - Deliverable submissions store links or notes; binary file storage is not implemented.

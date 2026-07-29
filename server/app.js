@@ -183,7 +183,40 @@ export function createApp({ db, serveStatic = false, production = false } = {}) 
 
     app.get("/api/v1/quests", (req, res) => {
         const search = String(req.query.search ?? "").trim();
+        const skill = String(req.query.skill ?? "").trim();
+        const category = String(req.query.category ?? "").trim();
+        const workArrangement = String(req.query.workArrangement ?? "").trim().toLowerCase();
+        const deadlineBefore = String(req.query.deadlineBefore ?? "").trim();
+        const parseBudget = (value) => {
+            if (value === undefined || value === "") return null;
+            const parsed = Number(value);
+            return Number.isInteger(parsed) && parsed >= 0 ? parsed : Number.NaN;
+        };
+        const minBudgetCents = parseBudget(req.query.minBudgetCents);
+        const maxBudgetCents = parseBudget(req.query.maxBudgetCents);
+        const parsedDeadline = new Date(`${deadlineBefore}T00:00:00Z`);
+        const validDate = !deadlineBefore || (
+            /^\d{4}-\d{2}-\d{2}$/.test(deadlineBefore)
+            && !Number.isNaN(parsedDeadline.getTime())
+            && parsedDeadline.toISOString().slice(0, 10) === deadlineBefore
+        );
+
+        if (search.length > 120 || skill.length > 80 || category.length > 80) {
+            return validationError(res, "Quest filters are too long.");
+        }
+        if (workArrangement && !["remote", "hybrid", "onsite"].includes(workArrangement)) {
+            return validationError(res, "Select a valid work arrangement.");
+        }
+        if (Number.isNaN(minBudgetCents) || Number.isNaN(maxBudgetCents)) {
+            return validationError(res, "Budget filters must be non-negative integers in cents.");
+        }
+        if (minBudgetCents !== null && maxBudgetCents !== null && minBudgetCents > maxBudgetCents) {
+            return validationError(res, "Minimum budget cannot exceed maximum budget.");
+        }
+        if (!validDate) return validationError(res, "Deadline filter must be a valid date.");
+
         const pattern = `%${search}%`;
+        const skillPattern = `%${skill}%`;
         const quests = db.prepare(`
             SELECT quests.*, users.display_name AS client_name
             FROM quests
@@ -201,8 +234,40 @@ export function createApp({ db, serveStatic = false, production = false } = {}) 
                       WHERE quest_skills.quest_id = quests.id AND skills.name LIKE ?
                   )
               )
+              AND (? = '' OR quests.category = ? COLLATE NOCASE)
+              AND (? = '' OR quests.work_arrangement = ?)
+              AND (? IS NULL OR quests.budget_cents >= ?)
+              AND (? IS NULL OR quests.budget_cents <= ?)
+              AND (? = '' OR quests.deadline <= ?)
+              AND (
+                  ? = ''
+                  OR EXISTS (
+                      SELECT 1 FROM quest_skills
+                      JOIN skills ON skills.id = quest_skills.skill_id
+                      WHERE quest_skills.quest_id = quests.id AND skills.name LIKE ?
+                  )
+              )
             ORDER BY quests.created_at DESC
-        `).all(search, pattern, pattern, pattern, pattern, pattern);
+        `).all(
+            search,
+            pattern,
+            pattern,
+            pattern,
+            pattern,
+            pattern,
+            category,
+            category,
+            workArrangement,
+            workArrangement,
+            minBudgetCents,
+            minBudgetCents,
+            maxBudgetCents,
+            maxBudgetCents,
+            deadlineBefore,
+            deadlineBefore,
+            skill,
+            skillPattern,
+        );
         res.json({ quests: quests.map(hydrateQuest) });
     });
 

@@ -14,9 +14,8 @@
 ## Proposal alignment
 
 The implemented workflow is stable, but the original proposal is not fully complete. The remaining
-development priorities are student quest filters, a client freelancer directory with invitations,
-and fuller portfolio evidence during applicant review. See `MVP_CHECKLIST.md` for acceptance-level
-status.
+development priorities are a client freelancer directory with invitations and fuller portfolio
+evidence during applicant review. See `MVP_CHECKLIST.md` for acceptance-level status.
 
 ## Release hardening
 - Run manual acceptance tests on current Chrome, Edge, and Firefox.

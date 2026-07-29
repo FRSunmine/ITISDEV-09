@@ -102,10 +102,17 @@
 </button>
 <p aria-live="polite" class="font-body-sm text-body-sm text-on-surface-variant" data-auth-status></p>
 </form>
-<div class="mt-5 rounded-lg border border-outline-variant bg-surface-container-low p-3" data-login-only>
-<p class="font-label-sm text-label-sm text-primary mb-1">Demo password: SideQuest123!</p>
-<p class="font-label-sm text-label-sm text-on-surface-variant">student@dlsu.edu.ph · client@sidequest.demo · admin@sidequest.demo</p>
+<section class="demo-login-panel mt-5" data-login-only aria-labelledby="demo-login-title">
+<div>
+<h2 class="font-label-md text-label-md text-primary" id="demo-login-title">Quick demo access</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Sign in instantly with a seeded account.</p>
 </div>
+<div class="demo-login-grid">
+<button class="demo-login-button" data-demo-login="student" type="button"><span class="material-symbols-outlined">school</span><span>Student</span></button>
+<button class="demo-login-button" data-demo-login="client" type="button"><span class="material-symbols-outlined">business_center</span><span>Client</span></button>
+<button class="demo-login-button" data-demo-login="admin" type="button"><span class="material-symbols-outlined">admin_panel_settings</span><span>Administrator</span></button>
+</div>
+</section>
 <!-- Footer Actions -->
 <div class="mt-8 pt-6 border-t border-outline-variant text-center">
 <p class="font-body-sm text-body-sm text-on-surface-variant">

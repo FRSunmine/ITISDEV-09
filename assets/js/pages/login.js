@@ -15,6 +15,7 @@ const roleGroup = document.querySelector("[data-role-group]");
 const registrationOnly = document.querySelector("[data-registration-only]");
 const emailHint = document.querySelector("[data-email-hint]");
 const emailInput = document.querySelector("#email");
+const demoButtons = [...document.querySelectorAll("[data-demo-login]")];
 let mode = "login";
 
 const routeByRole = {
@@ -22,6 +23,28 @@ const routeByRole = {
     client: "/pages/client-dashboard.html",
     admin: "/pages/admin-operations.html",
 };
+
+const demoAccounts = {
+    student: "student@dlsu.edu.ph",
+    client: "client@sidequest.demo",
+    admin: "admin@sidequest.demo",
+};
+
+function setAuthBusy(busy) {
+    [submitButton, ...demoButtons].forEach((button) => {
+        button.disabled = busy;
+    });
+    submitButton.classList.toggle("opacity-60", busy);
+    submitButton.classList.toggle("cursor-wait", busy);
+}
+
+async function signIn(credentials, message = "Signing in...") {
+    status.textContent = message;
+    status.className = "font-body-sm text-body-sm text-on-surface-variant";
+    const response = await apiClient.post("/auth/login", credentials);
+    status.textContent = `Welcome, ${response.user.displayName}.`;
+    window.location.href = routeByRole[response.user.role];
+}
 
 function selectedApiRole() {
     return document.body.dataset.selectedRole || "student";
@@ -80,8 +103,7 @@ form?.addEventListener("submit", async (event) => {
         remember: formData.get("remember") === "on",
     };
 
-    submitButton.disabled = true;
-    submitButton.classList.add("opacity-60", "cursor-wait");
+    setAuthBusy(true);
     status.textContent = mode === "register" ? "Creating account..." : "Signing in...";
     status.className = "font-body-sm text-body-sm text-on-surface-variant";
 
@@ -96,19 +118,38 @@ form?.addEventListener("submit", async (event) => {
                 organizationName: role === "client" ? formData.get("organizationName") : undefined,
             });
         }
-        const response = await apiClient.post("/auth/login", credentials);
-        status.textContent = mode === "register"
-            ? `Account created. Welcome, ${response.user.displayName}.`
-            : `Welcome back, ${response.user.displayName}.`;
-        window.location.href = routeByRole[response.user.role];
+        await signIn(credentials, mode === "register" ? "Account created. Signing in..." : "Signing in...");
     } catch (error) {
         status.textContent =
             error.details?.error?.message || "Unable to continue. Check your details and try again.";
         status.className = "font-body-sm text-body-sm text-error";
     } finally {
-        submitButton.disabled = false;
-        submitButton.classList.remove("opacity-60", "cursor-wait");
+        setAuthBusy(false);
     }
+});
+
+demoButtons.forEach((button) => {
+    button.addEventListener("click", async () => {
+        const role = button.dataset.demoLogin;
+        const email = demoAccounts[role];
+        if (!email) return;
+
+        emailInput.value = email;
+        passwordInput.value = "SideQuest123!";
+        setAuthBusy(true);
+        try {
+            await signIn(
+                { email, password: "SideQuest123!", remember: false },
+                `Opening the ${role} demo...`,
+            );
+        } catch (error) {
+            status.textContent =
+                error.details?.error?.message || "The demo account could not be opened.";
+            status.className = "font-body-sm text-body-sm text-error";
+        } finally {
+            setAuthBusy(false);
+        }
+    });
 });
 
 syncMode();

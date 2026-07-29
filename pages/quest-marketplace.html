@@ -107,28 +107,22 @@ try {
 </select>
 </div>
 </div>
-<!-- Quick Filters -->
-<div class="flex flex-wrap items-center gap-stack-sm pb-1">
-<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container border border-border-subtle rounded-full cursor-pointer hover:bg-surface-container-high transition-colors">
-<span class="font-label-md text-label-md text-on-surface">Category</span>
-<span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>
+<form class="quest-filter-form" data-quest-filters>
+<label><span>Skill</span><input data-quest-filter="skill" maxlength="80" placeholder="e.g. Branding" type="search"></label>
+<label><span>Category</span><select data-quest-filter="category">
+<option value="">All categories</option><option>Data</option><option>Design</option><option>Development</option><option>Marketing</option><option>Multimedia</option><option>Operations</option><option>Tutoring</option><option>Video</option><option>Writing</option>
+</select></label>
+<label><span>Minimum budget</span><div class="quest-money-input"><span>PHP</span><input data-quest-filter="minBudget" min="0" placeholder="0" step="100" type="number"></div></label>
+<label><span>Maximum budget</span><div class="quest-money-input"><span>PHP</span><input data-quest-filter="maxBudget" min="0" placeholder="Any" step="100" type="number"></div></label>
+<label><span>Deadline on or before</span><input data-quest-filter="deadlineBefore" type="date"></label>
+<label><span>Arrangement</span><select data-quest-filter="workArrangement">
+<option value="">Any</option><option value="remote">Remote</option><option value="hybrid">Hybrid</option><option value="onsite">On-site</option>
+</select></label>
+<div class="quest-filter-actions">
+<button class="quest-filter-clear" data-clear-quest-filters type="button">Clear</button>
+<button class="quest-filter-apply" type="submit"><span class="material-symbols-outlined">tune</span>Apply filters</button>
 </div>
-<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container border border-border-subtle rounded-full">
-<span class="font-label-md text-label-md text-on-surface">Skill: All</span>
-</div>
-<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container border border-border-subtle rounded-full cursor-pointer hover:bg-surface-container-high transition-colors">
-<span class="font-label-md text-label-md text-on-surface">Budget</span>
-<span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>
-</div>
-<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container border border-border-subtle rounded-full cursor-pointer hover:bg-surface-container-high transition-colors">
-<span class="font-label-md text-label-md text-on-surface">Arrangement</span>
-<span class="material-symbols-outlined text-[16px]">arrow_drop_down</span>
-</div>
-<button class="ml-auto flex items-center gap-2 px-3 py-1.5 text-primary-container hover:bg-surface-container-low rounded transition-colors">
-<span class="material-symbols-outlined text-[18px]">tune</span>
-<span class="font-label-md text-label-md">All Filters</span>
-</button>
-</div>
+</form>
 </div>
 <!-- Scrollable Content -->
 <div class="flex-1 overflow-y-auto custom-scrollbar p-margin-page">

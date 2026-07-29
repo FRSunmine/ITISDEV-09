@@ -188,6 +188,24 @@ test("quest discovery returns enriched details and searches skills", async () =>
     assert.equal(details.payload.quest.applicant_count, 1);
 });
 
+test("quest discovery combines skill, category, budget, deadline, and arrangement filters", async () => {
+    const query = new URLSearchParams({
+        skill: "Branding",
+        category: "Design",
+        minBudgetCents: "450000",
+        maxBudgetCents: "550000",
+        deadlineBefore: "2026-09-01",
+        workArrangement: "hybrid",
+    });
+    const filtered = await request(`/api/v1/quests?${query}`);
+    assert.equal(filtered.response.status, 200);
+    assert.deepEqual(filtered.payload.quests.map((quest) => quest.title), ["Green Week Campaign Branding"]);
+
+    const invalid = await request("/api/v1/quests?minBudgetCents=900000&maxBudgetCents=100000");
+    assert.equal(invalid.response.status, 400);
+    assert.equal(invalid.payload.error.code, "VALIDATION_ERROR");
+});
+
 test("client creates a quest and student applies once", async () => {
     const client = await login("client@sidequest.demo", "client");
     const created = await request("/api/v1/quests", {

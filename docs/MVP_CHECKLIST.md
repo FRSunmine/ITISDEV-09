@@ -22,8 +22,8 @@ Status key: **Complete**, **Partial**, **Not started**, **Release check**
 | Structured selection | Selection starts work and locks communication/submissions to a workspace | **Partial** | Selection atomically starts the quest and creates a participant-only workspace and conversation. Deliveries use links/notes because file storage is outside the MVP. |
 | Structured selection | Every deliverable must pass client review before closure | **Complete** | The API blocks completion until all locked deliverables are approved. |
 | Quest discovery | Students can search by keyword | **Complete** | Server-side search covers title, description, category, client, and skills. |
-| Quest discovery | Students can filter by skill, category, budget, deadline, and arrangement | **Not started** | The page currently provides keyword search and sorting only. |
-| Quest discovery | Results reflect all selected filters | **Not started** | Depends on the missing filters and API query parameters. |
+| Quest discovery | Students can filter by skill, category, budget, deadline, and arrangement | **Complete** | Accessible marketplace controls submit structured API filters for all five criteria. |
+| Quest discovery | Results reflect all selected filters | **Complete** | Filters combine server-side and are covered by an integration test. |
 | Quest discovery | Cards show title, client, skills, budget, deadline, and arrangement | **Complete** | All required fields are rendered from persisted quest data. |
 
 ## Supporting MVP capabilities
@@ -43,10 +43,9 @@ Status key: **Complete**, **Partial**, **Not started**, **Release check**
 
 ## Next development priorities
 
-1. Add student quest filters and API query parameters.
-2. Add the client freelancer directory, profile view, and invitations.
-3. Show per-project client ratings on portfolio entries and full portfolio history during applicant review.
-4. Decide whether standardized skill tags require a controlled administrator-managed taxonomy.
+1. Add the client freelancer directory, profile view, and invitations.
+2. Show per-project client ratings on portfolio entries and full portfolio history during applicant review.
+3. Decide whether standardized skill tags require a controlled administrator-managed taxonomy.
 
 ## Release checks
 

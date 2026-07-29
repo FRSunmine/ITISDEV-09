@@ -11,3 +11,62 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #a0a7aa; 
         }
+
+        .demo-login-panel {
+            padding: 0.85rem;
+            border: 1px solid var(--color-outline-variant, #c5cec8);
+            border-radius: 0.75rem;
+            background:
+                linear-gradient(135deg, rgb(216 244 229 / 45%), transparent 65%),
+                var(--color-surface-container-low, #f3f6f4);
+        }
+
+        .demo-login-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .demo-login-button {
+            display: flex;
+            min-width: 0;
+            min-height: 4rem;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 0.25rem;
+            padding: 0.55rem 0.25rem;
+            border: 1px solid var(--color-outline-variant, #c5cec8);
+            border-radius: 0.6rem;
+            background: var(--color-surface-container-lowest, #fff);
+            color: var(--color-primary, #143c2b);
+            font-weight: 700;
+            transition: border-color 120ms ease, background-color 120ms ease;
+        }
+
+        .demo-login-button:hover {
+            border-color: var(--color-primary-container, #286849);
+            background: var(--color-primary-fixed, #d8f4e5);
+        }
+
+        .demo-login-button:disabled {
+            cursor: wait;
+            opacity: 0.55;
+        }
+
+        .demo-login-button .material-symbols-outlined {
+            font-size: 1.25rem;
+        }
+
+        .demo-login-button span:last-child {
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            font-size: 0.72rem;
+        }
+
+        html.dark .demo-login-panel {
+            background:
+                linear-gradient(135deg, rgb(49 85 66 / 55%), transparent 65%),
+                var(--color-surface-container-low, #202a24);
+        }

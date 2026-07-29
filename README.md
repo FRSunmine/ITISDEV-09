@@ -18,6 +18,7 @@ Frontend changes reload automatically while the development server is running.
 ## Demo accounts
 
 All demo accounts use `SideQuest123!`.
+The login page also provides one-click Student, Client, and Administrator demo buttons.
 
 | Role | Email |
 |---|---|
@@ -84,9 +85,9 @@ This permanently removes local changes and recreates the database with the sampl
 The core end-to-end workflow is functional and covered by integration tests. Remaining proposal
 work is:
 
-1. Student quest filters for skill, category, budget, deadline, and work arrangement.
-2. A client freelancer directory with profile viewing and invitations.
-3. Full portfolio evidence during applicant review and per-project ratings on portfolio entries.
+1. A client freelancer directory with profile viewing and invitations.
+2. Full portfolio evidence during applicant review and per-project ratings on portfolio entries.
+3. A decision on whether skill tags require an administrator-managed taxonomy.
 
 See `docs/MVP_CHECKLIST.md` for acceptance-level status and release checks.
 

@@ -23,7 +23,6 @@ SideQuest is a campus-focused micro-freelancing platform connecting verified stu
 
 ## Proposal gaps remaining
 
-- Student quest filters for skill, category, budget, deadline, and work arrangement
 - Client freelancer discovery and filtering
 - Client-facing full student portfolios and freelancer invitations
 - Per-project rating display within portfolio entries
