@@ -391,6 +391,184 @@ export function createApp({ db, serveStatic = false, production = false } = {}) 
         }
     });
 
+    function talentSummary(student) {
+        const skills = db.prepare(`
+            SELECT skills.name FROM user_skills
+            JOIN skills ON skills.id = user_skills.skill_id
+            WHERE user_skills.user_id = ? ORDER BY skills.name
+        `).all(student.id).map((item) => item.name);
+        return { ...student, skills };
+    }
+
+    app.get("/api/v1/freelancers", requireUser(["client"]), (req, res) => {
+        const search = String(req.query.search ?? "").trim();
+        const skill = String(req.query.skill ?? "").trim();
+        const availability = String(req.query.availability ?? "").trim();
+        const minRating = req.query.minRating === undefined || req.query.minRating === ""
+            ? 0 : Number(req.query.minRating);
+        const minCompleted = req.query.minCompleted === undefined || req.query.minCompleted === ""
+            ? 0 : Number(req.query.minCompleted);
+        if (search.length > 120 || skill.length > 80) return validationError(res, "Talent filters are too long.");
+        if (availability && !["available", "limited", "unavailable"].includes(availability)) {
+            return validationError(res, "Select a valid availability.");
+        }
+        if (!Number.isFinite(minRating) || minRating < 0 || minRating > 5) {
+            return validationError(res, "Minimum rating must be between 0 and 5.");
+        }
+        if (!Number.isInteger(minCompleted) || minCompleted < 0) {
+            return validationError(res, "Minimum experience must be a non-negative integer.");
+        }
+        const pattern = `%${search}%`;
+        const skillPattern = `%${skill}%`;
+        const freelancers = db.prepare(`
+            SELECT users.id, users.display_name, student_profiles.university, student_profiles.course,
+                   student_profiles.bio, student_profiles.availability_status,
+                   COALESCE((SELECT ROUND(AVG(rating), 1) FROM reviews WHERE reviewee_id = users.id), 0) AS rating,
+                   (SELECT COUNT(*) FROM portfolio_entries WHERE student_id = users.id) AS completed_quests
+            FROM users
+            JOIN student_profiles ON student_profiles.user_id = users.id
+            LEFT JOIN user_preferences ON user_preferences.user_id = users.id
+            WHERE users.role = 'student' AND users.account_status = 'active'
+              AND student_profiles.verification_status = 'verified'
+              AND COALESCE(user_preferences.profile_visibility, 'campus') != 'private'
+              AND (? = '' OR student_profiles.availability_status = ?)
+              AND (
+                  ? = '' OR users.display_name LIKE ? OR student_profiles.course LIKE ?
+                  OR student_profiles.bio LIKE ? OR student_profiles.university LIKE ?
+                  OR EXISTS (
+                      SELECT 1 FROM user_skills JOIN skills ON skills.id = user_skills.skill_id
+                      WHERE user_skills.user_id = users.id AND skills.name LIKE ?
+                  )
+              )
+              AND (
+                  ? = '' OR EXISTS (
+                      SELECT 1 FROM user_skills JOIN skills ON skills.id = user_skills.skill_id
+                      WHERE user_skills.user_id = users.id AND skills.name LIKE ?
+                  )
+              )
+              AND COALESCE((SELECT AVG(rating) FROM reviews WHERE reviewee_id = users.id), 0) >= ?
+              AND (SELECT COUNT(*) FROM portfolio_entries WHERE student_id = users.id) >= ?
+            ORDER BY rating DESC, completed_quests DESC, users.display_name
+        `).all(
+            availability, availability,
+            search, pattern, pattern, pattern, pattern, pattern,
+            skill, skillPattern,
+            minRating, minCompleted,
+        ).map(talentSummary);
+        const openQuests = db.prepare(`
+            SELECT id, title, deadline FROM quests
+            WHERE client_id = ? AND status = 'open' ORDER BY created_at DESC
+        `).all(req.user.id);
+        res.json({ freelancers, openQuests });
+    });
+
+    app.get("/api/v1/freelancers/:id", requireUser(["client"]), (req, res) => {
+        const student = db.prepare(`
+            SELECT users.id, users.display_name, student_profiles.university, student_profiles.course,
+                   student_profiles.bio, student_profiles.availability_status,
+                   COALESCE((SELECT ROUND(AVG(rating), 1) FROM reviews WHERE reviewee_id = users.id), 0) AS rating,
+                   (SELECT COUNT(*) FROM portfolio_entries WHERE student_id = users.id) AS completed_quests
+            FROM users
+            JOIN student_profiles ON student_profiles.user_id = users.id
+            LEFT JOIN user_preferences ON user_preferences.user_id = users.id
+            WHERE users.id = ? AND users.role = 'student' AND users.account_status = 'active'
+              AND student_profiles.verification_status = 'verified'
+              AND COALESCE(user_preferences.profile_visibility, 'campus') != 'private'
+        `).get(req.params.id);
+        if (!student) return res.status(404).json({ error: { code: "NOT_FOUND", message: "Freelancer not found." } });
+        const portfolio = db.prepare(`
+            SELECT portfolio_entries.id, portfolio_entries.title, portfolio_entries.summary,
+                   portfolio_entries.completed_at, quests.category,
+                   (SELECT rating FROM reviews
+                    WHERE reviews.quest_id = portfolio_entries.quest_id
+                      AND reviews.reviewee_id = portfolio_entries.student_id) AS client_rating
+            FROM portfolio_entries JOIN quests ON quests.id = portfolio_entries.quest_id
+            WHERE portfolio_entries.student_id = ? ORDER BY portfolio_entries.completed_at DESC
+        `).all(student.id);
+        const reviews = db.prepare(`
+            SELECT reviews.rating, reviews.comment, reviews.created_at, quests.title AS quest_title,
+                   users.display_name AS reviewer_name
+            FROM reviews JOIN quests ON quests.id = reviews.quest_id
+            JOIN users ON users.id = reviews.reviewer_id
+            WHERE reviews.reviewee_id = ? ORDER BY reviews.created_at DESC
+        `).all(student.id);
+        res.json({ freelancer: talentSummary(student), portfolio, reviews });
+    });
+
+    app.post("/api/v1/freelancers/:id/invitations", requireUser(["client"]), (req, res) => {
+        const questId = Number(req.body?.questId);
+        const message = String(req.body?.message ?? "").trim();
+        if (!Number.isInteger(questId) || !message || message.length > 1000) {
+            return validationError(res, "Choose an open quest and provide a message of at most 1000 characters.");
+        }
+        const quest = db.prepare("SELECT id FROM quests WHERE id = ? AND client_id = ? AND status = 'open'")
+            .get(questId, req.user.id);
+        const student = db.prepare(`
+            SELECT users.id FROM users JOIN student_profiles ON student_profiles.user_id = users.id
+            LEFT JOIN user_preferences ON user_preferences.user_id = users.id
+            WHERE users.id = ? AND users.account_status = 'active'
+              AND student_profiles.verification_status = 'verified'
+              AND COALESCE(user_preferences.profile_visibility, 'campus') != 'private'
+        `).get(req.params.id);
+        if (!quest || !student) return res.status(404).json({ error: { code: "NOT_FOUND", message: "Quest or freelancer not found." } });
+        try {
+            const result = db.prepare(`
+                INSERT INTO invitations (client_id, student_id, quest_id, message) VALUES (?, ?, ?, ?)
+            `).run(req.user.id, student.id, quest.id, message);
+            res.status(201).json({ invitation: db.prepare("SELECT * FROM invitations WHERE id = ?").get(result.lastInsertRowid) });
+        } catch (error) {
+            if (String(error.message).includes("UNIQUE constraint failed")) {
+                return res.status(409).json({ error: { code: "ALREADY_INVITED", message: "This student already has an invitation for that quest." } });
+            }
+            throw error;
+        }
+    });
+
+    app.get("/api/v1/invitations/me", requireUser(["student"]), (req, res) => {
+        const invitations = db.prepare(`
+            SELECT invitations.*, quests.title AS quest_title, quests.deadline, quests.budget_cents,
+                   users.display_name AS client_name, client_profiles.organization_name
+            FROM invitations JOIN quests ON quests.id = invitations.quest_id
+            JOIN users ON users.id = invitations.client_id
+            LEFT JOIN client_profiles ON client_profiles.user_id = users.id
+            WHERE invitations.student_id = ? ORDER BY invitations.created_at DESC
+        `).all(req.user.id);
+        res.json({ invitations });
+    });
+
+    app.patch("/api/v1/invitations/:id", requireUser(["student"]), (req, res) => {
+        const decision = req.body?.decision;
+        if (!["accepted", "declined"].includes(decision)) return validationError(res, "Accept or decline the invitation.");
+        const invitation = db.prepare(`
+            SELECT invitations.*, quests.status AS quest_status FROM invitations
+            JOIN quests ON quests.id = invitations.quest_id
+            WHERE invitations.id = ? AND invitations.student_id = ? AND invitations.status = 'pending'
+        `).get(req.params.id, req.user.id);
+        if (!invitation) return res.status(404).json({ error: { code: "NOT_FOUND", message: "Pending invitation not found." } });
+        if (decision === "accepted" && invitation.quest_status !== "open") {
+            return res.status(409).json({ error: { code: "QUEST_UNAVAILABLE", message: "This quest is no longer open." } });
+        }
+        try {
+            db.exec("BEGIN");
+            if (decision === "accepted") {
+                db.prepare(`
+                    INSERT INTO applications (quest_id, student_id, cover_letter)
+                    VALUES (?, ?, ?)
+                `).run(invitation.quest_id, req.user.id, `Invited by the client.\n\n${invitation.message}`);
+            }
+            db.prepare("UPDATE invitations SET status = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?")
+                .run(decision, invitation.id);
+            db.exec("COMMIT");
+            res.json({ invitation: db.prepare("SELECT * FROM invitations WHERE id = ?").get(invitation.id) });
+        } catch (error) {
+            db.exec("ROLLBACK");
+            if (String(error.message).includes("UNIQUE constraint failed")) {
+                return res.status(409).json({ error: { code: "ALREADY_APPLIED", message: "You already applied to this quest." } });
+            }
+            throw error;
+        }
+    });
+
     app.get("/api/v1/client/applications", requireUser(["client"]), (req, res) => {
         const quests = db.prepare(`
             SELECT
@@ -818,6 +996,7 @@ export function createApp({ db, serveStatic = false, production = false } = {}) 
         const profile = db.prepare(`
             SELECT users.id, users.email, users.display_name, student_profiles.university,
                    student_profiles.course, student_profiles.bio,
+                   student_profiles.availability_status,
                    student_profiles.verification_status
             FROM users
             JOIN student_profiles ON student_profiles.user_id = users.id
@@ -830,7 +1009,10 @@ export function createApp({ db, serveStatic = false, production = false } = {}) 
             ORDER BY skills.name
         `).all(req.user.id).map((skill) => skill.name);
         const portfolio = db.prepare(`
-            SELECT portfolio_entries.*, quests.category, users.display_name AS client_name
+            SELECT portfolio_entries.*, quests.category, users.display_name AS client_name,
+                   (SELECT rating FROM reviews
+                    WHERE reviews.quest_id = portfolio_entries.quest_id
+                      AND reviews.reviewee_id = portfolio_entries.student_id) AS client_rating
             FROM portfolio_entries
             JOIN quests ON quests.id = portfolio_entries.quest_id
             JOIN users ON users.id = quests.client_id
@@ -858,6 +1040,16 @@ export function createApp({ db, serveStatic = false, production = false } = {}) 
             reviews,
             summary: { completed: portfolio.length, rating },
         });
+    });
+
+    app.patch("/api/v1/profile/me/availability", requireUser(["student"]), (req, res) => {
+        const availability = String(req.body?.availability ?? "");
+        if (!["available", "limited", "unavailable"].includes(availability)) {
+            return validationError(res, "Select a valid availability.");
+        }
+        db.prepare("UPDATE student_profiles SET availability_status = ? WHERE user_id = ?")
+            .run(availability, req.user.id);
+        res.json({ availability });
     });
 
     app.patch("/api/v1/profile/me/verification", requireUser(["student"]), (req, res) => {

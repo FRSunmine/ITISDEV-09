@@ -7,15 +7,16 @@
 - Connected student discovery, applications, verification, workspace, reviews, and portfolio flows.
 - Added dedicated student application history and persisted quest conversations.
 - Connected client dashboard, quest creation, applicant selection, and workspace flows.
+- Added verified talent discovery, availability, full client-facing profiles, and quest invitations.
 - Connected administrator verification, moderation, and analytics.
 - Added account-scoped preferences and persisted user/client reporting.
 - Added backend integration tests and production build checks.
 
 ## Proposal alignment
 
-The implemented workflow is stable, but the original proposal is not fully complete. The remaining
-development priorities are a client freelancer directory with invitations and fuller portfolio
-evidence during applicant review. See `MVP_CHECKLIST.md` for acceptance-level status.
+The implemented workflow is stable and the four proposal user stories now have complete primary
+flows. Remaining alignment work is full portfolio history inside the applicant selection matrix
+and a decision on controlled skill taxonomy. See `MVP_CHECKLIST.md` for acceptance-level status.
 
 ## Release hardening
 - Run manual acceptance tests on current Chrome, Edge, and Firefox.

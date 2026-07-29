@@ -639,6 +639,57 @@ test("client can read and update a separate organization profile", async () => {
     assert.equal(updated.payload.profile.organization_name, "DLSU Student Council Office");
 });
 
+test("clients discover verified talent and students accept quest invitations", async () => {
+    const client = await login("client@sidequest.demo", "client");
+    const directory = await request(
+        "/api/v1/freelancers?skill=Video&availability=unavailable",
+        { cookie: client.cookie },
+    );
+    assert.equal(directory.response.status, 200);
+    assert.deepEqual(directory.payload.freelancers.map((item) => item.display_name), ["Sam Lee"]);
+    const sam = directory.payload.freelancers[0];
+
+    const profile = await request(`/api/v1/freelancers/${sam.id}`, { cookie: client.cookie });
+    assert.equal(profile.response.status, 200);
+    assert.ok(profile.payload.freelancer.skills.includes("Video Editing"));
+
+    const quest = await request("/api/v1/quests", {
+        method: "POST",
+        cookie: client.cookie,
+        body: {
+            title: "Invitation Workflow Test",
+            description: "Test a client invitation from discovery through application.",
+            category: "Multimedia",
+            budgetCents: 650000,
+            deadline: "2026-10-20",
+            workArrangement: "hybrid",
+            skills: ["Video Editing"],
+            deliverables: ["Edited campaign video"],
+        },
+    });
+    const invited = await request(`/api/v1/freelancers/${sam.id}/invitations`, {
+        method: "POST",
+        cookie: client.cookie,
+        body: { questId: quest.payload.quest.id, message: "Your editing experience fits this campaign." },
+    });
+    assert.equal(invited.response.status, 201);
+
+    const student = await login("sam.lee@dlsu.edu.ph", "student");
+    const inbox = await request("/api/v1/invitations/me", { cookie: student.cookie });
+    assert.ok(inbox.payload.invitations.some((item) => item.id === invited.payload.invitation.id));
+    const accepted = await request(`/api/v1/invitations/${invited.payload.invitation.id}`, {
+        method: "PATCH",
+        cookie: student.cookie,
+        body: { decision: "accepted" },
+    });
+    assert.equal(accepted.response.status, 200);
+    assert.equal(
+        db.prepare("SELECT status FROM applications WHERE quest_id = ? AND student_id = ?")
+            .get(quest.payload.quest.id, sam.id).status,
+        "pending",
+    );
+});
+
 test("preferences persist per account instead of per device", async () => {
     const student = await login("student@dlsu.edu.ph", "student");
     const saved = await request("/api/v1/preferences", {

@@ -34,6 +34,11 @@ The SQLite database is created at `data/sidequest.db` and ignored by Git.
 - `POST /api/v1/quests`
 - `POST /api/v1/quests/:id/applications`
 - `GET /api/v1/applications/me`
+- `GET /api/v1/freelancers`
+- `GET /api/v1/freelancers/:id`
+- `POST /api/v1/freelancers/:id/invitations`
+- `GET /api/v1/invitations/me`
+- `PATCH /api/v1/invitations/:id`
 - `GET /api/v1/client/dashboard`
 - `GET /api/v1/client/profile`
 - `PATCH /api/v1/client/profile`
@@ -49,6 +54,7 @@ The SQLite database is created at `data/sidequest.db` and ignored by Git.
 - `POST /api/v1/workspace/quests/:id/reviews`
 - `GET /api/v1/profile/me`
 - `PATCH /api/v1/profile/me/verification`
+- `PATCH /api/v1/profile/me/availability`
 - `GET /api/v1/admin/operations`
 - `PATCH /api/v1/admin/students/:id/verification`
 - `PATCH /api/v1/admin/users/:id/status`
@@ -90,6 +96,5 @@ accounts have their sessions invalidated and cannot sign in until restored.
 
 ## Current API limitations
 
-- There is no client-facing freelancer directory, public freelancer endpoint, or invitation flow.
 - Messages are persisted and participant-only but use request/response updates rather than sockets.
 - Deliverable submissions store links or notes; binary file storage is not implemented.

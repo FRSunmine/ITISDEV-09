@@ -53,6 +53,8 @@ function migrate(db) {
             university TEXT NOT NULL,
             course TEXT,
             bio TEXT,
+            availability_status TEXT NOT NULL DEFAULT 'available'
+                CHECK (availability_status IN ('available', 'limited', 'unavailable')),
             verification_status TEXT NOT NULL DEFAULT 'pending'
                 CHECK (verification_status IN ('pending', 'verified', 'rejected'))
         );
@@ -104,6 +106,19 @@ function migrate(db) {
             proposed_rate_cents INTEGER,
             status TEXT NOT NULL DEFAULT 'pending'
                 CHECK (status IN ('pending', 'accepted', 'rejected', 'withdrawn')),
+            created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            UNIQUE (quest_id, student_id)
+        );
+
+        CREATE TABLE IF NOT EXISTS invitations (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            client_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+            student_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+            quest_id INTEGER NOT NULL REFERENCES quests(id) ON DELETE CASCADE,
+            message TEXT NOT NULL,
+            status TEXT NOT NULL DEFAULT 'pending'
+                CHECK (status IN ('pending', 'accepted', 'declined')),
             created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
             updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
             UNIQUE (quest_id, student_id)
@@ -173,10 +188,25 @@ function migrate(db) {
         CREATE INDEX IF NOT EXISTS idx_quests_status ON quests(status);
         CREATE INDEX IF NOT EXISTS idx_applications_student ON applications(student_id);
         CREATE INDEX IF NOT EXISTS idx_applications_quest ON applications(quest_id);
+        CREATE INDEX IF NOT EXISTS idx_invitations_student ON invitations(student_id, status);
         CREATE INDEX IF NOT EXISTS idx_messages_conversation ON messages(conversation_id, created_at);
         CREATE INDEX IF NOT EXISTS idx_reports_status ON reports(status, created_at);
         CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);
     `);
+
+    const studentProfileColumns = new Set(
+        db.prepare("PRAGMA table_info(student_profiles)").all().map((column) => column.name),
+    );
+    if (!studentProfileColumns.has("availability_status")) {
+        db.exec(`
+            ALTER TABLE student_profiles ADD COLUMN availability_status TEXT NOT NULL DEFAULT 'available'
+                CHECK (availability_status IN ('available', 'limited', 'unavailable'));
+            UPDATE student_profiles SET availability_status = 'limited'
+            WHERE user_id = (SELECT id FROM users WHERE email = 'jamie.cruz@dlsu.edu.ph');
+            UPDATE student_profiles SET availability_status = 'unavailable'
+            WHERE user_id = (SELECT id FROM users WHERE email = 'sam.lee@dlsu.edu.ph');
+        `);
+    }
 
     const deliverableColumns = new Set(
         db.prepare("PRAGMA table_info(deliverables)").all().map((column) => column.name),
@@ -221,6 +251,7 @@ function seed(db) {
                 course: "BS Computer Science",
                 bio: "UI/UX designer and frontend developer.",
                 verification: "verified",
+                availability: "available",
                 skills: ["React", "Figma", "JavaScript"],
             },
             {
@@ -231,6 +262,7 @@ function seed(db) {
                 course: "AB Communication",
                 bio: "Copywriter and campaign strategist for campus organizations.",
                 verification: "verified",
+                availability: "limited",
                 skills: ["Copywriting", "Social Media", "Branding"],
             },
             {
@@ -241,6 +273,7 @@ function seed(db) {
                 course: "AB Multimedia Arts",
                 bio: "Video editor and motion designer focused on student stories.",
                 verification: "verified",
+                availability: "unavailable",
                 skills: ["Video Editing", "Motion Graphics", "Storyboarding"],
             },
             {
@@ -251,6 +284,7 @@ function seed(db) {
                 course: "BS Information Systems",
                 bio: "Data and product student building practical campus tools.",
                 verification: "pending",
+                availability: "available",
                 skills: ["Data Analysis", "Excel", "SQL"],
             },
         ];
@@ -286,8 +320,8 @@ function seed(db) {
         const findUser = db.prepare("SELECT id FROM users WHERE email = ? COLLATE NOCASE");
         const addStudentProfile = db.prepare(`
             INSERT OR IGNORE INTO student_profiles
-                (user_id, university, course, bio, verification_status)
-            VALUES (?, ?, ?, ?, ?)
+                (user_id, university, course, bio, verification_status, availability_status)
+            VALUES (?, ?, ?, ?, ?, ?)
         `);
         const addClientProfile = db.prepare(`
             INSERT OR IGNORE INTO client_profiles (user_id, organization_name, organization_type)
@@ -300,6 +334,7 @@ function seed(db) {
                 student.course,
                 student.bio,
                 student.verification,
+                student.availability,
             );
         });
         clients.forEach((client) => {

@@ -13,6 +13,7 @@
 | Student | Settings | `/pages/student-settings.html` |
 | Student | Report an issue | `/pages/student-report.html` |
 | Client | Dashboard and quest list | `/pages/client-dashboard.html` |
+| Client | Find verified talent and send invitations | `/pages/client-talent.html` |
 | Client | Messages | `/pages/client-messages.html` |
 | Client | Organization profile | `/pages/client-organization-profile.html` |
 | Client | Settings | `/pages/client-settings.html` |

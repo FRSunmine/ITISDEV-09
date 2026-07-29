@@ -10,6 +10,7 @@ export const routes = {
     studentVerification: "/pages/student-verification.html",
     studentReport: "/pages/student-report.html",
     clientDashboard: "/pages/client-dashboard.html",
+    clientTalent: "/pages/client-talent.html",
     clientMessages: "/pages/client-messages.html",
     clientOrganizationProfile: "/pages/client-organization-profile.html",
     clientSettings: "/pages/client-settings.html",
@@ -137,6 +138,31 @@ async function hydrateAccountPreferences() {
     }
 }
 
+async function initializeStudentAvailability() {
+    const control = document.querySelector("[data-student-availability]");
+    if (!control) return;
+    try {
+        const response = await fetch("/api/v1/profile/me", {
+            credentials: "include",
+            headers: { Accept: "application/json" },
+        });
+        if (!response.ok) return;
+        const result = await response.json();
+        control.value = result.profile.availability_status || "available";
+    } catch {
+        return;
+    }
+    control.addEventListener("change", async () => {
+        const response = await fetch("/api/v1/profile/me/availability", {
+            method: "PATCH",
+            credentials: "include",
+            headers: { Accept: "application/json", "Content-Type": "application/json" },
+            body: JSON.stringify({ availability: control.value }),
+        });
+        announceSettingsSaved(response.ok ? "Availability saved to your profile." : "Availability could not be saved.");
+    });
+}
+
 const sharedAssets = Object.freeze({
     studentAvatar:
         "https://lh3.googleusercontent.com/aida-public/AB6AXuA1_yDpvgMYJYer7rTM5MAmM-eKWZJwpqMJ5cwRURAJx-t58q387wjvzn1wajQREdNrKPTF-gGF-GQcGG7fQIAMpvN86piLjgLyDxETYKRj2MJfEUA_E-oGz61Xyj7qBtXgP1FZ3eE7k_1zA-tuo_rEwsb2J7sglTVW63p3hWzAIKXCvwJZBDv8Bxp_NLhBYFHmbvdPwIbFoEGZcdzph_DS6DHa6yW3PPHc4XF6Ab-bSMco1-GFTLH1mkix9WPPDTGi-QKD7196WqQ",
@@ -241,6 +267,19 @@ function normalizeSharedImages() {
 
 function normalizeAccountNavigation() {
     const role = inferPageRole();
+    if (role === "client") {
+        document.querySelectorAll("nav").forEach((nav) => {
+            if (!nav.querySelector(".client-nav-link") || nav.querySelector('[href*="client-talent"]')) return;
+            const createQuest = [...nav.querySelectorAll("a")].find((link) =>
+                link.textContent.trim().toLowerCase() === "create quest");
+            if (!createQuest) return;
+            const link = document.createElement("a");
+            link.className = "client-nav-link";
+            link.href = routes.clientTalent;
+            link.innerHTML = '<span class="material-symbols-outlined">person_search</span><span data-nav-label>Find Talent</span>';
+            createQuest.before(link);
+        });
+    }
     document.querySelectorAll("a").forEach((link) => {
         const label = link.textContent.trim().toLowerCase();
         if (role === "client" && label === "settings") {
@@ -628,6 +667,7 @@ document.addEventListener("change", (event) => {
 normalizeSharedImages();
 normalizeAccountNavigation();
 initializeMessageNavigation();
+initializeStudentAvailability();
 initializeAccountMenu();
 activateRoleButton(document.querySelector("[data-role-button][aria-pressed='true']"));
 syncThemeControls();

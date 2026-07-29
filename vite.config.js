@@ -13,6 +13,7 @@ const pages = [
   "student-settings",
   "student-report",
   "client-dashboard",
+  "client-talent",
   "client-messages",
   "client-organization-profile",
   "client-settings",

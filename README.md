@@ -73,6 +73,7 @@ This permanently removes local changes and recreates the database with the sampl
 - Student and client registration with role-based login and protected sessions
 - Student verification and verified-only quest applications
 - Quest discovery, creation, applications, and applicant selection
+- Client talent discovery, full profile review, and quest invitations
 - Dedicated student application history and quest conversations
 - Student/client workspaces with deliverable review and completion
 - Participant reviews and automatic verified portfolio entries
@@ -85,9 +86,8 @@ This permanently removes local changes and recreates the database with the sampl
 The core end-to-end workflow is functional and covered by integration tests. Remaining proposal
 work is:
 
-1. A client freelancer directory with profile viewing and invitations.
-2. Full portfolio evidence during applicant review and per-project ratings on portfolio entries.
-3. A decision on whether skill tags require an administrator-managed taxonomy.
+1. Full portfolio history directly inside the applicant selection matrix.
+2. A decision on whether skill tags require an administrator-managed taxonomy.
 
 See `docs/MVP_CHECKLIST.md` for acceptance-level status and release checks.
 

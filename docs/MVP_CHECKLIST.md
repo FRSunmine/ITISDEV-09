@@ -10,13 +10,13 @@ Status key: **Complete**, **Partial**, **Not started**, **Release check**
 | Story | Acceptance criterion | Status | Evidence or remaining work |
 |---|---|---|---|
 | Student portfolio | Completed and approved quests are added automatically | **Complete** | Quest completion creates a verified portfolio entry atomically. |
-| Student portfolio | Entries show the quest title, completion date, and client rating | **Partial** | Title and date appear on each entry; ratings appear in the profile review section rather than on the matching entry. |
+| Student portfolio | Entries show the quest title, completion date, and client rating | **Complete** | Portfolio entries show persisted completion details and the matching client rating. |
 | Student portfolio | Students can view all completed projects | **Complete** | The student profile renders all persisted portfolio entries. |
-| Student portfolio | Clients can inspect a portfolio before hiring or inviting | **Partial** | Applicant review shows profile, skills, rating, and completed count, but not the full portfolio. Invitations are not implemented. |
-| Freelancer discovery | Clients can search freelancers by keyword | **Not started** | There is no client freelancer directory. |
-| Freelancer discovery | Clients can filter by skill, rating, experience, and availability | **Not started** | Add a persisted availability field, directory filters, and query support. |
-| Freelancer discovery | Clients see matching freelancer results | **Not started** | Applicant comparison currently begins only after a student applies. |
-| Freelancer discovery | Clients can inspect profiles and invite a freelancer | **Not started** | Add public client-facing profiles and an invitation workflow. |
+| Student portfolio | Clients can inspect a portfolio before hiring or inviting | **Complete** | The client talent directory exposes privacy-aware full profiles, portfolios, ratings, and invitations. |
+| Freelancer discovery | Clients can search freelancers by keyword | **Complete** | The client talent directory searches verified profiles by name, course, university, bio, and skills. |
+| Freelancer discovery | Clients can filter by skill, rating, experience, and availability | **Complete** | All four filters combine server-side against persisted profile data. |
+| Freelancer discovery | Clients see matching freelancer results | **Complete** | Responsive result cards show verified matching talent and core evidence. |
+| Freelancer discovery | Clients can inspect profiles and invite a freelancer | **Complete** | Full profile dialogs support invitations to owned open quests; students accept or decline in Applications. |
 | Structured selection | Quest creation requires skill tags and a deliverables checklist | **Partial** | Both are mandatory and become immutable after creation; skill tags are free-form rather than selected from a controlled taxonomy. |
 | Structured selection | Selection matrix shows verification, history, and alignment | **Partial** | Verification, rating, completed count, and rule-based skill coverage are shown; full portfolio history is not shown in the matrix. |
 | Structured selection | Selection starts work and locks communication/submissions to a workspace | **Partial** | Selection atomically starts the quest and creates a participant-only workspace and conversation. Deliveries use links/notes because file storage is outside the MVP. |
@@ -43,9 +43,8 @@ Status key: **Complete**, **Partial**, **Not started**, **Release check**
 
 ## Next development priorities
 
-1. Add the client freelancer directory, profile view, and invitations.
-2. Show per-project client ratings on portfolio entries and full portfolio history during applicant review.
-3. Decide whether standardized skill tags require a controlled administrator-managed taxonomy.
+1. Show full portfolio history directly inside the applicant selection matrix.
+2. Decide whether standardized skill tags require a controlled administrator-managed taxonomy.
 
 ## Release checks
 

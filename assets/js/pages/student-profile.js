@@ -44,7 +44,7 @@ function renderProfile(data) {
                     <h3 class="font-label-md text-label-md text-on-surface font-semibold">${escapeHtml(entry.title)}</h3>
                     <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 line-clamp-3">${escapeHtml(entry.summary || "")}</p>
                     <div class="mt-auto pt-stack-sm flex items-center justify-between border-t border-border-subtle">
-                        <span class="font-label-sm text-label-sm text-secondary">Client: ${escapeHtml(entry.client_name)}</span>
+                        <span class="font-label-sm text-label-sm text-secondary">Client: ${escapeHtml(entry.client_name)}${entry.client_rating ? ` | ${entry.client_rating}/5` : ""}</span>
                         <span class="font-label-sm text-label-sm text-tertiary-container">${escapeHtml(formatDate(entry.completed_at))}</span>
                     </div>
                 </div>
